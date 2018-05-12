@@ -9,6 +9,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .navbar {
   background: #d7000f;
@@ -45,6 +46,9 @@ html {
   height: 300px;
   border-radius: 3px;
   position: relative;
+  box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.1);
+  transition: 0.3s box-shadow ease-out;
+  cursor: pointer;
 }
 .navBrick_col h2 {
   text-align: center;
@@ -56,8 +60,6 @@ html {
   background: #ffd93e;
   border-radius: 5px;
   margin: 0 auto;
-  text-align: center;
-  line-height: 40px;
 }
 .navBrick_col:before {
   content: "";
@@ -72,6 +74,9 @@ html {
   border-radius: 3px;
   transition: 0.3s opacity ease-out;
   z-index: -10;
+}
+.navBrick_col:hover {
+  box-shadow: 0px 1px 13px 1px rgba(0,0,0,0.1);
 }
 .navBrick_col:hover:before {
   opacity: 1;
