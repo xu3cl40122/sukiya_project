@@ -1,0 +1,71 @@
+html 
+    font-family Microsoft JhengHei,Arial,Helvetica,sans-serif
+// --- 共用 class ---
+.container
+    width 100%
+    padding 50px 0px
+.button 
+    display flex 
+    justify-content center
+    align-items center
+
+//--- 各自 class ---
+.navbar
+    background #d7000f
+    width 100%
+    height 100px
+    position fixed
+    z-index 10
+    .navbar_logo
+        width 135px
+        height 115px
+        position relative
+        top 35px
+        left 75px
+        background url('./pic/Logo_sukiya.jpg')
+        background-size cover 
+        border 2px solid white
+.header
+    width 100%
+    height 500px
+    background url('./pic/Sb5z1Earu99GijzNUpURmIoS3GIU5XZtGQJAbRkCQG0.jpg')
+    background-size cover
+    background-position center
+
+.navBrick_row
+    width 960px
+    margin 0 auto
+    display flex 
+    justify-content space-between
+.navBrick_col
+    width 250px
+    height 300px
+    border-radius 3px
+    position relative
+    h2 
+        text-align center
+        margin-top 100px
+    .navBrick_col_button 
+        width w = 100px
+        height h = 40px
+        background rgb(255,217,62) 
+        border-radius 5px
+        margin 0 auto
+        text-align center
+        line-height h    
+    &:before
+        content ""
+        position absolute
+        top 0
+        left 0
+        width 100%
+        height 100%
+        background url('./pic/IMG_2204.JPG')
+        background-size cover
+        opacity 0.3
+        border-radius 3px
+        transition 0.3s opacity ease-out
+        z-index -10
+    &:hover
+        &:before
+            opacity 1
