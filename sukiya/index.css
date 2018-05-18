@@ -89,7 +89,7 @@ p {
   display: flex;
   justify-content: space-between;
 }
-.navBrick_col {
+.navBrick_row .navBrick_col {
   width: 250px;
   height: 300px;
   border-radius: 3px;
@@ -99,22 +99,22 @@ p {
   color: #000;
   cursor: pointer;
 }
-.navBrick_col:hover {
+.navBrick_row .navBrick_col:hover {
   box-shadow: 0px 1px 13px 1px rgba(0,0,0,0.1);
   color: #fff;
 }
-.navBrick_col h2 {
+.navBrick_row .navBrick_col h2 {
   text-align: center;
   margin-top: 100px;
 }
-.navBrick_col .navBrick_col_button {
+.navBrick_row .navBrick_col .navBrick_col_button {
   width: 100px;
   height: 40px;
   background: #ffd93e;
   border-radius: 5px;
   margin: 0 auto;
 }
-.navBrick_col_buy:before {
+.navBrick_row .navBrick_col_buy:before {
   content: "";
   position: absolute;
   top: 0;
@@ -129,10 +129,10 @@ p {
   transition: 0.3s opacity ease-out;
   z-index: -10;
 }
-.navBrick_col_buy:hover:before {
+.navBrick_row .navBrick_col_buy:hover:before {
   opacity: 1;
 }
-.navBrick_col_site:before {
+.navBrick_row .navBrick_col_site:before {
   content: "";
   position: absolute;
   top: 0;
@@ -147,10 +147,10 @@ p {
   transition: 0.3s opacity ease-out;
   z-index: -10;
 }
-.navBrick_col_site:hover:before {
+.navBrick_row .navBrick_col_site:hover:before {
   opacity: 1;
 }
-.navBrick_col_about:before {
+.navBrick_row .navBrick_col_about:before {
   content: "";
   position: absolute;
   top: 0;
@@ -164,7 +164,7 @@ p {
   transition: 0.3s opacity ease-out;
   z-index: -10;
 }
-.navBrick_col_about:hover:before {
+.navBrick_row .navBrick_col_about:hover:before {
   opacity: 1;
 }
 .news_bg {

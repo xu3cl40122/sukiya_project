@@ -46,7 +46,7 @@ s_yellow = #FFD93E
         display inline-flex
         list-style none
         color white
-        margin-right 20%
+        margin-right 10%
         li 
             margin-right 25px
             align-items center
@@ -68,8 +68,10 @@ s_yellow = #FFD93E
                 background-color white
                 transition 0.3s all ease-out
                 transform scale3d(0,1,1)
+// 連動 sidebar 和 product_container 
+sidebar_width = 13%
 .sidebar
-    width 200px
+    width sidebar_width
     height 100vw
     background #1E222A
     padding 100px 0px
@@ -87,8 +89,56 @@ s_yellow = #FFD93E
     .sidebar_line-active
         background #3d4656
         border-left 5px solid s_yellow
-.product_row 
-    width 800px
-    height 400px
-    margin 200px 300px
-    background gray
+.product_container 
+    margin-left sidebar_width
+    margin-top 80px
+    width -(100 - sidebar_width)
+    .product_row
+        margin 0 auto 
+        width 85%
+        display flex 
+        justify-content space-between
+        flex-wrap wrap
+    .product_col
+        width 280px
+        margin-top 30px
+        box-shadow  0px 1px 13px 1px rgba(0,0,0,0.1)
+        border-radius 3px
+        overflow hidden
+        transition 0.3s all ease-out
+        &:hover
+            cursor pointer
+            filter brightness(1.1)
+            box-shadow  0px 1px 13px 5px rgba(0,0,0,0.1)
+            img 
+                transform scale(1.1)
+    img 
+        width 100%
+        height 195px
+        display block
+        z-index -10
+        position relative
+        transition 0.3s all ease-out 
+    .product_col_inf 
+        width 100%
+        background s_yellow
+        display flex
+        align-items center
+        padding 0px 15px
+        flex-wrap wrap
+        z-index 10
+    .product_col_inf_name
+        margin 5px 0px
+        text-align center
+        font-size 1.3rem
+        font-weight bold
+        display block
+        width 100%
+    .product_col_inf_price
+        color s_red 
+        font-size 1rem
+        text-align center
+        width 100%
+        margin 5px 0px
+
+        

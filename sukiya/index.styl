@@ -1,5 +1,6 @@
 html 
     font-family Microsoft JhengHei,Arial,Helvetica,sans-serif
+
 * 
     box-sizing border-box
 p 
@@ -67,8 +68,6 @@ s_yellow = #FFD93E
                 transition 0.3s all ease-out
                 transform scale3d(0,1,1)
             
-                
-    
 .null 
     width 100%
     height 100px   
@@ -84,83 +83,84 @@ s_yellow = #FFD93E
     margin 0 auto
     display flex 
     justify-content space-between
-.navBrick_col 
-    width 250px
-    height 300px
-    border-radius 3px
-    position relative
-    box-shadow 0px 0px 0px 0px rgba(0,0,0,0.1)
-    transition 0.3s box-shadow ease-out,0.3s color ease-out
-    color black
-    cursor pointer
-    &:hover
-        box-shadow  0px 1px 13px 1px rgba(0,0,0,0.1)
-        color white  
-    h2 
-        text-align center
-        margin-top 100px
-    .navBrick_col_button 
-        width w = 100px
-        height h = 40px
-        background s_yellow 
-        border-radius 5px
-        margin 0 auto
-        
     
-// 為了讓每個 before 的照片不一樣
-.navBrick_col_buy
-    &:before
-        content ""
-        position absolute
-        top 0
-        left 0
-        width 100%
-        height 100%
-        background url('./pic/2.jpg')
-        background-size cover
-        background-position 25% 
-        opacity 0.4
+    .navBrick_col 
+        width 250px
+        height 300px
         border-radius 3px
-        transition 0.3s opacity ease-out
-        z-index -10
-    &:hover
+        position relative
+        box-shadow 0px 0px 0px 0px rgba(0,0,0,0.1)
+        transition 0.3s box-shadow ease-out,0.3s color ease-out
+        color black
+        cursor pointer
+        &:hover
+            box-shadow  0px 1px 13px 1px rgba(0,0,0,0.1)
+            color white  
+        h2 
+            text-align center
+            margin-top 100px
+        .navBrick_col_button 
+            width w = 100px
+            height h = 40px
+            background s_yellow 
+            border-radius 5px
+            margin 0 auto
+            
+        
+    // 為了讓每個 before 的照片不一樣
+    .navBrick_col_buy
         &:before
-            opacity 1
-.navBrick_col_site
-    &:before
-        content ""
-        position absolute
-        top 0
-        left 0
-        width 100%
-        height 100%
-        background url('./pic/n-black-d-20141230-870x597.jpg')
-        background-size cover
-        background-position top
-        opacity 0.4
-        border-radius 3px
-        transition 0.3s opacity ease-out
-        z-index -10
-    &:hover
+            content ""
+            position absolute
+            top 0
+            left 0
+            width 100%
+            height 100%
+            background url('./pic/2.jpg')
+            background-size cover
+            background-position 25% 
+            opacity 0.4
+            border-radius 3px
+            transition 0.3s opacity ease-out
+            z-index -10
+        &:hover
+            &:before
+                opacity 1
+    .navBrick_col_site
         &:before
-            opacity 1
-.navBrick_col_about
-    &:before
-        content ""
-        position absolute
-        top 0
-        left 0
-        width 100%
-        height 100%
-        background url('./pic/wat.png')
-        background-size cover
-        opacity 0.4
-        border-radius 3px
-        transition 0.3s opacity ease-out
-        z-index -10
-    &:hover
+            content ""
+            position absolute
+            top 0
+            left 0
+            width 100%
+            height 100%
+            background url('./pic/n-black-d-20141230-870x597.jpg')
+            background-size cover
+            background-position top
+            opacity 0.4
+            border-radius 3px
+            transition 0.3s opacity ease-out
+            z-index -10
+        &:hover
+            &:before
+                opacity 1
+    .navBrick_col_about
         &:before
-            opacity 1
+            content ""
+            position absolute
+            top 0
+            left 0
+            width 100%
+            height 100%
+            background url('./pic/wat.png')
+            background-size cover
+            opacity 0.4
+            border-radius 3px
+            transition 0.3s opacity ease-out
+            z-index -10
+        &:hover
+            &:before
+                opacity 1
 
 .news_bg
     background s_yellow
