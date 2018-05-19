@@ -274,6 +274,7 @@ p {
   height: 100%;
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   justify-content: center;
 }
@@ -337,7 +338,7 @@ p {
   height: 430px;
   background: #fff;
   border-radius: 15px;
-  margin: 30px 0px;
+  margin-top: 30px;
   padding: 20px;
   box-shadow: 0px 1px 13px 1px rgba(0,0,0,0.1);
   display: inline-flex;
@@ -354,11 +355,57 @@ p {
 }
 .single_container .single_inf_name {
   color: #795548;
+  font-size: 2rem;
 }
 .single_container .single_inf_intro {
-  padding: 0;
+  color: #616161;
+  font-size: 1.1rem;
 }
-.single_container .single_inf_price {
+.single_container .single_inf_price_row {
+  font-size: 1.2rem;
+  font-weight: bold;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 10px 0px;
+}
+.single_container .single_inf_price_col {
+  width: 50%;
+  padding: 10px 0px;
+}
+.single_container .single_inf_price_size {
+  color: #795548;
+}
+.single_container .single_inf_price_price {
   color: #d7000f;
-  font-size: 1rem;
+}
+.mealList_container {
+  width: 80%;
+  text-align: center;
+}
+.mealList_container .mealList_title {
+  margin: 0 0 15px 0;
+  padding: 0;
+  letter-spacing: 0.5rem;
+}
+.mealList_container .mealList_title_border {
+  width: 80px;
+  height: 2px;
+  display: block;
+  margin: 0 auto;
+  background: #d7000f;
+}
+.mealList_container .mealList_firstLine {
+  margin-top: 20px;
+  width: 100%;
+  height: 1px;
+  background: rgba(101,101,101,0.522);
+}
+.mealList_container .mealList_row {
+  width: 100%;
+  margin-bottom: 30px;
+}
+.mealList_container .mealList_col {
+  height: 70px;
+  border-bottom: 1px solid rgba(101,101,101,0.522);
 }
