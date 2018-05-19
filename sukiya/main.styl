@@ -1,7 +1,10 @@
 html 
     font-family Microsoft JhengHei,Arial,Helvetica,sans-serif
-body,html 
-    height 100%//把 body,html 設置 height， 即可用 height 100% 繼承 body 的高度
+html  
+    height 100
+body  
+    min-height 100%
+    height: auto  
 * 
     box-sizing border-box
 p 
@@ -309,14 +312,14 @@ sidebar_width = 13%
     height 430px
     background white 
     border-radius 15px
-    margin-top 30px
+    margin 30px 0
     padding 20px
     box-shadow  0px 1px 13px 1px rgba(0,0,0,0.1)
     display inline-flex
     align-items center
     .single_img
         width 50%
-        height 80%
+        max-height 90%
     .single_inf_container
         width 50%
         height 100%
@@ -343,11 +346,14 @@ sidebar_width = 13%
         color s_red
 .mealList_container
     width 80%
-    text-align center
+    position relative
+    padding-bottom 50px
     .mealList_title
         margin 0 0 15px 0 
         padding 0
         letter-spacing 0.5rem
+        text-align center
+        
     .mealList_title_border
         width 80px
         height 2px
@@ -361,7 +367,49 @@ sidebar_width = 13%
         background #65656585
     .mealList_row 
         width 100%
-        margin-bottom 30px
+        margin 20px 0px
     .mealList_col
         height 70px
-        border-bottom 1px solid #65656585
+        background white
+        border-radius 15px
+        margin-bottom 10px
+        box-shadow  0px 1px 13px 1px rgba(0,0,0,0.1)
+        display flex 
+        align-items center
+        padding 10px 10px
+        font-size 1.2rem
+        position relative
+        p 
+            margin 0 15px 0 20px
+    .mealList_col_select_container
+        max-width value
+    .mealList_col_name
+        font-size 1.3rem
+        color #795548
+        display inline-block
+        width 160px
+    .mealList_col_num 
+        width 3rem
+    .mealList_col_delete
+        cursor pointer
+        position absolute
+        right 15px
+        color #795548
+    .mealList_row_toCart
+        width 100px 
+        height 40px 
+        border-radius 15px
+        color white 
+        background s_red
+        font-weight bold
+        margin-bottom 20px
+        position absolute
+        right 30px
+        border 2px solid s_red
+        transition 0.3s color ease-out, 0.3s background ease-out
+        box-shadow  0px 1px 13px 1px rgba(0,0,0,0.1)
+        
+        &:hover 
+            background #f9f0d9
+            color s_red
+        

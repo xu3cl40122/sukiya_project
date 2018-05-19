@@ -37,7 +37,7 @@
         <div class="single_container">
             <img src="./pic/EPt456E.jpg" alt="" class="single_img">
             <div class="single_inf_container">
-                <h2 class="single_inf_name">牛丼</h2>
+                <h2 class="single_inf_name">青蔥生蛋牛丼</h2>
                 <p class="single_inf_intro">牛丼，是將切成薄片的牛肉和洋蔥，經過醬油和白糖等調味料燉煮之後，澆蓋在白米飯上的牛肉蓋飯。牛丼使午餐等變得更加便利快捷，是極具代表性的日本快餐。同時能讓人享用到營養價值高，搭配均衡的健康美食。如果搭配上韓國泡菜或芝士等配菜會更加美味可口。根據個人的喜好，分量從小碗到超大碗共有6類可供選擇。</p>
                 <div class="single_inf_price_row">
                     <div class="single_inf_price_col">
@@ -57,11 +57,30 @@
         <div class="mealList_container">
             <h2 class="mealList_title">客製餐點</h2>
             <div class="mealList_title_border"></div>
-            <div class="mealList_firstLine"></div>
-            <div class="mealLIst_row">
-                <div class="mealList_col"></div>
+            <div class="mealList_row">
+                <div class="mealList_col">
+                    <h2 class="mealList_col_name">青蔥生蛋牛丼</h2>
+                    <p>大小:</p>
+                    <select  name="size">
+                        <option value="迷你碗">迷你碗</option>
+                        <option value="中碗">中碗</option>
+                        <option value="超值碗">超值碗</option>
+                        <option value="超大碗">超大碗</option>
+                    </select>
+                    <p>套餐:</p>
+                    <select name="set">
+                        <option value="none">無</option>
+                        <option value="veg">青菜套餐</option>
+                        <option value="cola">可樂餅套餐</option>
+                    </select>
+                    <p>數量:</p>
+                    <input type="number" name="quantity" min="1" max="20" value="1" class="mealList_col_num">
+                    <i class="fa fa-close mealList_col_delete"></i>
+                </div>
             </div>
+            <div class="button mealList_row_toCart">加入購物車</div>
         </div>
+        
     </div>
 </body>
 
