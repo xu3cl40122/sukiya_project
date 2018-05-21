@@ -1,38 +1,34 @@
 const conn = require('./connect')
+function sqlSelectPoducts(type){
+    return new Promise(function (resolve, reject){
+        let sql = `SELECT * FROM sk_products WHERE type = '${type}'`
+        conn.query(sql, (err, results) =>{
+            if(err){
+                reject(err)
+            }else{
+                response['products'][type] = results
+                resolve(results)
+            }
+        })
+    })
+}
+var response = {
+    message: null,
+    products: {}
+}
 
+function main() {
+    return Promise.all([sqlSelectPoducts('curry'),sqlSelectPoducts('bowl'),sqlSelectPoducts('other')]);
+}
 module.exports = {
     products:function listOutProducts(req,res){
-        var response = {
-            message:null,
-            products:{}
-        }
-        //取得丼飯類資料
-        let sql_bowl = `SELECT * FROM sk_products WHERE type = 'bowl'`
-        conn.query(sql_bowl,(err,results)=>{
-            if(err){
-                console.log(err)
-                response.message = err
-            }
-            response.products.bowl = results 
-        })
-        //取得咖哩類資料
-        let sql_curry = `SELECT * FROM sk_products WHERE type = 'curry'`
-        conn.query(sql_curry,(err,results)=>{
-            if(err){
-                console.log(err)
-                response.message = err
-            }
-            response.products.curry = results
-        })
-        // 取得其他類資料
-        let sql_other = `SELECT * FROM sk_products WHERE type = 'other'`
-        conn.query(sql_other, (err, results) => {
-            if (err) {
-                console.log(err)
-                response.message = err
-            }
-            response.products.other = results
+        main().then((value)=>{
+            //console.log(value)
             res.send(response)
+        }).catch((err)=>{
+            console.log(err)
+            response.message = err 
+            res.send(response)            
         })
     }
 }
