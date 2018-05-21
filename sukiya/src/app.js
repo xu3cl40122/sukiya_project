@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Navbar, Header} from './navbar'
+import {Navbar, Header,Footer} from './navbar'
 import {Navbrick} from './navbrick'
 import {News} from './news'
 import {
@@ -17,6 +17,7 @@ class Home extends React.Component{
                 <Header />
                 <Navbrick />
                 <News />
+                <Footer />
             </div>
         )
     }

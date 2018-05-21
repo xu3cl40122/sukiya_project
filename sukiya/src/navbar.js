@@ -30,3 +30,17 @@ export class Header extends React.Component{
         )
     }
 }
+
+export class Footer extends React.Component {
+    render() {
+        return (
+            <div className="footer">
+                <div className="footer_socialLink">
+                    <i className="fa fa-facebook-square"></i>
+                    <i className="fa fa-twitter-square"></i>
+                </div>
+                <p>©Hao Lee All Rights Reserved.</p>
+            </div>
+        )
+    }
+}
