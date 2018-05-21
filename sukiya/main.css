@@ -24,6 +24,10 @@ p {
 .bgPink {
   background-color: #f9f0d9;
 }
+.link {
+  color: #fff;
+  text-decoration: none;
+}
 .navbar {
   background: #d7000f;
   width: 100%;
