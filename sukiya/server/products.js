@@ -16,7 +16,10 @@ function sqlSelectPoducts(type){
     })
 }
 
-
+var response = {
+    message: null,
+    products: {}
+}
 
 function main() {
     // promise.all 全部 promise 都有結果了才會往下跑
@@ -24,10 +27,7 @@ function main() {
 }
 module.exports = {
     products:function listOutProducts(req,res){
-        var response = {
-            message: null,
-            products: {}
-        }
+        
         main().then((value)=>{
             //console.log(value)
             res.send(response)

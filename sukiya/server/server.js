@@ -3,7 +3,9 @@ const app = express();
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const products = require('./products')
+var cors = require('cors')
 app.use(bodyParser.json());
+app.use(cors())// 允許跨網域
 
 app.get('/', function (req, res) {
     res.send('Hello World!');
