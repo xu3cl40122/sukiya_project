@@ -23,10 +23,17 @@ p {
 }
 .bgPink {
   background-color: #f9f0d9;
+  min-height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: -30;
 }
 .link {
   color: #fff;
   text-decoration: none;
+}
+#root {
+  height: 100%;
 }
 .navbar {
   background: #d7000f;
@@ -276,6 +283,7 @@ p {
   border-left: 5px solid #ffd93e;
 }
 .product_container {
+  z-index: 5;
   margin-left: 13%;
   margin-top: 80px;
   width: 87%;
@@ -307,6 +315,10 @@ p {
 }
 .product_container .product_col:hover img {
   transform: scale(1.1);
+}
+.product_container .product_col_placeholder {
+  width: 280px;
+  height: 1px;
 }
 .product_container .product_row_img {
   width: 100%;
