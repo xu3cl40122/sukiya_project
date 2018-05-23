@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Navbar, Header, Footer, Sidebar, BgPink} from './navbar'
 import {Navbrick} from './navbrick'
 import {News} from './news'
-import { ProductsRow} from './productsRow'
+import ProductsRow from './productsRowContainer'
 import {
     HashRouter as Router,
     Route,
