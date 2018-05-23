@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 
 export class Navbar extends React.Component {
     render() {
+        const { nav } =this.props
         return (
             <div className="navbar">
                 <Link to='/'><div className="navbar_logo"></div></Link>
@@ -11,9 +12,9 @@ export class Navbar extends React.Component {
                     <li>
                         <Link to='/products' className="link"><i className="fa fa-cutlery"></i>線上訂餐</Link>
                     </li>
-                    <li><i className="fa fa-map-marker"></i>門市據點</li>
+                    <li><i className="fa fa-map-marker"></i>{nav}</li>
                     <li><i className="fa fa-users"></i>關於我們</li>
-                    <li><i class="fa fa-info-circle"></i>最新消息</li>
+                    <li><i className="fa fa-info-circle"></i>最新消息</li>
                     <li><i className="fa fa-user"></i>登入</li>
                 </ul>
             </div>

@@ -1,7 +1,9 @@
 import { GET_PRODUCTS } from './actionTypes'
 import { combineReducers } from 'redux'
 const initialState ={
-    products:{}
+    products:{},
+    nav:'default'
+    
 }
 function AppReducer(state = initialState, action){
     switch(action.type){
