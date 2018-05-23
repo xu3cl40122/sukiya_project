@@ -1,4 +1,4 @@
-import { GET_PRODUCTS } from './actionTypes'
+import { GET_PRODUCTS, CHANGE_NAV } from './actionTypes'
 import { combineReducers } from 'redux'
 const initialState ={
     products:{},
@@ -7,7 +7,11 @@ const initialState ={
 }
 function AppReducer(state = initialState, action){
     switch(action.type){
-        
+        case CHANGE_NAV:
+            return{
+                ...state,
+                nav:action.value
+            }
         case `${GET_PRODUCTS}_PENDING`:{//剛發出 request
             return{
                 ...state

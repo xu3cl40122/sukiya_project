@@ -1,10 +1,13 @@
 import { connect } from 'react-redux'
-import { getProduct} from './actions'
+import { getProduct, changeNav} from './actions'
 import { ProductsRow} from './productsRow'
 // 和 react connect
 
 const mapDispatchToProps = dispatch => ({
-    
+    changeNav: (content)=>{
+        console.log('change title')
+        dispatch(changeNav(content))
+    },
     getProduct: () => {
         dispatch(getProduct())
     }

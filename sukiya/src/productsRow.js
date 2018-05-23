@@ -10,13 +10,14 @@ export class ProductsRow extends React.Component {
         }
     }
     componentDidMount(){
+        const { changeNav} = this.props
         axios.get('http://localhost:3000/products').then(response => {
             this.setState({
                 products: response.data.products.bowl
             })
             console.log(this.state.products)
         })
-
+        changeNav('777')
     }
     render() {
         const {products} = this.state
