@@ -6,7 +6,7 @@ export class Navbar extends React.Component {
     render() {
         return (
             <div className="navbar">
-                <div className="navbar_logo"></div>
+                <Link to='/'><div className="navbar_logo"></div></Link>
                 <ul className="navlist">
                     <li>
                         <Link to='/products' className="link"><i className="fa fa-cutlery"></i>線上訂餐</Link>
