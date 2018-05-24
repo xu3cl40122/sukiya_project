@@ -1,8 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
-
-export class ProductsRow extends React.Component {
+import {
+    withRouter
+} from 'react-router-dom'
+class ProductsRow extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -10,18 +12,18 @@ export class ProductsRow extends React.Component {
         }
     }
     componentDidMount(){
-        const { changeNav,getProduct} = this.props
+        const {getProduct} = this.props
         axios.get('http://localhost:3000/products').then(response => {
             this.setState({
                 products: response.data.products.bowl
             })
         })
-        changeNav('777')
         getProduct()// call middleware
     }
     render() {
-        const {products} = this.props
-        console.log('props:',this.props)
+        const {products,match} = this.props
+        console.log(match)
+        //console.log('props:',this.props)
         return (
             <div className="product_container bgPink">
                 <div className="product_row">
@@ -45,3 +47,5 @@ export class ProductsRow extends React.Component {
         )
     }
 }
+ProductsRow = withRouter(ProductsRow)
+export {ProductsRow}

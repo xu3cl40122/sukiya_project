@@ -1,6 +1,9 @@
 import { connect } from 'react-redux'
 import { getProduct, changeNav} from './actions'
 import { ProductsRow} from './productsRow'
+import {
+    withRouter
+} from 'react-router-dom'
 // 和 react connect
 // 接收
 const mapStateToProps = state => ({

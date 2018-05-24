@@ -44,7 +44,7 @@ export default class App extends React.Component{
             <Router>
                 <div>
                 <Route exact path='/' component={Home} />
-                <Route exact path='/products' component={Products} />
+                <Route path='/products/:type' component={Products} />
                 </div>
             </Router>
         )
