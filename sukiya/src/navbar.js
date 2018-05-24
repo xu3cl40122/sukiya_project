@@ -9,7 +9,7 @@ export class Navbar extends React.Component {
                 <Link to='/'><div className="navbar_logo"></div></Link>
                 <ul className="navlist">
                     <li>
-                        <Link to='/products' className="link"><i className="fa fa-cutlery"></i>線上訂餐</Link>
+                        <Link to='/products/bowl' className="link"><i className="fa fa-cutlery"></i>線上訂餐</Link>
                     </li>
                     <li><i className="fa fa-map-marker"></i>門市地點</li>
                     <li><i className="fa fa-users"></i>關於我們</li>
@@ -50,16 +50,16 @@ export class Sidebar extends React.Component {
     render() {
         return (
             <div className="sidebar">
-                <Link to='/products/:bowl' className="link">
+                <Link to='/products/bowl' className="link">
                     <div className="sidebar_line">丼飯</div>
                 </Link>
-                <Link to='/products/:curry' className="link">
+                <Link to='/products/curry' className="link">
                     <div className="sidebar_line-active sidebar_line">咖哩飯</div>
                 </Link>
-                <Link to='/products/:set' className="link">
+                <Link to='/products/set' className="link">
                     <div className="sidebar_line">定食</div>
                 </Link>
-                <Link to='/products/:other' className="link">
+                <Link to='/products/other' className="link">
                     <div className="sidebar_line">其他</div>
                 </Link>
             </div>

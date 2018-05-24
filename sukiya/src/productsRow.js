@@ -13,11 +13,6 @@ class ProductsRow extends React.Component {
     }
     componentDidMount(){
         const {getProduct} = this.props
-        axios.get('http://localhost:3000/products').then(response => {
-            this.setState({
-                products: response.data.products.bowl
-            })
-        })
         getProduct()// call middleware
     }
     render() {
