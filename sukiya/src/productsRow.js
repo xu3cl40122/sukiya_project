@@ -17,11 +17,11 @@ export class ProductsRow extends React.Component {
             })
         })
         changeNav('777')
-        getProduct()
+        getProduct()// call middleware
     }
     render() {
-        const {products} = this.state
-        console.log('props',this.props)
+        const {products} = this.props
+        console.log('props:',this.props)
         return (
             <div className="product_container bgPink">
                 <div className="product_row">

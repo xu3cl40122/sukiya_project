@@ -1,7 +1,7 @@
 import { GET_PRODUCTS, CHANGE_NAV } from './actionTypes'
 import { combineReducers } from 'redux'
 const initialState ={
-    products:{},
+    products:[],
     nav:'default'
     
 }
