@@ -15,8 +15,8 @@ const mapDispatchToProps = dispatch => ({
         console.log('change title')
         dispatch(changeNav(content))
     },
-    getProduct: () => {
-        dispatch(getProduct())
+    getProduct: (type) => {
+        dispatch(getProduct(type))
     }
 })
 

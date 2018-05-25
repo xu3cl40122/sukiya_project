@@ -18,9 +18,10 @@ function AppReducer(state = initialState, action){
             }
         }
         case `${GET_PRODUCTS}_FULFILLED`: {// success
+            console.log(action.meta)
             return {
-                ...state,
-                products:action.payload.data.products.curry// payload 對應本來的 response.data
+                ...state,//想在這裡做用 meta 切換設定的 state
+                products:action.payload.data.products[action.meta]// payload 對應本來的 response.data
             }
         }
         case `${GET_PRODUCTS}_REJECTED`: {// error

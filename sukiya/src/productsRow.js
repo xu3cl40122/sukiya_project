@@ -12,13 +12,11 @@ class ProductsRow extends React.Component {
         }
     }
     componentDidMount(){
-        const {getProduct} = this.props
-        getProduct()// call middleware
+        const { getProduct, match} = this.props
+        getProduct(match.params.type)// call middleware
     }
     render() {
-        const {products,match} = this.props
-        console.log(match)
-        //console.log('props:',this.props)
+        const {products} = this.props
         return (
             <div className="product_container bgPink">
                 <div className="product_row">
