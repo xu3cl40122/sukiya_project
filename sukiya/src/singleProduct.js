@@ -37,11 +37,8 @@ class OrderList extends React.Component{
         this.state ={
         }
     }
-    handleChange(e){
-        console.log(e.target)
-        this.setState({
-            num:e.target.value
-        })
+    updateOrder(){
+
     }
     render(){
         return(
@@ -51,6 +48,7 @@ class OrderList extends React.Component{
                 <div className="mealList_row">
                     <OrderListCol />
                 </div>
+                <div className='button mealList_row_addCol'>新增</div>
                 <div className="button mealList_row_toCart">加入購物車</div>
             </div>
         )
@@ -79,13 +77,13 @@ class OrderListCol extends React.Component{
                 <p>大小:</p>
                 <select name="size" value={this.state.size} onChange={this.handleChange}>
                     <option value="迷你碗">迷你碗</option>
-                    <option value="中碗" selected>中碗</option>
+                    <option value="中碗">中碗</option>
                     <option value="超值碗">超值碗</option>
                     <option value="超大碗">超大碗</option>
                 </select>
                 <p>套餐:</p>
-                <select name="set" value={this.state.set}>
-                    <option value="none" selected>無</option>
+                <select name="set" value={this.state.set} onChange={this.handleChange}>
+                    <option value="none">無</option>
                     <option value="veg">青菜套餐</option>
                     <option value="cola">可樂餅套餐</option>
                 </select>

@@ -478,3 +478,12 @@ p {
   background: #f9f0d9;
   color: #d7000f;
 }
+.mealList_container .mealList_row_addCol {
+  width: 80px;
+  height: 30px;
+  border-radius: 5px;
+  color: #fff;
+  background: #d7000f;
+  font-weight: bold;
+  margin: 0 auto;
+}
