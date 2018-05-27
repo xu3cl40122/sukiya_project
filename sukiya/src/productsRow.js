@@ -15,11 +15,15 @@ class ProductsRow extends React.Component {
         const { getProduct, match} = this.props
         getProduct(match.params.type)// call middleware
     }
-    componentWillReceiveProps(newProps){
-        console.log(newProps)
+    componentDidUpdate(prevProps, prevState){
+        console.log('update:',prevProps)
+        if (prevProps != this.props){
+            console.log('diff')
+        }
     }
     render() {
-        const {products,location} = this.props
+        const {products} = this.props
+        console.log('render:',this.props)
         return (
             <div className="product_container bgPink">
                 <div className="product_row">

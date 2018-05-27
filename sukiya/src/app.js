@@ -5,6 +5,7 @@ import Navbar from './navbarContainer'
 import {Navbrick} from './navbrick'
 import {News} from './news'
 import ProductsRow from './productsRowContainer'
+import { SingleInf}from './singleProduct'
 import {
     HashRouter as Router,
     Route,
@@ -38,6 +39,18 @@ class Products extends React.Component{
     }
 }
 
+class Single extends React.Component{
+    render(){
+        return (
+        <div>
+            <Navbar />
+            <Sidebar />
+            <BgPink />
+            <SingleInf />
+        </div>)
+    }
+}
+
 export default class App extends React.Component{
     render(){
         return(
@@ -45,6 +58,7 @@ export default class App extends React.Component{
                 <div>
                 <Route exact path='/' component={Home} />
                 <Route path='/products/:type' component={Products} />
+                <Route path='/single/:id' component={Single} />
                 </div>
             </Router>
         )
