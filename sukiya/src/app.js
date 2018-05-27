@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Header, Footer, Sidebar} from './navbar'
-import Navbar from './navbarContainer'
 import {Navbrick} from './navbrick'
 import {News} from './news'
 import ProductsRow from './productsRowContainer'
-import { SingleInf}from './singleProduct'
+import Navbar from './navbarContainer'
+import SingleProduct from './SingleProductContainer'
 import {
     HashRouter as Router,
     Route,
@@ -44,7 +44,7 @@ class Single extends React.Component{
         <div>
             <Navbar />
             <Sidebar />
-            <SingleInf />
+            <SingleProduct />
         </div>)
     }
 }

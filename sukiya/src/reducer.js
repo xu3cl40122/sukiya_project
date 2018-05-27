@@ -1,17 +1,11 @@
-import { GET_PRODUCTS, CHANGE_NAV } from './actionTypes'
+import { GET_PRODUCTS, GET_SINGLE } from './actionTypes'
 import { combineReducers } from 'redux'
 const initialState ={
     products:[],
-    nav:'default'
-    
+    singleProduct:{}
 }
 function AppReducer(state = initialState, action){
     switch(action.type){
-        case CHANGE_NAV:
-            return{
-                ...state,
-                nav:action.value
-            }
         case `${GET_PRODUCTS}_PENDING`:{//剛發出 request
             return{
                 ...state
@@ -24,6 +18,22 @@ function AppReducer(state = initialState, action){
             }
         }
         case `${GET_PRODUCTS}_REJECTED`: {// error
+            return {
+                ...state
+            }
+        }
+        case `${GET_SINGLE}_PENDING`: {//剛發出 request
+            return {
+                ...state
+            }
+        }
+        case `${GET_SINGLE}_FULFILLED`: {// success
+            return {
+                ...state,
+                singleProduct: action.payload.data[0]
+            }
+        }
+        case `${GET_SINGLE}_REJECTED`: {// error
             return {
                 ...state
             }

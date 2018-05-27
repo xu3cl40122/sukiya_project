@@ -1,27 +1,60 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { getSingle } from './actions';
 
-export class SingleInf extends React.Component {
+export class SingleProduct extends React.Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            orderList : [
+                {id:1}
+            ]
+        }
+    }
+    componentDidMount(){
+        const{match,getSingle} = this.props
+        getSingle(match.params.id)
+    }
     render() {
+        const{product,match} = this.props
+        var priceCol = 4
+        //決定顯示價格的種類數
+        switch(match.params.type){
+            case 'bowl':
+                priceCol = 4
+                break
+            case 'curry':
+                priceCol = 3
+                break
+            case 'other':
+                priceCol = 1
+                break
+        }
         return (
             <div className="product_container bgPink">
                 <div className="single_container">
-                    <img src="./pic/products/cow.jpg" alt="" className="single_img" />
+                    <img src={product.img_path} alt="" className="single_img" />
                     <div className="single_inf_container">
-                        <h2 className="single_inf_name">青蔥生蛋牛丼</h2>
-                        <p className="single_inf_intro">牛丼，是將切成薄片的牛肉和洋蔥，經過醬油和白糖等調味料燉煮之後，澆蓋在白米飯上的牛肉蓋飯。牛丼使午餐等變得更加便利快捷，是極具代表性的日本快餐。同時能讓人享用到營養價值高，搭配均衡的健康美食。如果搭配上韓國泡菜或芝士等配菜會更加美味可口。根據個人的喜好，分量從小碗到超大碗共有6類可供選擇。</p>
+                        <div>
+                            <h2 className="single_inf_name">{product.name}</h2>
+                            <p className="single_inf_intro">{product.intro}</p>
+                        </div>
                         <div className="single_inf_price_row">
                             <div className="single_inf_price_col">
-                                <span className="single_inf_price_size">迷你碗 : </span><span className="single_inf_price_price">$69</span>
+                                <span className="single_inf_price_size">迷你碗 : </span><span className="single_inf_price_price">{'$'+product.price_s}</span>
                             </div>
-                            <div className="single_inf_price_col">
-                                <span className="single_inf_price_size">迷你碗 : </span>
-                                <span className="single_inf_price_price">$69</span>
-                            </div>
-                            <div className="single_inf_price_col">
-                                <span className="single_inf_price_size">迷你碗 : </span>
-                                <span className="single_inf_price_price">$69</span>
-                            </div>
+                            {(priceCol > 1) &&<div className="single_inf_price_col">
+                                <span className="single_inf_price_size">中碗 : </span>
+                                <span className="single_inf_price_price">{'$' + product.price_m}</span>
+                            </div>}
+                            {(priceCol > 2) &&<div className="single_inf_price_col">
+                                <span className="single_inf_price_size">超值碗 : </span>
+                                <span className="single_inf_price_price">{'$' + product.price_l}</span>
+                            </div>}
+                            {(priceCol >3) &&<div className="single_inf_price_col">
+                                <span className="single_inf_price_size">超大碗 : </span>
+                                <span className="single_inf_price_price">{'$' + product.price_xl}</span>
+                            </div>}
                         </div>
                     </div>
                 </div>

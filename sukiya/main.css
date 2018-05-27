@@ -374,6 +374,8 @@ a {
   width: 50%;
   height: 100%;
   padding: 0px 20px;
+  display: flex;
+  flex-wrap: wrap;
 }
 .single_container .single_inf_name {
   color: #795548;
@@ -390,6 +392,7 @@ a {
   flex-wrap: wrap;
   width: 100%;
   padding: 10px 0px;
+  height: 100px;
 }
 .single_container .single_inf_price_col {
   width: 50%;
