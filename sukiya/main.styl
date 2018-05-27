@@ -10,6 +10,13 @@ body
 p 
     margin 0
     padding 0
+a 
+    color white
+// ---- main color --- 
+s_red = #d7000f
+s_yellow = #FFD93E
+s_gray = #1E222A
+s_brown = #795548
 // --- 共用 class ---
 .button 
     display flex 
@@ -23,16 +30,11 @@ p
     //position fixed
     //z-index -30
 .link // 去除 react 對 link 的預設樣式
-    color white
     text-decoration none
 #root 
     height 100%
  
-// ---- main color --- 
-s_red = #d7000f
-s_yellow = #FFD93E
-s_gray = #1E222A
-s_brown = #795548
+
 //--- class ---
 .navbar
     background s_red
@@ -69,6 +71,7 @@ s_brown = #795548
             display inline-flex
             padding 5px 0px
             position relative
+            color white
             &:hover
                 cursor pointer
                 &:before
@@ -256,6 +259,7 @@ sidebar_width = 13%
     .sidebar_line
         padding 10px 15px
         transition 0.3s background ease-out 
+        color white
         &:hover
             background #3d4656
     .sidebar_line-active
@@ -310,6 +314,7 @@ sidebar_width = 13%
         padding 0px 15px
         flex-wrap wrap
         z-index 10
+        color #583f35
     .product_col_inf_name
         margin 5px 0px
         text-align center

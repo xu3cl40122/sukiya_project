@@ -56,7 +56,7 @@ export default class App extends React.Component{
                 <div>
                 <Route exact path='/' component={Home} />
                 <Route path='/products/:type' component={Products} />
-                <Route path='/single/:id' component={Single} />
+                <Route path='/single/:type/:id' component={Single} />
                 </div>
             </Router>
         )

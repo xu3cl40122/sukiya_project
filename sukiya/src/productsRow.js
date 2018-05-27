@@ -2,7 +2,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import axios from 'axios'
 import {
-    withRouter
+    withRouter,
+    Link
 } from 'react-router-dom'
 class ProductsRow extends React.Component {
     constructor(props){
@@ -22,13 +23,14 @@ class ProductsRow extends React.Component {
         }
     }
     render() {
-        const {products} = this.props
+        const {products,match} = this.props
         return (
             <div className="product_container bgPink">
                 <div className="product_row">
                     {products.map(products=>{
                         return(
-                            <div className="product_col" key ={products.product_id}>
+                            <Link to={`/single/${match.params.type}/${products.product_id}`} className='link' key={products.product_id}>
+                            <div className="product_col" >
                                 <div className="product_col_img">
                                     <img src={products.img_path} alt="" className="product_row_img" />
                                 </div>
@@ -37,6 +39,7 @@ class ProductsRow extends React.Component {
                                     <h2 className="product_col_inf_price">{`$${products.price_s}起`}</h2>
                                 </div>
                             </div>
+                            </ Link>
                         )
                     })}
                     <div className="product_col_placeholder"></div>

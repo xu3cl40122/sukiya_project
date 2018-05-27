@@ -49,7 +49,7 @@ export class Footer extends React.Component {
 class Sidebar extends React.Component {
     render() {
         const {match} = this.props
-        console.log(match.params)
+        console.log(match)
         return (
             <div className="sidebar">
                 <Link to='/products/bowl' className="link">

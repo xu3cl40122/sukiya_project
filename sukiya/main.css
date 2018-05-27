@@ -15,6 +15,9 @@ p {
   margin: 0;
   padding: 0;
 }
+a {
+  color: #fff;
+}
 .button {
   display: flex;
   justify-content: center;
@@ -26,7 +29,6 @@ p {
   min-height: 100vh;
 }
 .link {
-  color: #fff;
   text-decoration: none;
 }
 #root {
@@ -71,6 +73,7 @@ p {
   display: inline-flex;
   padding: 5px 0px;
   position: relative;
+  color: #fff;
 }
 .navbar .navlist li:hover {
   cursor: pointer;
@@ -271,6 +274,7 @@ p {
 .sidebar .sidebar_line {
   padding: 10px 15px;
   transition: 0.3s background ease-out;
+  color: #fff;
 }
 .sidebar .sidebar_line:hover {
   background: #3d4656;
@@ -334,6 +338,7 @@ p {
   padding: 0px 15px;
   flex-wrap: wrap;
   z-index: 10;
+  color: #583f35;
 }
 .product_container .product_col_inf_name {
   margin: 5px 0px;
