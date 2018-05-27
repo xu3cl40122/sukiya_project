@@ -32,6 +32,7 @@ p
 s_red = #d7000f
 s_yellow = #FFD93E
 s_gray = #1E222A
+s_brown = #795548
 //--- class ---
 .navbar
     background s_red
@@ -340,7 +341,7 @@ sidebar_width = 13%
         height 100%
         padding 0px 20px
     .single_inf_name
-        color #795548
+        color s_brown
         font-size 2rem
     .single_inf_intro
         color #616161
@@ -356,7 +357,7 @@ sidebar_width = 13%
         width 50%
         padding 10px 0px
     .single_inf_price_size
-        color #795548
+        color s_brown
     .single_inf_price_price
         color s_red
 .mealList_container
@@ -400,7 +401,7 @@ sidebar_width = 13%
         max-width value
     .mealList_col_name
         font-size 1.3rem
-        color #795548
+        color s_brown
         display inline-block
         width 160px
     .mealList_col_num 
@@ -409,7 +410,7 @@ sidebar_width = 13%
         cursor pointer
         position absolute
         right 15px
-        color #795548
+        color s_brown
     .mealList_row_toCart
         width 100px 
         height 40px 
@@ -422,16 +423,23 @@ sidebar_width = 13%
         right 30px
         border 2px solid s_red
         transition 0.3s color ease-out, 0.3s background ease-out
-        box-shadow  0px 1px 13px 1px rgba(0,0,0,0.1)
+        
         
         &:hover 
-            background #f9f0d9
+            background white
             color s_red
+            box-shadow  0px 1px 11px 3px rgba(0,0,0,0.2)
     .mealList_row_addCol 
         width 80px 
         height 30px 
         border-radius 5px
         color white 
-        background s_yellow
+        background s_brown
         font-weight bold
         margin 0 auto
+        border 2px solid s_brown
+        transition 0.3s color ease-out, 0.3s background ease-out
+        &:hover 
+            background white 
+            color s_brown
+            box-shadow  0px 1px 11px 3px rgba(0,0,0,0.2)

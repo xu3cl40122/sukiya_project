@@ -469,18 +469,25 @@ p {
   right: 30px;
   border: 2px solid #d7000f;
   transition: 0.3s color ease-out, 0.3s background ease-out;
-  box-shadow: 0px 1px 13px 1px rgba(0,0,0,0.1);
 }
 .mealList_container .mealList_row_toCart:hover {
-  background: #f9f0d9;
+  background: #fff;
   color: #d7000f;
+  box-shadow: 0px 1px 11px 3px rgba(0,0,0,0.2);
 }
 .mealList_container .mealList_row_addCol {
   width: 80px;
   height: 30px;
   border-radius: 5px;
   color: #fff;
-  background: #ffd93e;
+  background: #795548;
   font-weight: bold;
   margin: 0 auto;
+  border: 2px solid #795548;
+  transition: 0.3s color ease-out, 0.3s background ease-out;
+}
+.mealList_container .mealList_row_addCol:hover {
+  background: #fff;
+  color: #795548;
+  box-shadow: 0px 1px 11px 3px rgba(0,0,0,0.2);
 }
