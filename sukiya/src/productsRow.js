@@ -23,7 +23,6 @@ class ProductsRow extends React.Component {
     }
     render() {
         const {products} = this.props
-        console.log('render:',this.props)
         return (
             <div className="product_container bgPink">
                 <div className="product_row">

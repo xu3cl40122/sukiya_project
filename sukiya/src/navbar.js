@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Link} from 'react-router-dom'
-
+import {withRouter} from 'react-router-dom'
 export class Navbar extends React.Component {
     render() {
         return (
@@ -46,26 +46,27 @@ export class Footer extends React.Component {
     }
 }
 
-export class Sidebar extends React.Component {
+class Sidebar extends React.Component {
     render() {
+        const {match} = this.props
+        console.log(match.params)
         return (
             <div className="sidebar">
                 <Link to='/products/bowl' className="link">
-                    <div className="sidebar_line">丼飯</div>
+                    <div className={'sidebar_line ' + (match.params.type == 'bowl' && 'sidebar_line-active')}>丼飯</div>
                 </Link>
                 <Link to='/products/curry' className="link">
-                    <div className="sidebar_line-active sidebar_line">咖哩飯</div>
-                </Link>
-                <Link to='/products/set' className="link">
-                    <div className="sidebar_line">定食</div>
+                    <div className={'sidebar_line ' + (match.params.type == 'curry' && 'sidebar_line-active')}>咖哩飯</div>
                 </Link>
                 <Link to='/products/other' className="link">
-                    <div className="sidebar_line">其他</div>
+                    <div className={'sidebar_line ' + (match.params.type == 'other' && 'sidebar_line-active')}>其他</div>
                 </Link>
             </div>
         )
     }
 }
+Sidebar = withRouter(Sidebar)
+export {Sidebar}
 
 export class BgPink extends React.Component {
     render() {
