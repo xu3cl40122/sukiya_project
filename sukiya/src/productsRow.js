@@ -15,10 +15,10 @@ class ProductsRow extends React.Component {
         const { getProduct, match} = this.props
         getProduct(match.params.type)// call middleware
     }
-    componentDidUpdate(prevProps, prevState){
-        console.log('update:',prevProps)
-        if (prevProps != this.props){
-            console.log('diff')
+    componentDidUpdate(prevProps){
+        const { getProduct, match } = this.props
+        if(prevProps.match.params != match.params){
+            getProduct(match.params.type)
         }
     }
     render() {
@@ -47,5 +47,4 @@ class ProductsRow extends React.Component {
         )
     }
 }
-ProductsRow = withRouter(ProductsRow)
 export {ProductsRow}

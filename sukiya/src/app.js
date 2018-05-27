@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Header, Footer, Sidebar, BgPink} from './navbar'
+import { Header, Footer, Sidebar} from './navbar'
 import Navbar from './navbarContainer'
 import {Navbrick} from './navbrick'
 import {News} from './news'
@@ -32,7 +32,6 @@ class Products extends React.Component{
             <div>
             <Navbar />
             <Sidebar />
-            <BgPink />            
             <ProductsRow />
             </div>
         )
@@ -45,7 +44,6 @@ class Single extends React.Component{
         <div>
             <Navbar />
             <Sidebar />
-            <BgPink />
             <SingleInf />
         </div>)
     }
