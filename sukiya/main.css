@@ -34,9 +34,6 @@ a {
 #root {
   height: 100%;
 }
-.front {
-  z-index: 50;
-}
 .navbar {
   background: #d7000f;
   width: 100%;
@@ -285,6 +282,20 @@ a {
 .sidebar .sidebar_line-active {
   background: #3d4656;
   border-left: 5px solid #ffd93e;
+}
+.sidebar .sidebar_cart_button {
+  margin: 30px 10px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: #5a5a57;
+  transition: background 0.3s ease-out;
+}
+.sidebar .sidebar_cart_button i {
+  margin-right: 5px;
+}
+.sidebar .sidebar_cart_button:hover {
+  cursor: pointer;
+  background: #ffd93e;
 }
 .product_container {
   z-index: 5;

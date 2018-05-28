@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {Link} from 'react-router-dom'
-import {withRouter} from 'react-router-dom'
+import { withRouter, Link} from 'react-router-dom'
+import { Cart} from './cart'
 export class Navbar extends React.Component {
     render() {
         return (
@@ -60,6 +60,7 @@ class Sidebar extends React.Component {
                 <Link to='/products/other' className="link">
                     <div className={'sidebar_line ' + (match.params.type == 'other' && 'sidebar_line-active')}>其他</div>
                 </Link>
+                <Cart />
             </div>
         )
     }

@@ -86,7 +86,6 @@ class OrderList extends React.Component{
                 </div>
                 <div className='button mealList_row_addCol'>新增</div>
                 <div className="button mealList_row_toCart">加入購物車</div>
-                <ExampleApp />
             </div>
         )
     }
@@ -135,7 +134,6 @@ class OrderListCol extends React.Component{
         this.setState({
             [e.target.name]:e.target.value
         })
-        //console.log(e.target)
         switch (e.target.value) {
             case '迷你碗':
                 this.setState({price:product.price_s})

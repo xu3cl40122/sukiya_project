@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import { Header, Footer, Sidebar} from './navbar'
 import {Navbrick} from './navbrick'
 import {News} from './news'
-import {ExampleApp} from './cart'
 import ProductsRow from './productsRowContainer'
 import Navbar from './navbarContainer'
 import SingleProduct from './SingleProductContainer'
@@ -58,7 +57,6 @@ export default class App extends React.Component{
                 <Route exact path='/' component={Home} />
                 <Route path='/products/:type' component={Products} />
                 <Route path='/single/:type/:id' component={Single} />
-                    <Route path='/cart' component={ExampleApp} />
                 </div>
             </Router>
         )

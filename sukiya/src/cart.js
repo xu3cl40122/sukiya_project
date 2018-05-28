@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactModal from 'react-modal'
 ReactModal.setAppElement('#root')
-export class ExampleApp extends React.Component {
+export class Cart extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -22,11 +22,11 @@ export class ExampleApp extends React.Component {
     }
 
     render() {
+        //設定 z-index 才能蓋住後面其他東西
         var modalStyles = { overlay: { zIndex: 40 } };
         return (
-            <div className="product_container bgPink" >
             <div>
-                <button onClick={this.handleOpenModal}>Trigger Modal</button>
+                <div className='sidebar_cart_button' onClick={this.handleOpenModal}><i className='fa fa-shopping-cart'></i>購物車</div>
                 <ReactModal
                     isOpen={this.state.showModal}
                     contentLabel="Minimal Modal Example"
@@ -34,7 +34,6 @@ export class ExampleApp extends React.Component {
                 >
                     <button onClick={this.handleCloseModal}>Close Modal</button>
                 </ReactModal>
-            </div>
             </div>
         );
     }
