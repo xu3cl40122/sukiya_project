@@ -34,6 +34,9 @@ a {
 #root {
   height: 100%;
 }
+.front {
+  z-index: 50;
+}
 .navbar {
   background: #d7000f;
   width: 100%;
