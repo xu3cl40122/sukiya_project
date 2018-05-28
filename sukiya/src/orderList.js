@@ -21,14 +21,13 @@ export class OrderList extends React.Component {
             }]
         })
     }
-    removeCol(col){
-        this.setState ={
-            orderList:this.state.orderList.filter(item=>{item.id !== col.id})
-        }
+    removeCol(id){
+       this.setState({
+           orderList:this.state.orderList.filter(item => item.id != id)
+       })
     }
     render() {
         const { orderList } = this.state
-        console.log(orderList)
         return (
             <div className="mealList_container">
                 <h2 className="mealList_title">客製餐點</h2>
@@ -117,8 +116,9 @@ class OrderListCol extends React.Component {
     }
     // 刪除 col
     handleDelete(){
-        const{key,removeCol} = this.props
-        removeCol(key)
+        const{removeCol,id} = this.props
+        console.log(id)
+        removeCol(id)
     }
     render() {
         return (
