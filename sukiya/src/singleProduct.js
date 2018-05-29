@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { getSingle } from './actions';
-import { OrderList} from './orderList'
+import  OrderList from './orderListContainer'
 
 export class SingleProduct extends React.Component {
     constructor(props){

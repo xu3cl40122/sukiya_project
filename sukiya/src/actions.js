@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, CHANGE_NAV, GET_SINGLE} from './actionTypes'
+import { GET_PRODUCTS, TO_CART, GET_SINGLE} from './actionTypes'
 import axios from 'axios'
 
 // 如果只要 return 可以 =>( 要return的東西 )
@@ -12,4 +12,7 @@ export const getSingle = (id) =>({
     type: GET_SINGLE,
     payload: axios.get('http://localhost:3000/products/'+id)
 })
-
+export const toCart = (products) =>({
+    type:TO_CART,
+    value: products
+})

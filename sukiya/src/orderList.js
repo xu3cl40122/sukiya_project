@@ -10,6 +10,7 @@ export class OrderList extends React.Component {
         this.addCol = this.addCol.bind(this)
         this.removeCol = this.removeCol.bind(this)
         this.updateOrder = this.updateOrder.bind(this)
+        this.addToCart = this.addToCart.bind(this)
         this.id = 1
     }
     updateOrder(id,data) {
@@ -29,6 +30,14 @@ export class OrderList extends React.Component {
        this.setState({
            orderListMap:this.state.orderListMap.filter(item => item.id != id)
        })
+    }
+    addToCart(products){
+        const{toCart}=this.props
+        const{orders}=this.state
+        for(let i in orders){
+            toCart(orders[i])
+        }
+        //toCart(this.state.orders)
     }
     render() {
         const { orderListMap } = this.state
@@ -50,7 +59,7 @@ export class OrderList extends React.Component {
                     })}
                 </div>
                 <div className='button mealList_row_addCol' onClick={this.addCol}>新增</div>
-                <div className="button mealList_row_toCart">加入購物車</div>
+                <div className="button mealList_row_toCart" onClick={this.addToCart}>加入購物車</div>
             </div>
         )
     }
@@ -99,6 +108,7 @@ class OrderListCol extends React.Component {
                     break;
             }
             this.setState({ total: (price + setPrice) * num })
+            // 更新 parent 的 state
             updateOrder(id, {
                 name: product.name,
                 set: set,

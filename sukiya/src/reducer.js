@@ -1,11 +1,13 @@
-import { GET_PRODUCTS, GET_SINGLE } from './actionTypes'
+import { GET_PRODUCTS, GET_SINGLE, TO_CART } from './actionTypes'
 import { combineReducers } from 'redux'
 const initialState ={
     products:[],
-    singleProduct:{}
+    singleProduct:{},
+    cart:[]
 }
 function AppReducer(state = initialState, action){
     switch(action.type){
+        // call products api
         case `${GET_PRODUCTS}_PENDING`:{//剛發出 request
             return{
                 ...state
@@ -22,6 +24,8 @@ function AppReducer(state = initialState, action){
                 ...state
             }
         }
+
+        // call single product api
         case `${GET_SINGLE}_PENDING`: {//剛發出 request
             return {
                 ...state
@@ -36,6 +40,14 @@ function AppReducer(state = initialState, action){
         case `${GET_SINGLE}_REJECTED`: {// error
             return {
                 ...state
+            }
+        }
+
+        // set product to cart
+        case TO_CART :{
+            return{
+                ...state,
+                cart:action.value
             }
         }
         default:
