@@ -4,18 +4,22 @@ export class OrderList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            orderList: [{ id: 0 }],
+            orderListMap: [{ id: 0 }],
+            orders:{}
         }
         this.addCol = this.addCol.bind(this)
         this.removeCol = this.removeCol.bind(this)
+        this.updateOrder = this.updateOrder.bind(this)
         this.id = 1
     }
-    updateOrder() {
-
+    updateOrder(id,data) {
+        this.setState({
+            orders:{...this.state.orders, [id]:data}
+        })
     }
     addCol() {
         this.setState({
-            orderList: [...this.state.orderList,
+            orderListMap: [...this.state.orderListMap,
             {
                 id: this.id++,
             }]
@@ -23,19 +27,25 @@ export class OrderList extends React.Component {
     }
     removeCol(id){
        this.setState({
-           orderList:this.state.orderList.filter(item => item.id != id)
+           orderListMap:this.state.orderListMap.filter(item => item.id != id)
        })
     }
     render() {
-        const { orderList } = this.state
+        const { orderListMap } = this.state
         return (
             <div className="mealList_container">
                 <h2 className="mealList_title">客製餐點</h2>
                 <div className="mealList_title_border"></div>
                 <div className="mealList_row">
-                    {orderList.map(order => {
+                    {orderListMap.map(order => {
                         return (
-                            <OrderListCol key={order.id} id={order.id} product={this.props.product} removeCol = {this.removeCol}/>
+                            <OrderListCol 
+                                key={order.id} 
+                                id={order.id} 
+                                product={this.props.product} 
+                                removeCol = {this.removeCol}
+                                updateOrder = {this.updateOrder}
+                            />
                         )
                     })}
                 </div>
@@ -59,13 +69,21 @@ class OrderListCol extends React.Component {
     }
     componentDidUpdate(prevProps, prevState) {
         // get 預設單價、總價(因為 mount 時 api 還沒 response)
-        const { product } = this.props
-        const { price, num, set } = this.state
+        const { product,updateOrder,id } = this.props
+        const { price, num, set,size } = this.state
         if (prevProps.product !== this.props.product) {
             this.setState({
                 total: product.price_m,
                 price: product.price_m,
             })
+            // 更新 parent 的 state
+            updateOrder(id,{
+                name:product.name,
+                set:'無',
+                num:1,
+                size:'中碗',
+                total: product.price_m
+                })
         }
         //動態更新價格
         if (prevState.price !== price | prevState.num !== num | prevState.set !== set) {
@@ -81,7 +99,22 @@ class OrderListCol extends React.Component {
                     break;
             }
             this.setState({ total: (price + setPrice) * num })
+            updateOrder(id, {
+                name: product.name,
+                set: set,
+                num: num,
+                size: size,
+                total: (price + setPrice) * num
+            })
         }
+    }
+    // 設定動態新增的 col 的預設值
+    componentDidMount() {
+        const { product } = this.props
+        this.setState({
+            total: product.price_m,
+            price: product.price_m,
+        })
     }
     handleChange(e) {
         const { product } = this.props
@@ -106,14 +139,7 @@ class OrderListCol extends React.Component {
                 break;
         }
     }
-    // 設定動態新增的 col 的預設值
-    componentDidMount() {
-        const { product } = this.props
-        this.setState({
-            total: product.price_m,
-            price: product.price_m,
-        })
-    }
+    
     // 刪除 col
     handleDelete(){
         const{removeCol,id} = this.props
