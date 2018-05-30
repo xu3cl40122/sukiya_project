@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Header, Footer, Sidebar} from './navbar'
+import { Header, Footer,Sidebar} from './navbar'
 import {Navbrick} from './navbrick'
 import {News} from './news'
 import ProductsRow from './productsRowContainer'

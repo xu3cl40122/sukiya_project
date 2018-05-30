@@ -47,7 +47,7 @@ function AppReducer(state = initialState, action){
         case TO_CART :{
             return{
                 ...state,
-                cart:action.value
+                cart:[...state.cart, action.value]
             }
         }
         default:

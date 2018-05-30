@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { withRouter, Link} from 'react-router-dom'
-import { Cart} from './cart'
+import  Cart from './cartContainer'
 export class Navbar extends React.Component {
     render() {
         return (
