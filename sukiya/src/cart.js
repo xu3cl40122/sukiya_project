@@ -1,60 +1,60 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ReactModal from 'react-modal'
-ReactModal.setAppElement('#root')
+import Modal from 'react-responsive-modal';
 
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        width:'60%',
-        height:'400px',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)'
-    },
-    overlay: { zIndex: 40 }
-};
-
-export class Cart extends React.Component {
-    constructor() {
-        super();
+var modalStyle = {
+    modal:{width:'800px'}
+}
+export  class Cart extends React.Component {
+    constructor(props){
+        super(props)
         this.state = {
-            showModal: false
-        };
-
-        this.handleOpenModal = this.handleOpenModal.bind(this);
-        this.handleCloseModal = this.handleCloseModal.bind(this);
+            open:false
+        }
+        this.onOpenModal = this.onOpenModal.bind(this)
+        this.onCloseModal = this.onCloseModal.bind(this)
     }
 
-    handleOpenModal() {
-        console.log(this.props.cart)
-        this.setState({ showModal: true });
-    }
+    onOpenModal(){
+        this.setState({ open: true });
+    };
 
-    handleCloseModal() {
-        this.setState({ showModal: false });
-    }
+    onCloseModal(){
+        this.setState({ open: false });
+    };
 
     render() {
-        //設定 z-index 才能蓋住後面其他東西
+        const { open } = this.state;
         return (
             <div>
-                <div className='sidebar_cart_button' onClick={this.handleOpenModal}><i className='fa fa-shopping-cart'></i>購物車</div>
-                <ReactModal
-                    isOpen={this.state.showModal}
-                    contentLabel="Minimal Modal Example"
-                    style={customStyles}
-                    onRequestClose={this.handleCloseModal}
-                    shouldCloseOnOverlayClick={true}
-                >
-                    <button onClick={this.handleCloseModal}>Close Modal</button>
-                </ReactModal>
+                <div onClick={this.onOpenModal} className='sidebar_cart_button'><i className="fa fa-shopping-cart"></i>購物車</div>
+                <Modal open={open} onClose={this.onCloseModal} styles={modalStyle} center>
+                    <div className='modalContainer'>
+                        <h2 className='modal_title'>SHOPPING CART</h2>
+                        <div className='modal_title_border'></div>
+                        <div className='modal_row'>
+                            <div className='modal_row_firstLine'></div>
+                            <div className='modal_col'>
+                                <img src="../pic/products/cow.jpg" alt=""/>
+                                <div className='modal_col_nameContainer'>
+                                    <p className='modal_col_productName'>三種起司牛丼</p>
+                                    <p>超大碗</p>
+                                </div>
+                                <p className='modal_col_setName'>+ 可樂餅套餐</p>
+                                <p className='modal_col_num'>x5</p>                                
+                                <p className='modal_col_price'>$129</p>
+                                <i className='fa fa-close modal_col_close '></i>
+                            </div>
+                        </div>
+                        
+                        <div className='modal_totalContainer'>
+                            <h2>合計:</h2><h2>777</h2>
+                            <div className='button modal_buyButton'>確認訂購!</div>
+                        </div>
+                    </div>
+                </Modal>
             </div>
         );
     }
 }
-
-
 

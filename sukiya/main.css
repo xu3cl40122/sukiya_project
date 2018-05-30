@@ -518,3 +518,99 @@ a {
   margin: 0;
   font-weight: bold;
 }
+.modalContainer {
+  width: 100%;
+  min-height: 50vh;
+}
+.modalContainer .modal_title {
+  margin: 0 0 15px 0;
+  padding: 0;
+  color: #616161;
+  text-align: center;
+}
+.modalContainer .modal_title_border {
+  width: 6rem;
+  height: 2px;
+  display: block;
+  background: #d7000f;
+  margin: 0 auto;
+}
+.modalContainer .modal_row {
+  width: 100%;
+  margin-top: 20px;
+  padding: 0 5%;
+}
+.modalContainer .modal_row_firstLine {
+  width: 100%;
+  height: 1px;
+  background: #d8d7d7;
+}
+.modalContainer .modal_col {
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid #d8d7d7;
+  display: flex;
+  align-items: center;
+  padding: 0px 5px;
+  position: relative;
+}
+.modalContainer .modal_col img {
+  width: 70px;
+  margin-right: 2rem;
+}
+.modalContainer .modal_col p {
+  display: block;
+}
+.modalContainer .modal_col_nameContainer {
+  margin: 0 1rem;
+  width: 11rem;
+}
+.modalContainer .modal_col_productName {
+  color: #1e222a;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.2rem;
+}
+.modalContainer .modal_col_setName {
+  width: 7rem;
+  margin-right: 3rem;
+}
+.modalContainer .modal_col_num {
+  margin-right: 3rem;
+  width: 3rem;
+}
+.modalContainer .modal_col_price {
+  color: #1e222a;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+.modalContainer .modal_col_close {
+  position: absolute;
+  right: 10px;
+  color: #1e222a;
+}
+.modalContainer .modal_col_close:hover {
+  cursor: pointer;
+}
+.modalContainer .modal_totalContainer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.modalContainer .modal_totalContainer h2 {
+  color: #1e222a;
+}
+.modalContainer .modal_totalContainer h2+h2 {
+  margin-right: 2rem;
+}
+.modalContainer .modal_buyButton {
+  background: #5a5a57;
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  color: #fff;
+  transition: background 0.3s ease-out;
+}
+.modalContainer .modal_buyButton:hover {
+  background: #5ed668;
+}

@@ -465,3 +465,81 @@ sidebar_width = 13%
         color s_red
         margin 0
         font-weight bold
+.modalContainer
+    width 100%
+    min-height 50vh
+    .modal_title
+        margin 0 0 15px 0 
+        padding 0
+        color #616161
+        text-align center
+    .modal_title_border
+            width 6rem
+            height 2px
+            display block
+            background s_red
+            margin 0 auto 
+    .modal_row 
+        width 100%
+        margin-top 20px
+        padding 0 5%
+    .modal_row_firstLine
+        width 100%
+        height 1px
+        background #d8d7d7        
+    .modal_col 
+        width 100% 
+        height 80px 
+        border-bottom 1px solid #d8d7d7
+        display flex
+        align-items center
+        padding 0px 5px
+        position relative
+        //box-shadow  0px 1px 11px 3px rgba(0,0,0,0.2)
+        img 
+            width 70px
+            margin-right 2rem 
+        p 
+            display block
+    .modal_col_nameContainer
+        margin 0 1rem
+        width 11rem
+    .modal_col_productName 
+        color s_gray 
+        font-size 1.3rem 
+        font-weight bold 
+        margin-bottom 0.2rem
+    .modal_col_setName 
+        width 7rem 
+        margin-right 3rem
+    .modal_col_num 
+        margin-right 3rem
+        width 3rem
+    .modal_col_price 
+        color s_gray 
+        font-weight bold
+        font-size 1.2rem
+    .modal_col_close 
+        position absolute 
+        right 10px
+        color s_gray 
+        &:hover 
+            cursor pointer 
+    .modal_totalContainer 
+        display flex 
+        justify-content flex-end
+        align-items center
+        h2 
+            color s_gray
+        h2+h2 
+            margin-right 2rem
+    .modal_buyButton 
+        background #5a5a57
+        width 100px 
+        height 40px
+        border-radius 5px
+        color white
+        transition background 0.3s ease-out
+        &:hover 
+            background #5ed668
+
