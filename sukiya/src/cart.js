@@ -11,10 +11,12 @@ export  class Cart extends React.Component {
         this.state = {
             open:false,
             total:0,
+            change:0
         }
         this.onOpenModal = this.onOpenModal.bind(this)
         this.onCloseModal = this.onCloseModal.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
+        this.calTotal = this.calTotal.bind(this)
     }
 
     onOpenModal(){
@@ -27,20 +29,28 @@ export  class Cart extends React.Component {
     // 好像沒有在 render 那邊 call 就不用 bind(this)?
     calTotal(){
         const{cart} = this.props
+        var tempTotal = 0
         cart.forEach((product)=>{
-            this.state.total += product.total 
+            tempTotal += product.total 
+        })
+        this.setState({
+            total: tempTotal
         })
     }
     handleDelete(id){
         const { cart, deleteFromCart} = this.props
+        this.setState({
+            change: ++this.state.change
+        })
         cart.splice(id,1)
         deleteFromCart(cart)
+        
     }
 
-    componentDidUpdate(prevProps){
-        console.log('prev',prevProps.cart)
+    componentDidUpdate(prevProps,prevState){
+        console.log(777)
         console.log(this.props.cart)
-        if(prevProps.cart !== this.props.cart){
+        if(prevProps !== this.props){
             this.calTotal()
         }
     }
