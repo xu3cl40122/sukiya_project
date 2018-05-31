@@ -615,3 +615,6 @@ a {
 .modalContainer .modal_buyButton:hover {
   background: #5ed668;
 }
+.site:hover {
+  cursor: pointer;
+}
