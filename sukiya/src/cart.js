@@ -59,7 +59,7 @@ export  class Cart extends React.Component {
         console.log('render')
         const { open } = this.state;
         const {cart} = this.props
-        var total = this.calTotal()
+        this.total = this.calTotal()
         return (
             <div>
                 <div onClick={this.onOpenModal} className='sidebar_cart_button'><i className="fa fa-shopping-cart"></i>購物車</div>
@@ -80,7 +80,7 @@ export  class Cart extends React.Component {
                             
                         </div>
                         <div className='modal_totalContainer'>
-                            <h2>合計: </h2><h2>{total}</h2>
+                            <h2>合計: </h2><h2>{this.total}</h2>
                             <div className='button modal_buyButton'>確認訂購!</div>
                         </div>
                     </div>
