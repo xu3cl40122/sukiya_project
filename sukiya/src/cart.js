@@ -17,6 +17,8 @@ export  class Cart extends React.Component {
         this.onCloseModal = this.onCloseModal.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.calTotal = this.calTotal.bind(this)
+        this.changeTotal = this.changeTotal.bind(this)
+        this.total = 0
     }
 
     onOpenModal(){
@@ -33,8 +35,11 @@ export  class Cart extends React.Component {
         cart.forEach((product)=>{
             tempTotal += product.total 
         })
+        return tempTotal
+    }
+    changeTotal(price){
         this.setState({
-            total: tempTotal
+            total:this.state.total + price
         })
     }
     handleDelete(id){
@@ -46,18 +51,15 @@ export  class Cart extends React.Component {
         deleteFromCart(cart)
         
     }
-
-    componentDidUpdate(prevProps,prevState){
-        console.log(777)
-        console.log(this.props.cart)
-        if(prevProps !== this.props){
-            this.calTotal()
-        }
+    componentWillUpdate(nextProps,nextState){
+        console.log(nextState)
+        console.log(this.state)
     }
-
     render() {
+        console.log('render')
         const { open } = this.state;
         const {cart} = this.props
+        var total = this.calTotal()
         return (
             <div>
                 <div onClick={this.onOpenModal} className='sidebar_cart_button'><i className="fa fa-shopping-cart"></i>購物車</div>
@@ -68,12 +70,17 @@ export  class Cart extends React.Component {
                         <div className='modal_row'>
                             <div className='modal_row_firstLine'></div>
                             {cart.map((product,index )=>{return(
-                                <ModalCol key={index} id={index} product={product} handleDelete={this.handleDelete} />
+                                <ModalCol 
+                                key={index} 
+                                id={index} 
+                                product={product}
+                                handleDelete={this.handleDelete}
+                                />
                             )})}
                             
                         </div>
                         <div className='modal_totalContainer'>
-                            <h2>合計: </h2><h2>{this.state.total}</h2>
+                            <h2>合計: </h2><h2>{total}</h2>
                             <div className='button modal_buyButton'>確認訂購!</div>
                         </div>
                     </div>
@@ -94,6 +101,7 @@ class ModalCol extends React.Component{
         const { handleDelete,id} = this.props
         handleDelete(id)
     }
+    
     render(){
         const{product} = this.props
         return(
