@@ -9,7 +9,8 @@ export  class Cart extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            open:false
+            open:false,
+            total:0
         }
         this.onOpenModal = this.onOpenModal.bind(this)
         this.onCloseModal = this.onCloseModal.bind(this)
@@ -22,9 +23,23 @@ export  class Cart extends React.Component {
     onCloseModal(){
         this.setState({ open: false });
     };
+    calTotal(){
+        const{cart} = this.props
+        cart.forEach((product)=>{
+            this.state.total += product.total 
+        })
+    }
+    componentDidUpdate(prevProps){
+        console.log('update cart')
+        if(prevProps.cart !== this.props.cart){
+            this.calTotal()
+        }
+    }
 
     render() {
         const { open } = this.state;
+        const {cart} = this.props
+        console.log(cart)
         return (
             <div>
                 <div onClick={this.onOpenModal} className='sidebar_cart_button'><i className="fa fa-shopping-cart"></i>購物車</div>
@@ -34,21 +49,23 @@ export  class Cart extends React.Component {
                         <div className='modal_title_border'></div>
                         <div className='modal_row'>
                             <div className='modal_row_firstLine'></div>
-                            <div className='modal_col'>
-                                <img src="../pic/products/cow.jpg" alt=""/>
-                                <div className='modal_col_nameContainer'>
-                                    <p className='modal_col_productName'>三種起司牛丼</p>
-                                    <p>超大碗</p>
+                            {cart.map(product =>{return(
+                                <div className='modal_col'>
+                                    <img src={product.img_path} alt="" />
+                                    <div className='modal_col_nameContainer'>
+                                        <p className='modal_col_productName'>{product.name}</p>
+                                        <p>{product.size}</p>
+                                    </div>
+                                    <p className='modal_col_setName'>{'+ '+ product.set }</p>
+                                    <p className='modal_col_num'>{'x'+ product.num}</p>
+                                    <p className='modal_col_price'>{'$'+product.total}</p>
+                                    <i className='fa fa-close modal_col_close '></i>
                                 </div>
-                                <p className='modal_col_setName'>+ 可樂餅套餐</p>
-                                <p className='modal_col_num'>x5</p>                                
-                                <p className='modal_col_price'>$129</p>
-                                <i className='fa fa-close modal_col_close '></i>
-                            </div>
+                            )})}
+                            
                         </div>
-                        
                         <div className='modal_totalContainer'>
-                            <h2>合計: </h2><h2>777</h2>
+                            <h2>合計: </h2><h2>{this.state.total}</h2>
                             <div className='button modal_buyButton'>確認訂購!</div>
                         </div>
                     </div>

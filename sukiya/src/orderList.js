@@ -108,13 +108,14 @@ class OrderListCol extends React.Component {
                     break;
             }
             this.setState({ total: (price + setPrice) * num })
-            // 更新 parent 的 state
+            // 更新 parent 的 state(第一個col也會執行到這個)
             updateOrder(id, {
                 name: product.name,
                 set: set,
                 num: num,
                 size: size,
-                total: (price + setPrice) * num
+                total: (price + setPrice) * num,
+                img_path:product.img_path
             })
         }
     }
