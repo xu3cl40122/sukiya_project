@@ -48,7 +48,7 @@ export  class Cart extends React.Component {
                         </div>
                         
                         <div className='modal_totalContainer'>
-                            <h2>合計:</h2><h2>777</h2>
+                            <h2>合計: </h2><h2>777</h2>
                             <div className='button modal_buyButton'>確認訂購!</div>
                         </div>
                     </div>
