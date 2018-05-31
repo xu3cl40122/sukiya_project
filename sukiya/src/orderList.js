@@ -84,6 +84,7 @@ class OrderListCol extends React.Component {
             this.setState({
                 total: product.price_m,
                 price: product.price_m,
+                name:product.name
             })
             // 更新 parent 的 state
             updateOrder(id,{
@@ -125,6 +126,7 @@ class OrderListCol extends React.Component {
         this.setState({
             total: product.price_m,
             price: product.price_m,
+            name: product.name
         })
     }
     handleChange(e) {
@@ -154,13 +156,12 @@ class OrderListCol extends React.Component {
     // 刪除 col
     handleDelete(){
         const{removeCol,id} = this.props
-        console.log(id)
         removeCol(id)
     }
     render() {
         return (
             <div className="mealList_col">
-                <h2 className="mealList_col_name">青蔥生蛋牛丼</h2>
+                <h2 className="mealList_col_name">{this.state.name}</h2>
                 <p>大小:</p>
                 <select name="size" value={this.state.size} onChange={this.handleChange}>
                     <option value="迷你碗">迷你碗</option>

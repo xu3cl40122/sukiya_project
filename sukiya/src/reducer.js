@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_SINGLE, TO_CART } from './actionTypes'
+import { GET_PRODUCTS, GET_SINGLE, TO_CART,DELETE_FROM_CART } from './actionTypes'
 import { combineReducers } from 'redux'
 const initialState ={
     products:[],
@@ -48,6 +48,13 @@ function AppReducer(state = initialState, action){
             return{
                 ...state,
                 cart:[...state.cart, action.value]
+            }
+        }
+        // set deleted cart to redux
+        case DELETE_FROM_CART:{
+            return{
+                ...state,
+                cart:action.value
             }
         }
         default:

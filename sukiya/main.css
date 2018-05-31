@@ -469,6 +469,7 @@ a {
   color: #795548;
   display: inline-block;
   width: 160px;
+  text-align: center;
 }
 .mealList_container .mealList_col_num {
   width: 3rem;
