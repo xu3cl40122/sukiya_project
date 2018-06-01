@@ -618,3 +618,34 @@ a {
 .site:hover {
   cursor: pointer;
 }
+.mapContainer {
+  margin-top: 80px;
+  padding: 2rem 0rem;
+  display: flex;
+  justify-content: space-around;
+}
+.mapContainer .mapBox {
+  height: 500px;
+  width: 70%;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.mapContainer .searchBox {
+  width: 25%;
+  height: 200px;
+  background: #5a5a57;
+  border-radius: 10px;
+  padding: 1rem 1rem;
+  color: #fff;
+}
+.mapContainer .searchBox h2 {
+  margin: 0 0 20px 0;
+}
+.mapContainer .searchBox p {
+  font-size: 1.3rem;
+  display: inline;
+}
+.mapContainer .searchBox select {
+  border-radius: 5px;
+  font-size: 1.3rem;
+}

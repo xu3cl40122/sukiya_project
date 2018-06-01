@@ -25,12 +25,10 @@ class SimpleMap extends Component {
         })
     }
     render() {
-        console.log(this.state)
         return (
             // Important! Always set the container height explicitly
-            <div>
-                <div onClick={this.zoomIn}>button</div>
-                <div style={{ height: '400px', width: '50%' }}>
+            <div className='mapContainer'>
+                <div className='mapBox'>
                     <GoogleMapReact
                         bootstrapURLKeys={{ key: 'AIzaSyCfHAr-ZARIBL8FD7OXmzBgkcZ3jXGwPOE' }}
                         defaultCenter={this.props.center}
@@ -48,6 +46,7 @@ class SimpleMap extends Component {
                         />
                     </GoogleMapReact>
                 </div>
+                <SearchBox />
             </div>
         );
     }
@@ -68,6 +67,22 @@ class Site extends React.Component{
     }
 }
 
+class SearchBox extends React.Component{
+    render(){
+        return(
+            <div className='searchBox'>
+                <h2>門市查詢</h2>
+                <p>門市:</p>
+                <select>
+                    <option value="迷你碗">迷你碗</option>
+                    <option value="中碗">中碗</option>
+                    <option value="超值碗">超值碗</option>
+                    <option value="超大碗">超大碗</option>
+                </select>
+            </div>
+        )
+    }
+}
 
 
 export default SimpleMap;

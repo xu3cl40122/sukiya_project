@@ -50,6 +50,17 @@ class Single extends React.Component{
     }
 }
 
+class Map extends React.Component{
+    render(){
+        return(
+            <div>
+                <Navbar />
+                <SimpleMap />
+            </div>
+        )
+    }
+}
+
 export default class App extends React.Component{
     render(){
         return(
@@ -58,7 +69,7 @@ export default class App extends React.Component{
                 <Route exact path='/' component={Home} />
                 <Route path='/products/:type' component={Products} />
                 <Route path='/single/:type/:id' component={Single} />
-                <Route path='/map' component={SimpleMap} />
+                <Route path='/map' component={Map} />
                 </div>
             </Router>
         )
