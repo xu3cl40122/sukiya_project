@@ -58,7 +58,7 @@ export default class App extends React.Component{
                 <Route exact path='/' component={Home} />
                 <Route path='/products/:type' component={Products} />
                 <Route path='/single/:type/:id' component={Single} />
-                    <Route path='/map' component={SimpleMap} />
+                <Route path='/map' component={SimpleMap} />
                 </div>
             </Router>
         )
