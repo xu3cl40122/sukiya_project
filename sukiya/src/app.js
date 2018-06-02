@@ -3,10 +3,11 @@ import ReactDOM from 'react-dom'
 import { Header, Footer,Sidebar} from './navbar'
 import {Navbrick} from './navbrick'
 import {News} from './news'
-import SimpleMap from "./map";
+import SimpleMap from "./mapContainer";
 import ProductsRow from './productsRowContainer'
 import Navbar from './navbarContainer'
 import SingleProduct from './SingleProductContainer'
+import { ParallaxProvider } from 'react-scroll-parallax'
 import {
     HashRouter as Router,
     Route,
@@ -64,14 +65,16 @@ class Map extends React.Component{
 export default class App extends React.Component{
     render(){
         return(
-            <Router>
-                <div>
-                <Route exact path='/' component={Home} />
-                <Route path='/products/:type' component={Products} />
-                <Route path='/single/:type/:id' component={Single} />
-                <Route path='/map' component={Map} />
-                </div>
-            </Router>
+            <ParallaxProvider >
+                <Router>
+                    <div>
+                    <Route exact path='/' component={Home} />
+                    <Route path='/products/:type' component={Products} />
+                    <Route path='/single/:type/:id' component={Single} />
+                    <Route path='/map' component={Map} />
+                    </div>
+                </Router>
+            </ParallaxProvider>
         )
     }
 }

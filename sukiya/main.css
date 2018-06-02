@@ -100,7 +100,8 @@ a {
   height: 500px;
   background: url("./pic/Sb5z1Earu99GijzNUpURmIoS3GIU5XZtGQJAbRkCQG0.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: top;
+  background-attachment: fixed;
 }
 .navBrick_row {
   width: 960px;
@@ -648,4 +649,5 @@ a {
 .mapContainer .searchBox select {
   border-radius: 5px;
   font-size: 1.3rem;
+  margin: 0 1rem;
 }

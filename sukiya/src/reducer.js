@@ -1,9 +1,10 @@
-import { GET_PRODUCTS, GET_SINGLE, TO_CART,DELETE_FROM_CART } from './actionTypes'
+import { GET_PRODUCTS, GET_SINGLE, TO_CART,DELETE_FROM_CART,GET_SITE } from './actionTypes'
 import { combineReducers } from 'redux'
 const initialState ={
     products:[],
     singleProduct:{},
-    cart:[]
+    cart:[],
+    site:[]
 }
 function AppReducer(state = initialState, action){
     switch(action.type){
@@ -38,6 +39,23 @@ function AppReducer(state = initialState, action){
             }
         }
         case `${GET_SINGLE}_REJECTED`: {// error
+            return {
+                ...state
+            }
+        }
+        // call site api 
+        case `${GET_SITE}_PENDING`: {//剛發出 request
+            return {
+                ...state
+            }
+        }
+        case `${GET_SITE}_FULFILLED`: {// success
+            return {
+                ...state,
+                site: action.payload.data
+            }
+        }
+        case `${GET_SITE}_REJECTED`: {// error
             return {
                 ...state
             }

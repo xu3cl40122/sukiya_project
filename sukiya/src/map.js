@@ -24,6 +24,10 @@ class SimpleMap extends Component {
             },
         })
     }
+    componentDidMount(){
+        const {getSite} = this.props 
+        getSite()
+    }
     render() {
         return (
             // Important! Always set the container height explicitly

@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { withRouter, Link} from 'react-router-dom'
 import  Cart from './cartContainer'
+import { Parallax } from 'react-scroll-parallax'
 export class Navbar extends React.Component {
     render() {
         return (
@@ -28,7 +29,7 @@ export class Header extends React.Component{
         return(
             <div>
                 <div className='null'></div>            
-                <div className="header"></div>
+                <div className='header'></div>
             </div>
         )
     }
