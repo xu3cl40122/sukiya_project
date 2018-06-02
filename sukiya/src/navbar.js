@@ -2,9 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { withRouter, Link} from 'react-router-dom'
 import  Cart from './cartContainer'
-import { Parallax } from 'react-scroll-parallax'
-export class Navbar extends React.Component {
+import { Parallax } from 'react-parallax';
+import provideScrollPosition from 'react-provide-scroll-position';
+
+class Navbar_r extends React.Component {
     render() {
+        console.log(this.props)
         return (
             <div className="navbar">
                 <Link to='/'><div className="navbar_logo"></div></Link>
@@ -23,13 +26,20 @@ export class Navbar extends React.Component {
         )
     }
 }
+// 包在可以 get scroll height 再 export 
+export const Navbar = provideScrollPosition(Navbar_r)
 
 export class Header extends React.Component{
     render(){
         return(
             <div>
-                <div className='null'></div>            
-                <div className='header'></div>
+                <div className='null'></div>
+                <div className='header'>
+                <div className='title'>
+                    <h2 >すき家</h2>
+                    <h3>リゾット & カレー </h3>
+                </div>
+                </div>
             </div>
         )
     }
