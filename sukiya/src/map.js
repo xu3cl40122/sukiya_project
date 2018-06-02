@@ -28,6 +28,9 @@ class SimpleMap extends Component {
         const {getSite} = this.props 
         getSite()
     }
+    componentDidUpdate(prevProps){
+        
+    }
     render() {
         return (
             // Important! Always set the container height explicitly
@@ -50,7 +53,7 @@ class SimpleMap extends Component {
                         />
                     </GoogleMapReact>
                 </div>
-                <SearchBox />
+                <SearchBox site={this.props.site}/>
             </div>
         );
     }
@@ -72,21 +75,51 @@ class Site extends React.Component{
 }
 
 class SearchBox extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            site:'',
+            center:{}
+        }
+        this.onChange = this.onChange.bind(this)
+    }
+
+    onChange(e){
+        this.setState({
+            site:e.target.value,
+            }
+        )
+    }
+    
     render(){
+        const {site} = this.props
+        console.log(this.state)
         return(
             <div className='searchBox'>
                 <h2>門市查詢</h2>
                 <p>門市:</p>
-                <select>
-                    <option value="迷你碗">迷你碗</option>
-                    <option value="中碗">中碗</option>
-                    <option value="超值碗">超值碗</option>
-                    <option value="超大碗">超大碗</option>
+                <select value={this.state.site} onChange={this.onChange}>
+                    {site.map(item => {
+                        return (
+                            <SiteOption site={item} key={item.site_id} onClick={() => { console.log(777) }}/>
+                        )
+                    })}
                 </select>
             </div>
         )
     }
 }
 
+class SiteOption extends React.Component{
+    constructor(props){
+        super(props)
+    }
+    render(){
+        const {site} = this.props
+        return(
+            <option value={[site.name,site.x,site.y]}>{site.name}</option>
+        )
+    }
+}
 
 export default SimpleMap;
