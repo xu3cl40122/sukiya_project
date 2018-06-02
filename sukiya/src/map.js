@@ -15,12 +15,13 @@ class SimpleMap extends Component {
         }
         this.zoomIn = this.zoomIn.bind(this)
     }
-    zoomIn(){
+    zoomIn(center){
+        console.log(center)
         this.setState({
             zoom:16,
             center:{
-                lat: 25.0385852,
-                lng: 121.5216822
+                lat: center.lat,
+                lng: center.lng
             },
         })
     }
@@ -28,10 +29,9 @@ class SimpleMap extends Component {
         const {getSite} = this.props 
         getSite()
     }
-    componentDidUpdate(prevProps){
-        
-    }
+    
     render() {
+        const{site}= this.props
         return (
             // Important! Always set the container height explicitly
             <div className='mapContainer'>
@@ -47,13 +47,14 @@ class SimpleMap extends Component {
                             //讓 map 的 center、zoom 和 state 的同步
                         }} 
                     >
-                        <Site
-                            lat={25.027897}
-                            lng={121.521595}
-                        />
+                    {site.map(item=>{
+                        return(
+                            <Site lat={item.y} lng={item.x} name={item.name}/>
+                        )
+                    })}    
                     </GoogleMapReact>
                 </div>
-                <SearchBox site={this.props.site}/>
+                <SearchBox site={site} zoomIn = {this.zoomIn}/>
             </div>
         );
     }
@@ -68,9 +69,12 @@ SimpleMap.defaultProps = {
 
 class Site extends React.Component{
     render(){
+        const { name } = this.props
         return(
-            <div className='site'>sukiya</div>
-        )
+            <div>
+                <div className='site' data_name={name}></div>
+            </div>
+        )   
     }
 }
 
@@ -93,26 +97,27 @@ class SearchBox extends React.Component{
             raw: e.target.value,
             site: list[0],
             center: {
-                lat: list[2],
-                lng: list[1]
+                lat: parseFloat(list[2]),
+                lng: parseFloat(list[1])
             }
         })
     }
     
     render(){
-        const {site} = this.props
-        console.log(this.state)
+        const {site,zoomIn} = this.props
         return(
             <div className='searchBox'>
                 <h2>門市查詢</h2>
                 <p>門市:</p>
                 <select value={this.state.raw} onChange={this.onChange}>
+                    <option>選擇門市</option>
                     {site.map(item => {
                         return (
                             <SiteOption site={item} key={item.site_id}/>
                         )
                     })}
                 </select>
+                <div className='button searchBox_searchButton' onClick={()=>{zoomIn(this.state.center)}}>查詢</div>
             </div>
         )
     }

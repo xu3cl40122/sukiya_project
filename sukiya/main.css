@@ -616,8 +616,20 @@ a {
 .modalContainer .modal_buyButton:hover {
   background: #5ed668;
 }
-.site:hover {
-  cursor: pointer;
+.site {
+  background: url("./pic/Logo_sukiya.jpg");
+  width: 2rem;
+  height: 1.5rem;
+  background-size: cover;
+  position: relative;
+}
+.site:before {
+  content: attr(data_name);
+  position: absolute;
+  bottom: -1rem;
+  left: -1rem;
+  width: 4rem;
+  text-align: center;
 }
 .mapContainer {
   margin-top: 80px;
@@ -650,4 +662,16 @@ a {
   border-radius: 5px;
   font-size: 1.3rem;
   margin: 0 1rem;
+}
+.mapContainer .searchBox_searchButton {
+  width: 60px;
+  height: 35px;
+  border-radius: 5px;
+  background: #1e222a;
+  display: inline-flex;
+  box-shadow: 0px 1px 11px 3px rgba(0,0,0,0);
+  transition: box-shadow 0.1s ease-out;
+}
+.mapContainer .searchBox_searchButton:hover {
+  box-shadow: 0px 1px 11px 3px rgba(0,0,0,0.2);
 }

@@ -544,8 +544,19 @@ sidebar_width = 13%
         &:hover 
             background #5ed668
 .site 
-    &:hover 
-        cursor pointer
+    background url('./pic/Logo_sukiya.jpg')
+    width 2rem
+    height 1.5rem
+    background-size cover
+    position relative
+    &:before
+        content attr(data_name)
+        position absolute
+        bottom -1rem
+        left -1rem
+        width 4rem 
+        text-align center
+    
 .mapContainer 
     margin-top navbar_height
     padding 2rem 0rem
@@ -572,5 +583,17 @@ sidebar_width = 13%
             border-radius 5px
             font-size 1.3rem
             margin 0 1rem
+    .searchBox_searchButton 
+        width 60px 
+        height 35px 
+        border-radius 5px
+        background s_gray
+        display inline-flex
+        box-shadow  0px 1px 11px 3px rgba(0,0,0,0)
+        transition box-shadow 0.1s ease-out
+        &:hover 
+            box-shadow  0px 1px 11px 3px rgba(0,0,0,0.2)
+            
+        
         
     
