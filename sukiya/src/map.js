@@ -78,17 +78,25 @@ class SearchBox extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            site:'',
-            center:{}
+            raw:'',
+            center:{},
+            site:''
         }
         this.onChange = this.onChange.bind(this)
     }
-
+    //是監測 value 和 option 的 value 是否相等來判斷選哪一個，及使選到那個 option ， 
+    //setState 沒有設定對應的 value 還是不會選到
     onChange(e){
+        //array schema 1:name 2:x 3:y
+        let list = e.target.value.split(',')
         this.setState({
-            site:e.target.value,
+            raw: e.target.value,
+            site: list[0],
+            center: {
+                lat: list[2],
+                lng: list[1]
             }
-        )
+        })
     }
     
     render(){
@@ -98,10 +106,10 @@ class SearchBox extends React.Component{
             <div className='searchBox'>
                 <h2>門市查詢</h2>
                 <p>門市:</p>
-                <select value={this.state.site} onChange={this.onChange}>
+                <select value={this.state.raw} onChange={this.onChange}>
                     {site.map(item => {
                         return (
-                            <SiteOption site={item} key={item.site_id} onClick={() => { console.log(777) }}/>
+                            <SiteOption site={item} key={item.site_id}/>
                         )
                     })}
                 </select>
