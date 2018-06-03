@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import { Header, Footer,Sidebar} from './navbar'
 import {Navbrick} from './navbrick'
 import {News} from './news'
+import {Ani} from './animation'
 import SimpleMap from "./mapContainer";
 import ProductsRow from './productsRowContainer'
 import Navbar from './navbarContainer'
@@ -72,6 +73,7 @@ export default class App extends React.Component{
                     <Route path='/products/:type' component={Products} />
                     <Route path='/single/:type/:id' component={Single} />
                     <Route path='/map' component={Map} />
+                    <Route path='/ani' component={Ani} />
                     </div>
                 </Router>
             </ParallaxProvider>

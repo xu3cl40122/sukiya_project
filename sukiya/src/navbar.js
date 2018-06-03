@@ -2,15 +2,22 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { withRouter, Link} from 'react-router-dom'
 import  Cart from './cartContainer'
-import { Parallax } from 'react-parallax';
+import {Ani} from './animation'
 import provideScrollPosition from 'react-provide-scroll-position';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class Navbar_r extends React.Component {
+    constructor(props){
+        super(props)
+        this.state={
+            hidden:true
+        }
+    }
     render() {
         console.log(this.props)
         return (
             <div className="navbar">
-                <Link to='/'><div className="navbar_logo"></div></Link>
+                <Ani />
                 <ul className="navlist">
                     <li>
                         <Link to='/products/bowl' className="link"><i className="fa fa-cutlery"></i>線上訂餐</Link>
@@ -18,7 +25,9 @@ class Navbar_r extends React.Component {
                     <li>
                         <Link to='/map' className="link"><i className="fa fa-map-marker"></i>門市地點</Link>
                     </li>
-                    <li><i className="fa fa-users"></i>關於我們</li>
+                    <li onClick={()=>{this.setState({
+                        hidden:!this.state.hidden
+                    })}}><i className="fa fa-users"></i>關於我們</li>
                     <li><i className="fa fa-info-circle"></i>最新消息</li>
                     <li><i className="fa fa-user"></i>登入</li>
                 </ul>
