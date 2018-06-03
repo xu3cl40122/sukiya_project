@@ -114,6 +114,7 @@ a {
   background-size: cover;
   border: 2px solid #fff;
   display: block;
+  z-index: 30;
 }
 .bigLogo-enter {
   animation-name: fade-in;
@@ -128,18 +129,18 @@ a {
   height: 50px;
   position: absolute;
   top: 10px;
-  left: 200px;
+  left: 75px;
   background: url("./pic/Logo_sukiya.jpg");
   background-size: cover;
   border: 2px solid #fff;
   display: block;
 }
 .smallLogo-enter {
-  animation-name: fade-in;
+  animation-name: fade-in_small;
   animation-duration: 1000ms;
 }
 .smallLogo-leave {
-  animation-name: fade-out;
+  animation-name: fade-out_small;
   animation-duration: 1000ms;
 }
 .null {
@@ -862,5 +863,69 @@ a {
   }
   to {
     top: 15px;
+  }
+}
+@-moz-keyframes fade-out_small {
+  from {
+    top: 10px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@-webkit-keyframes fade-out_small {
+  from {
+    top: 10px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@-o-keyframes fade-out_small {
+  from {
+    top: 10px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@keyframes fade-out_small {
+  from {
+    top: 10px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@-moz-keyframes fade-in_small {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 10px;
+  }
+}
+@-webkit-keyframes fade-in_small {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 10px;
+  }
+}
+@-o-keyframes fade-in_small {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 10px;
+  }
+}
+@keyframes fade-in_small {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 10px;
   }
 }

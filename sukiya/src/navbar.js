@@ -2,11 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { withRouter, Link} from 'react-router-dom'
 import  Cart from './cartContainer'
-import {Ani} from './animation'
-import provideScrollPosition from 'react-provide-scroll-position';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { AnimatedLogo} from './animation'
 
-class Navbar_r extends React.Component {
+export class Navbar extends React.Component {
     constructor(props){
         super(props)
         this.state={
@@ -14,10 +12,9 @@ class Navbar_r extends React.Component {
         }
     }
     render() {
-        console.log(this.props)
         return (
             <div className="navbar">
-                <Ani />
+                <AnimatedLogo />
                 <ul className="navlist">
                     <li>
                         <Link to='/products/bowl' className="link"><i className="fa fa-cutlery"></i>線上訂餐</Link>
@@ -35,8 +32,6 @@ class Navbar_r extends React.Component {
         )
     }
 }
-// 包在可以 get scroll height 再 export 
-export const Navbar = provideScrollPosition(Navbar_r)
 
 export class Header extends React.Component{
     render(){
