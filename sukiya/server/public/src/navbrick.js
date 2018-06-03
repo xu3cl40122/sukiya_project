@@ -7,7 +7,7 @@ export class Navbrick extends React.Component {
             <div className="navBrick_row">
                 <div className="navBrick_col navBrick_col_buy">
                     <h2>線上訂餐</h2>
-                    <Link to='/product' className='link'>
+                    <Link to='/products/bowl' className='link'>
                         <div className="button navBrick_col_button">GO</div>
                     </ Link>
                 </div>
