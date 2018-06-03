@@ -4,17 +4,17 @@ import axios from 'axios'
 // 如果只要 return 可以 =>( 要return的東西 )
 export const getProduct = (kind) => ({
     type: GET_PRODUCTS,
-    payload: axios.get('http://localhost:3000/products'),
+    payload: axios.get('http://tomlee0122.tw/products'),
     meta: kind//用來在 reducer 決定要 set 哪一類商品去 globl state
     
 })
 export const getSingle = (id) =>({
     type: GET_SINGLE,
-    payload: axios.get('http://localhost:3000/products/'+id)
+    payload: axios.get('http://tomlee0122.tw/products/'+id)
 })
 export const getSite = ()=>({
     type:GET_SITE, 
-    payload: axios.get('http://localhost:3000/site')
+    payload: axios.get('http://tomlee0122.tw/site')
 })
 //加入購物車
 export const toCart = (products) =>({
