@@ -5,12 +5,8 @@ const bodyParser = require('body-parser')
 const products = require('./products')
 const site = require('./site')
 var cors = require('cors')
-var https = require('https')
-/*
-app.set('port', process.env.PORT || 443);
-app.get("*", function (req, res, next) {
-    res.redirect("https://" + req.headers.host + "/" + req.path);
-});*/
+// 可以存取靜態檔案 localhost:3000/ + 檔案名
+app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(cors())// 允許跨網域
 app.get('/', function (req, res) {
@@ -22,12 +18,3 @@ app.get('/site',site.getSites)
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });
-/*
-server.listen(3000, 'localhost');
-server.on('listening', function () {
-    console.log('Express server started on port %s at %s', server.address().port, server.address().address);
-});*/
-/*
-https.createServer(app).listen(app.get('port'), function () {
-    console.log('Express HTTPs server listening on port ' + app.get('port'));
-});*/

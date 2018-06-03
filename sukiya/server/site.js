@@ -11,7 +11,6 @@ module.exports={
                 return
             } else {
                 res.send(results)
-                console.log(results)
             }
         })
     }
