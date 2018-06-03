@@ -49,7 +49,7 @@ class SimpleMap extends Component {
                     >
                     {site.map(item=>{
                         return(
-                            <Site lat={item.y} lng={item.x} name={item.name}/>
+                            <Site lat={item.y} lng={item.x} name={item.name} key={item.name}/>
                         )
                     })}    
                     </GoogleMapReact>

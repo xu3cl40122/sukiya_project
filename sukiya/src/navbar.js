@@ -12,9 +12,10 @@ export class Navbar extends React.Component {
         }
     }
     render() {
+        const{match}= this.props
         return (
             <div className="navbar">
-                <AnimatedLogo />
+                {match.path == '/' ? <AnimatedLogo /> : <Link to='/'><div className='smallLogo-base'></div></Link>}
                 <ul className="navlist">
                     <li>
                         <Link to='/products/bowl' className="link"><i className="fa fa-cutlery"></i>線上訂餐</Link>
