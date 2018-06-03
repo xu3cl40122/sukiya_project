@@ -99,7 +99,8 @@ class ModalCol extends React.Component{
 
     deleteProduct(){
         const { handleDelete,id} = this.props
-        handleDelete(id)
+        let toDelete = confirm('確定刪除商品?')
+        if(toDelete){handleDelete(id)}
     }
     
     render(){

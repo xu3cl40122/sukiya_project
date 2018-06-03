@@ -31,6 +31,8 @@ s_brown = #795548
     //z-index -30
 .link // 去除 react 對 link 的預設樣式
     text-decoration none
+.link_col 
+    display block
 #root 
     height 100%
 
@@ -252,7 +254,6 @@ navbar_height = 70px
         box-shadow 0px 0px 0px 0px rgba(0,0,0,0.1)
         transition 0.3s box-shadow ease-out,0.3s color ease-out
         color black
-        cursor pointer
         &:hover
             box-shadow  0px 1px 13px 1px rgba(0,0,0,0.1)
             color white  
@@ -265,6 +266,8 @@ navbar_height = 70px
             background s_yellow 
             border-radius 5px
             margin 0 auto
+            color black
+           
             
         
     // 為了讓每個 before 的照片不一樣

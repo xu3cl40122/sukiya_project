@@ -34,9 +34,14 @@ export class OrderList extends React.Component {
     addToCart(products){
         const{toCart}=this.props
         const{orders}=this.state
+        alert('商品已加入購物車!')
         for(let i in orders){
             toCart(orders[i])
         }
+        this.setState({
+            orders:{},
+            orderListMap:[]
+        })
         //toCart(this.state.orders)
     }
     render() {

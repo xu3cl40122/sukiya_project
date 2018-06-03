@@ -31,6 +31,9 @@ a {
 .link {
   text-decoration: none;
 }
+.link_col {
+  display: block;
+}
 #root {
   height: 100%;
 }
@@ -204,7 +207,6 @@ a {
   box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.1);
   transition: 0.3s box-shadow ease-out, 0.3s color ease-out;
   color: #000;
-  cursor: pointer;
 }
 .navBrick_row .navBrick_col:hover {
   box-shadow: 0px 1px 13px 1px rgba(0,0,0,0.1);
@@ -220,6 +222,7 @@ a {
   background: #ffd93e;
   border-radius: 5px;
   margin: 0 auto;
+  color: #000;
 }
 .navBrick_row .navBrick_col_buy:before {
   content: "";
