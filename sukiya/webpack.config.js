@@ -2,13 +2,13 @@ const path = require('path');
 
 module.exports = {
   mode: 'development',
-  entry: './server/public/src/index.js',
+  entry: './src/index.js',
   module:{
     rules:[{test: /\.js$/,exclude: /node_modules/,loader: 'babel-loader'}]
   },
   output: {
-    path: path.resolve(__dirname, './server/public/dist'),
+    path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
-    publicPath:'/dist'
+    publicPath:'/dist'//其他資源要放在哪裡 ex: 圖片
   }
 };

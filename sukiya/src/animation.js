@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import provideScrollPosition from 'react-provide-scroll-position';
 import { Link, withRouter } from 'react-router-dom'
-
+import ReactTimeout from 'react-timeout'
 class BigLogo extends React.Component {
     render() {
         return <div>
@@ -36,25 +36,34 @@ class Ani extends React.Component {
     constructor(props) {
         super(props);
         this.onClick = this.onClick.bind(this);
-        this.state = { hidden: false };
+        this.state = { 
+            hidden: false,
+            changeing:false,
+        };
     }
     onClick() {
         this.setState((prevState, props) => ({
             hidden: !(prevState.hidden)
-        }))    //alert(ReactCSSTransitionGroup);
+        }))    
     }
-    componentDidUpdate(prevProps){
+    componentDidUpdate(prevProps,prevState){
         const {scrollTop} = this.props
-        if(prevProps.scrollTop !== scrollTop){
-            if (scrollTop > 50) {
-                this.setState({
-                    hidden:true
-                })
+        //console.log('prev',prevState,prevProps.scrollTop)
+        //console.log(this.state,scrollTop)
+        // 預防快速上下產生明明在捲到頂卻沒變回大 logo的情況
+        if(scrollTop<50 & prevState.changeing == true & this.state.hidden == true & this.state.changeing == false){
+            this.setState({ hidden: false, changeing: true }, () => { this.props.setTimeout(() => { this.setState({ changeing: false }) }, 2000) })
+        }
+        // 用 settimeout 切換動畫是否正在執行，避免同時載入大小 logo
+        if(prevProps.scrollTop !== scrollTop & this.state.changeing != true){
+            //console.log('in',prevState)
+           
+            if (scrollTop > 50 & this.state.hidden == false) {
+                this.setState({ hidden: true,changeing:true }, () => { this.props.setTimeout(() => {this.setState({changeing:false})}, 2000)})
+              
             }
-            else{
-                this.setState({
-                    hidden: false
-                })
+            else if (scrollTop < 50 & this.state.hidden == true){
+                this.setState({ hidden: false, changeing: true }, () => { this.props.setTimeout(() => { this.setState({ changeing: false }) }, 2000) })
             }
         }
         
@@ -69,4 +78,4 @@ class Ani extends React.Component {
     }
 }
 
-export const AnimatedLogo = provideScrollPosition(Ani)
+export const AnimatedLogo = ReactTimeout(provideScrollPosition(Ani))
