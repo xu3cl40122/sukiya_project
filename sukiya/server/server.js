@@ -4,7 +4,7 @@ const session = require('express-session')
 const bodyParser = require('body-parser')
 const products = require('./products')
 const site = require('./site')
-var cors = require('cors')
+var cors = require('cors')// 跨網域
 // 可以存取靜態檔案 localhost:3000/ + 檔案名
 app.use(express.static('public'))
 app.use(bodyParser.json());
