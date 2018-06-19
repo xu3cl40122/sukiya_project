@@ -1,4 +1,11 @@
-import { GET_PRODUCTS, TO_CART, GET_SINGLE,DELETE_FROM_CART,GET_SITE} from './actionTypes'
+import { 
+    GET_PRODUCTS,
+    TO_CART, 
+    GET_SINGLE,
+    DELETE_FROM_CART,
+    GET_SITE,
+    LOGIN
+} from './actionTypes'
 import axios from 'axios'
 
 // 如果只要 return 可以 =>( 要return的東西 )
@@ -26,3 +33,15 @@ export const deleteFromCart = (newCart) =>({
     type:DELETE_FROM_CART,
     value:newCart
 })
+/*
+export const login = (data)=>({
+    type:LOGIN,
+    payload: axios({
+        method: 'post',
+        url: '/user/12345',
+        data: {
+            firstName: 'Fred',
+            lastName: 'Flintstone'
+        }
+    });
+})*/

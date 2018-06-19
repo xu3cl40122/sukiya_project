@@ -764,6 +764,124 @@ a {
 .mapContainer .searchBox_searchButton:hover {
   box-shadow: 0px 1px 11px 3px rgba(0,0,0,0.2);
 }
+.login_body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 70px;
+}
+.login_body .login_bg {
+  background: #ffd93e;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: -10;
+}
+.login_body .login_container {
+  width: 720px;
+  height: 360px;
+  background: #fff;
+  border-radius: 3px;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+  box-shadow: 2px 2px 19px 6px rgba(0,0,0,0.2);
+}
+.login_body .login_img {
+  width: 380px;
+  height: 100%;
+  background: url("./pic/Fotolia_142974889_Subscription_Monthly_M.jpg");
+  background-size: cover;
+  position: relative;
+  z-index: 10;
+}
+.login_body .login_img:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+  z-index: -10;
+}
+.login_body .login_img h2 {
+  color: #fff;
+  margin: 0;
+  z-index: 20;
+  font-size: 32px;
+  position: absolute;
+  font-weight: 100;
+  line-height: 45px;
+  font-family: 'Lato', sans-serif;
+  top: 70px;
+  left: 30px;
+}
+.login_body .login_formContainer_bottomNav {
+  width: 340px;
+  height: 45px;
+  display: flex;
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  cursor: pointer;
+}
+.login_body .login_formContainer_bottomNav_change {
+  width: 50%;
+  height: 100%;
+  background: #dfe0e3;
+  line-height: 45px;
+  padding: 0px 20px;
+  color: #4b495d;
+  transition: background 0.3s ease-out;
+}
+.login_body .login_formContainer_bottomNav_change:hover {
+  background: #bab7d8;
+}
+.login_body .login_formContainer_bottomNav_submit {
+  width: 50%;
+  height: 100%;
+  background: #4b495d;
+  line-height: 45px;
+  padding: 0px 20px;
+  color: #fff;
+  text-align: right;
+  transition: background 0.3s ease-out;
+}
+.login_body .login_formContainer_bottomNav_submit:hover {
+  background: #2a2933;
+}
+.login_body .login_formContainer {
+  width: 340px;
+  height: 100%;
+  font-family: 'Montserrat', sans-serif;
+  padding: 30px 25px;
+}
+.login_body .login_formContainer input[type=text],
+.login_body .login_formContainer input[type=password] {
+  border: none;
+  color: #565656;
+  font-size: 20px;
+  padding: 5px 5px;
+}
+.login_body .login_formContainer input[type=text]:focus,
+.login_body .login_formContainer input[type=password]:focus {
+  outline: none;
+}
+.login_body .login_formContainer input[type=text]::placeholder,
+.login_body .login_formContainer input[type=password]::placeholder {
+  color: #565656;
+}
+.login_body .login_formContainer .login_formContainer_title {
+  color: #565656;
+  margin: 0px 0px 25px 0px;
+}
+.login_body .login_formContainer .login_formContainer_inputBox {
+  width: 100%;
+  border-bottom: 1px solid rgba(99,99,99,0.251);
+  margin-bottom: 15px;
+}
 @-moz-keyframes bigger-out {
   from {
     width: 68px;

@@ -3,6 +3,7 @@ const app = express();
 const session = require('express-session')
 const bodyParser = require('body-parser')
 const products = require('./products')
+const login = require('./login')
 const site = require('./site')
 var cors = require('cors')// 跨網域
 // 可以存取靜態檔案 localhost:3000/ + 檔案名
@@ -15,6 +16,7 @@ app.get('/', function (req, res) {
 app.get('/products',products.products)
 app.get('/products/:id',products.singleProduct)
 app.get('/site',site.getSites)
+app.post('/login',login.login)
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });

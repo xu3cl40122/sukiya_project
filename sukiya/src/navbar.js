@@ -27,7 +27,9 @@ export class Navbar extends React.Component {
                         hidden:!this.state.hidden
                     })}}><i className="fa fa-users"></i>關於我們</li>
                     <li><i className="fa fa-info-circle"></i>最新消息</li>
-                    <li><i className="fa fa-user"></i>登入</li>
+                    <li>
+                        <Link to='/account' className="link"><i className="fa fa-user"></i>登入</Link>
+                    </li>
                 </ul>
             </div>
         )
