@@ -4,7 +4,8 @@ import {
     GET_SINGLE,
     DELETE_FROM_CART,
     GET_SITE,
-    LOGIN
+    LOGIN,
+    SET_LOGIN_STATE
 } from './actionTypes'
 import axios from 'axios'
 
@@ -33,15 +34,17 @@ export const deleteFromCart = (newCart) =>({
     type:DELETE_FROM_CART,
     value:newCart
 })
-/*
+
 export const login = (data)=>({
     type:LOGIN,
     payload: axios({
         method: 'post',
-        url: '/user/12345',
-        data: {
-            firstName: 'Fred',
-            lastName: 'Flintstone'
-        }
-    });
-})*/
+        url: 'http://localhost:3000/login',
+        data: data
+    })
+})
+
+export const setLoginState = (state)=>({
+    type:SET_LOGIN_STATE,
+    value: state
+})

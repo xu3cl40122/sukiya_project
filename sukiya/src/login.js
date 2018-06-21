@@ -21,12 +21,28 @@ export class Login extends React.Component {
     }
     submit() {
         console.log(this.state)
+        const {setLoginState} = this.props
         axios({
             method: 'post',
             url: 'http://localhost:3000/login',
             data: this.state
         }).then((res)=>{
             console.log(res.data)
+            if (res.data.msg == 'login_pass'){
+                alert('哈囉 ' + res.data.data.name )
+                setLoginState({username:res.data.data.name})
+            } else if (res.data.msg == 'signup_pass'){
+                alert('已創立帳號!' )
+                setLoginState({username:res.data.data.name})
+            } else if(res.data.msg == 'signup_fail'){
+                alert('創建帳號失敗')
+            } else if (res.data.msg == 'login_fail'){
+                alert('帳號密碼錯誤')
+            } else if (res.data.msg == 'be_used'){
+                alert('該帳號已有人使用')
+            } else{
+                alert('error',res.data.msg)
+            }
         });
     }
     changeLogin() {

@@ -12,7 +12,8 @@ export class Navbar extends React.Component {
         }
     }
     render() {
-        const{match}= this.props
+        const{match,userState}= this.props
+        console.log(userState)
         return (
             <div className="navbar">
                 {match.path == '/' ? <AnimatedLogo /> : <Link to='/'><div className='smallLogo-base'></div></Link>}
@@ -28,7 +29,7 @@ export class Navbar extends React.Component {
                     })}}><i className="fa fa-users"></i>關於我們</li>
                     <li><i className="fa fa-info-circle"></i>最新消息</li>
                     <li>
-                        <Link to='/account' className="link"><i className="fa fa-user"></i>登入</Link>
+                        {userState.username != '' ? <div><i className="fa fa-user"></i>{userState.username}</div> : <Link to='/account' className="link"><i className="fa fa-user"></i>登入</Link>}
                     </li>
                 </ul>
             </div>

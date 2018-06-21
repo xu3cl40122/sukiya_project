@@ -8,7 +8,7 @@ import SimpleMap from "./mapContainer";
 import ProductsRow from './productsRowContainer'
 import Navbar from './navbarContainer'
 import SingleProduct from './SingleProductContainer'
-import {Login} from './login'
+import Login from './loginContainer'
 import { ParallaxProvider } from 'react-scroll-parallax'
 import {
     HashRouter as Router,

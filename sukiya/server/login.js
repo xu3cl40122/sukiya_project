@@ -3,21 +3,27 @@ const conn = require('./connect')
 module.exports={
     login:function login(req,res){
         // --- login ---
+        var response = {msg:'',data:{}}
         if(req.body.isLogin){
             let sql = `SELECT * FROM sk_users WHERE email = ? AND password = ?`
             conn.query(sql,[req.body.email, req.body.password],(err,result)=>{
                 if(err){
-                    res.send(err)
+                    response.msg = err
+                    res.send(response)
                     return
                 }
                 if(result.length != 0){
-                    res.send('pass')
+                    response.msg = 'login_pass'
+                    response.data.name = result[0].name
+                    res.send(response)
                     return 
                 }else{
-                    res.send('nopass')
+                    response.msg = 'login_fail'
+                    res.send(response)
                     return
                 }
             })
+            return
             
         }
         // --- sign up ---
@@ -26,10 +32,17 @@ module.exports={
             (err, results) => {
                 if (err) {
                     console.log(err)
-                    res.send('nopass')
+                    if (err.code == 'ER_DUP_ENTRY'){
+                        response.msg = 'be_used'
+                    }else{
+                        response.msg = err
+                    }
+                    res.send(response)
                     return
                 }
-                res.send('pass')
+                response.msg = 'signup_pass'
+                response.data.name = req.body.name
+                res.send(response)
             })
     }
 }

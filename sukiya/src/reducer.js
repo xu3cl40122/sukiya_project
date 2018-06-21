@@ -1,10 +1,19 @@
-import { GET_PRODUCTS, GET_SINGLE, TO_CART,DELETE_FROM_CART,GET_SITE } from './actionTypes'
+import { 
+    GET_PRODUCTS, 
+    GET_SINGLE, 
+    TO_CART,
+    DELETE_FROM_CART,
+    GET_SITE,
+    LOGIN,
+    SET_LOGIN_STATE 
+} from './actionTypes'
 import { combineReducers } from 'redux'
 const initialState ={
     products:[],
     singleProduct:{},
     cart:[],
-    site:[]
+    site:[],
+    userState:{username:''}
 }
 function AppReducer(state = initialState, action){
     switch(action.type){
@@ -60,7 +69,6 @@ function AppReducer(state = initialState, action){
                 ...state
             }
         }
-
         // set product to cart
         case TO_CART :{
             return{
@@ -73,6 +81,13 @@ function AppReducer(state = initialState, action){
             return{
                 ...state,
                 cart:action.value
+            }
+        }
+        case SET_LOGIN_STATE:{
+            return{
+                ...state,
+                userState:action.value
+
             }
         }
         default:
