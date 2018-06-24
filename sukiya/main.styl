@@ -676,6 +676,15 @@ sidebar_width = 13%
             color s_gray
         h2+h2 
             margin-right 2rem
+    .modal_totalContainer-forChecked 
+        display flex 
+        justify-content space-between
+        align-items center
+        .rightBlock
+            display flex 
+            align-items center
+            h2 
+                color s_gray
     .modal_buyButton 
         background #5a5a57
         width 100px 
@@ -683,8 +692,51 @@ sidebar_width = 13%
         border-radius 5px
         color white
         transition background 0.3s ease-out
+        margin-left 20px
         &:hover 
             background #5ed668
+    .modal_buyButton-back 
+        &:hover 
+            background s_yellow
+    .modal_formContainer
+        width 100%
+        
+        display flex
+        .left
+            width 50%
+            height 100%
+            padding 20px
+            input[type=text]
+                border none
+                color #565656 
+                font-size 20px
+                padding 5px 5px
+                width 100%
+                &:focus 
+                    outline none
+                &::placeholder 
+                    color #565656 
+                    font-family Microsoft JhengHei,Arial,Helvetica,sans-serif
+        .right 
+            width 50%
+            height 100%
+            padding 20px
+            h2 
+                color #565656 
+                margin 0 0 10px 0
+                font-size 20px 
+                font-weight 400
+            textarea 
+                width 100% 
+                height 50px 
+                resize none
+                border-radius 3px
+    .modal_formContainer_right 
+        width 50%
+    .modal_inputBox 
+        width 100% 
+        border-bottom 1px solid #63636340
+        margin-bottom 15px
 .site 
     background url('./pic/Logo_sukiya.jpg')
     width 2rem

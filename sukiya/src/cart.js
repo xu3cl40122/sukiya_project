@@ -1,6 +1,6 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import Modal from 'react-responsive-modal';
+import axios from 'axios'
 
 var modalStyle = {
     modal:{width:'800px'}
@@ -9,18 +9,30 @@ export  class Cart extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            open:false,
+            open:false,//modal open
             total:0,
-            change:0
+            checkedorder:false, //是否進入訂單資訊業面
+            phone:'',
+            address:'',
+            other_need:''
+            //change:0 檢查是否有更新 state 但好像沒用了
+            
         }
         this.onOpenModal = this.onOpenModal.bind(this)
         this.onCloseModal = this.onCloseModal.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.calTotal = this.calTotal.bind(this)
         this.changeTotal = this.changeTotal.bind(this)
+        this.toChecked = this.toChecked.bind(this)
+        this.sendOrder = this.sendOrder.bind(this)
+        this.inputChange = this.inputChange.bind(this)
         this.total = 0
     }
-
+    inputChange(e){
+        this.setState({
+            [e.target.name]:e.target.value
+        })
+    }
     onOpenModal(){
         this.setState({ open: true });
     };
@@ -51,42 +63,110 @@ export  class Cart extends React.Component {
         deleteFromCart(cart)
         
     }
-    componentWillUpdate(nextProps,nextState){
-        console.log(nextState)
-        console.log(this.state)
+    toChecked(){
+        if(this.props.cart.length == 0){
+            alert('購物車內沒有商品')
+            return
+        }
+        this.setState({
+            checkedorder:true
+        })
+    }
+    sendOrder(){
+        const { userState,cart} = this.props
+        if(userState.username == ''){
+            alert('請先登入帳號再進行訂購')
+            return 
+        }
+        var order = {
+            user_id:userState.user_id,
+            username:userState.username,
+            products:cart,
+            total:this.total,
+            phone:this.state.phone,
+            address:this.state.address,
+            other_need:this.state.other_need
+        }
+        axios({
+            method: 'post',
+            url: 'http://localhost:3000/catchOrder',
+            data: order
+        }).then((res)=>{console.log(res.data)})
     }
     render() {
-        console.log('render')
+        console.log(this.state)
         const { open } = this.state;
         const {cart} = this.props
         this.total = this.calTotal()
-        return (
+        // 購物車
+        if(!this.state.checkedorder){
+            return (
+                <div>
+                    <div onClick={this.onOpenModal} className='sidebar_cart_button'><i className="fa fa-shopping-cart"></i>購物車</div>
+                    <Modal open={open} onClose={this.onCloseModal} styles={modalStyle} center>
+                        <div className='modalContainer'>
+                            <h2 className='modal_title'>SHOPPING CART</h2>
+                            <div className='modal_title_border'></div>
+                            <div className='modal_row'>
+                                <div className='modal_row_firstLine'></div>
+                                {cart.map((product, index) => {
+                                    return (
+                                        <ModalCol
+                                            key={index}
+                                            id={index}
+                                            product={product}
+                                            handleDelete={this.handleDelete}
+                                        />
+                                    )
+                                })}
+                                {cart.length == 0 ? <h2>購物車內沒有商品</h2>:null}
+                            </div>
+                            <div className='modal_totalContainer'>
+                                <h2>合計: </h2><h2>{this.total}</h2>
+                                <div className='button modal_buyButton' onClick={this.toChecked}>已確認商品</div>
+                            </div>
+                        </div>
+                    </Modal>
+                </div>
+            );
+        }
+        // 訂單資訊
+        return(
             <div>
                 <div onClick={this.onOpenModal} className='sidebar_cart_button'><i className="fa fa-shopping-cart"></i>購物車</div>
                 <Modal open={open} onClose={this.onCloseModal} styles={modalStyle} center>
                     <div className='modalContainer'>
-                        <h2 className='modal_title'>SHOPPING CART</h2>
+                        <h2 className='modal_title'>訂單資訊</h2>
                         <div className='modal_title_border'></div>
-                        <div className='modal_row'>
-                            <div className='modal_row_firstLine'></div>
-                            {cart.map((product,index )=>{return(
-                                <ModalCol 
-                                key={index} 
-                                id={index} 
-                                product={product}
-                                handleDelete={this.handleDelete}
-                                />
-                            )})}
-                            
+                        <div className='modal_formContainer'>
+                            <div className='left'>
+                                <div className='modal_inputBox'>
+                                    <input type="text" placeholder='送餐地址' name='address' onChange={this.inputChange} />
+                                </div>
+                                <div className='modal_inputBox'>
+                                    <input type="text" placeholder='聯絡電話' name='phone' onChange={this.inputChange} />
+                                </div>
+                            </div>
+                            <div className='right'>
+                                <h2>其他需求</h2>
+                                <textarea name="other_need" id="" value={this.state.other_need} onChange={this.inputChange}></textarea>
+                            </div>
+                           
                         </div>
-                        <div className='modal_totalContainer'>
-                            <h2>合計: </h2><h2>{this.total}</h2>
-                            <div className='button modal_buyButton'>確認訂購!</div>
+                       
+                        <div className='modal_totalContainer-forChecked '>
+                            <div className='button modal_buyButton modal_buyButton-back' onClick={()=>{this.setState({checkedorder:false})}} >回上一頁</div>
+                            <div className='rightBlock'>
+                                <h2>合計: </h2><h2>{this.total}</h2>
+                                <div className='button modal_buyButton' onClick={this.sendOrder}>送出訂單!</div>
+                            </div>
                         </div>
                     </div>
                 </Modal>
             </div>
-        );
+        )
+        
+        
     }
 }
 

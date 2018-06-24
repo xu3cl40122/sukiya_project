@@ -15,6 +15,7 @@ module.exports={
                 if(result.length != 0){
                     response.msg = 'login_pass'
                     response.data.name = result[0].name
+                    response.data.user_id = result[0].user_id
                     res.send(response)
                     return 
                 }else{
@@ -42,6 +43,7 @@ module.exports={
                 }
                 response.msg = 'signup_pass'
                 response.data.name = req.body.name
+                response.data.user_id = results.insertId
                 res.send(response)
             })
     }

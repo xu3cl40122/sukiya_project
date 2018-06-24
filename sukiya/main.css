@@ -694,6 +694,18 @@ a {
 .modalContainer .modal_totalContainer h2+h2 {
   margin-right: 2rem;
 }
+.modalContainer .modal_totalContainer-forChecked {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modalContainer .modal_totalContainer-forChecked .rightBlock {
+  display: flex;
+  align-items: center;
+}
+.modalContainer .modal_totalContainer-forChecked .rightBlock h2 {
+  color: #1e222a;
+}
 .modalContainer .modal_buyButton {
   background: #5a5a57;
   width: 100px;
@@ -701,9 +713,61 @@ a {
   border-radius: 5px;
   color: #fff;
   transition: background 0.3s ease-out;
+  margin-left: 20px;
 }
 .modalContainer .modal_buyButton:hover {
   background: #5ed668;
+}
+.modalContainer .modal_buyButton-back:hover {
+  background: #ffd93e;
+}
+.modalContainer .modal_formContainer {
+  width: 100%;
+  display: flex;
+}
+.modalContainer .modal_formContainer .left {
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+}
+.modalContainer .modal_formContainer .left input[type=text] {
+  border: none;
+  color: #565656;
+  font-size: 20px;
+  padding: 5px 5px;
+  width: 100%;
+}
+.modalContainer .modal_formContainer .left input[type=text]:focus {
+  outline: none;
+}
+.modalContainer .modal_formContainer .left input[type=text]::placeholder {
+  color: #565656;
+  font-family: Microsoft JhengHei, Arial, Helvetica, sans-serif;
+}
+.modalContainer .modal_formContainer .right {
+  width: 50%;
+  height: 100%;
+  padding: 20px;
+}
+.modalContainer .modal_formContainer .right h2 {
+  color: #565656;
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 400;
+}
+.modalContainer .modal_formContainer .right textarea {
+  width: 100%;
+  height: 50px;
+  resize: none;
+  border-radius: 3px;
+}
+.modalContainer .modal_formContainer_right {
+  width: 50%;
+}
+.modalContainer .modal_inputBox {
+  width: 100%;
+  border-bottom: 1px solid rgba(99,99,99,0.251);
+  margin-bottom: 15px;
 }
 .site {
   background: url("./pic/Logo_sukiya.jpg");

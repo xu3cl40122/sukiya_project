@@ -30,10 +30,16 @@ export class Login extends React.Component {
             console.log(res.data)
             if (res.data.msg == 'login_pass'){
                 alert('哈囉 ' + res.data.data.name )
-                setLoginState({username:res.data.data.name})
+                setLoginState({
+                    username: res.data.data.name,
+                    user_id: res.data.data.user_id
+                })
             } else if (res.data.msg == 'signup_pass'){
                 alert('已創立帳號!' )
-                setLoginState({username:res.data.data.name})
+                setLoginState({
+                    username:res.data.data.name,
+                    user_id: res.data.data.user_id
+                })
             } else if(res.data.msg == 'signup_fail'){
                 alert('創建帳號失敗')
             } else if (res.data.msg == 'login_fail'){
@@ -47,7 +53,11 @@ export class Login extends React.Component {
     }
     changeLogin() {
         this.setState({
-            isLogin: !this.state.isLogin
+            isLogin: !this.state.isLogin,
+            email: '',
+            password: '',
+            name: '',
+            phone: '',
         })
     }
     render() {
@@ -64,10 +74,10 @@ export class Login extends React.Component {
 
                             <h2 className='login_formContainer_title'>Login</h2>
                             <div className='login_formContainer_inputBox'>
-                                <input type="text" placeholder='Email' name='email' onChange={this.handleChange} />
+                                <input type="text" placeholder='Email' name='email' onChange={this.handleChange} value={this.state.email}/>
                             </div>
                             <div className='login_formContainer_inputBox'>
-                                <input type="password" placeholder='Password' name='password' onChange={this.handleChange} />
+                                <input type="password" placeholder='Password' name='password' onChange={this.handleChange} value={this.state.password}/>
                             </div>
                         </div>
                         <div className='login_formContainer_bottomNav'>
@@ -89,16 +99,16 @@ export class Login extends React.Component {
 
                             <h2 className='login_formContainer_title'>SIGN UP</h2>
                             <div className='login_formContainer_inputBox'>
-                                <input type="text" placeholder='Email' name='email' onChange={this.handleChange} />
+                                <input type="text" placeholder='Email' name='email' onChange={this.handleChange} value={this.state.email}/>
                             </div>
                             <div className='login_formContainer_inputBox'>
-                                <input type="password" placeholder='Password' name='password' onChange={this.handleChange} />
+                                <input type="password" placeholder='Password' name='password' onChange={this.handleChange} value={this.state.password}/>
                             </div>
                             <div className='login_formContainer_inputBox'>
-                                <input type="text" placeholder='Name' name='name' onChange={this.handleChange} />
+                                <input type="text" placeholder='Name' name='name' onChange={this.handleChange} value={this.state.name}/>
                             </div>
                             <div className='login_formContainer_inputBox'>
-                                <input type="text" placeholder='Phone' name='phone' onChange={this.handleChange} />
+                                <input type="text" placeholder='Phone' name='phone' onChange={this.handleChange} value={this.state.phone}/>
                             </div>
                         </div>
                         <div className='login_formContainer_bottomNav'>

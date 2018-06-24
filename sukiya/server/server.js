@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const products = require('./products')
 const login = require('./login')
 const site = require('./site')
+const order = require('./order')
 var cors = require('cors')// 跨網域
 // 可以存取靜態檔案 localhost:3000/ + 檔案名
 app.use(express.static('public'))
@@ -17,6 +18,7 @@ app.get('/products',products.products)
 app.get('/products/:id',products.singleProduct)
 app.get('/site',site.getSites)
 app.post('/login',login.login)
+app.post('/catchOrder', order.catchOrder)// 接收訂單
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });

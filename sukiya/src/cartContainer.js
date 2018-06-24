@@ -4,7 +4,9 @@ import{deleteFromCart} from './actions'
 // 和 react connect
 // 接收
 const mapStateToProps = state => ({
-    cart: state.app.cart
+    cart: state.app.cart,
+    userState: state.app.userState
+
 })
 const mapDispatchToProps = dispatch => ({
     deleteFromCart: (newCart) => {
