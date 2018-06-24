@@ -63,6 +63,7 @@ export class Login extends React.Component {
     render() {
         const { isLogin } = this.state
         if (isLogin) {
+            // login page
             return (
                 <div className='login_body'>
                     <div className="login_bg"></div>
@@ -88,6 +89,7 @@ export class Login extends React.Component {
                 </div>
             )
         }else{
+            // sign up page
             return(
                 <div className='login_body'>
                     <div className="login_bg"></div>

@@ -81,7 +81,7 @@ export  class Cart extends React.Component {
         var order = {
             user_id:userState.user_id,
             username:userState.username,
-            products:cart,
+            products:JSON.stringify(cart),
             total:this.total,
             phone:this.state.phone,
             address:this.state.address,
@@ -91,10 +91,16 @@ export  class Cart extends React.Component {
             method: 'post',
             url: 'http://localhost:3000/catchOrder',
             data: order
-        }).then((res)=>{console.log(res.data)})
+        }).then((res)=>{
+            if(res.data == 'pass'){
+                alert('訂餐成功')
+                return
+            }
+            alert(res.data)
+            
+        })
     }
     render() {
-        console.log(this.state)
         const { open } = this.state;
         const {cart} = this.props
         this.total = this.calTotal()
