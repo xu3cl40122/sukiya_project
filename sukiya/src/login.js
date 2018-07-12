@@ -49,6 +49,8 @@ export class Login extends React.Component {
             } else{
                 alert('error',res.data.msg)
             }
+        }).catch((err)=>{
+            alert(err)
         });
     }
     changeLogin() {

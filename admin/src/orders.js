@@ -52,20 +52,7 @@ export class Orders extends React.Component {
                                 <th>Phone</th>
                                 <th>Status</th>
                             </tr>
-                            <tr>
-                                <td className="checkboxTD"><input type="checkbox" /></td>
-                                <td className="index">1</td>
-                                <td>Tom</td>
-                                <td className="orderList">
-                                    <p>牛丼 大碗 *2</p>
-                                    <p>三層起司牛丼 超值碗*10</p>
-                                </td>
-                                <td>$2550</td>
-                                <td>2018/6/24</td>
-                                <td>新北市板橋區圈圈路三段9487號87樓</td>
-                                <td>0978978985</td>
-                                <td><div className="statusButton">Paid</div></td>
-                            </tr>
+                           
                             {orders.map((order,index)=>{
                                 return(
                                     <Col key={index} order={order} />
@@ -85,14 +72,19 @@ class Col extends React.Component{
         const { order } = this.props
         // 轉換 mysql datetime 格式
         let time = new Date(order.created_at).toLocaleString()
+        let products = JSON.parse(order.product_list)
+        console.log(products)
         return(
             <tr>
                 <td className="checkboxTD"><input type="checkbox" /></td>
                 <td className="index">1</td>
                 <td>{order.name}</td>
                 <td className="orderList">
-                    <p>牛丼 大碗 *2</p>
-                    <p>三層起司牛丼 超值碗*10</p>
+                    {products.map((product,index)=>{
+                        return(
+                            <p key={index}>{`${product.name} ${product.set} * ${product.num}`}</p>
+                        )
+                    })}
                 </td>
                 <td>{order.total}</td>
                 <td>{time}</td>

@@ -19,6 +19,7 @@ app.get('/products/:id',products.singleProduct)
 app.get('/site',site.getSites)
 app.post('/login',login.login)
 app.post('/catchOrder', order.catchOrder)// 接收訂單
+app.post('/allOrders', order.getAllOrders)
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });

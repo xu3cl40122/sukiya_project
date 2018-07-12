@@ -4,7 +4,7 @@ export class OrderList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            orderListMap: [{ id: 0 }],
+            orderListMap: [{ id: 0 }], // controll num and render of col  
             orders:{}
         }
         this.addCol = this.addCol.bind(this)
@@ -76,7 +76,7 @@ class OrderListCol extends React.Component {
         this.state = {
             num: 1,
             size: '中碗',
-            set: '無',
+            set: '',
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleDelete = this.handleDelete.bind(this)
@@ -94,7 +94,7 @@ class OrderListCol extends React.Component {
             // 更新 parent 的 state
             updateOrder(id,{
                 name:product.name,
-                set:'無',
+                set:'',
                 num:1,
                 size:'中碗',
                 total: product.price_m
@@ -176,7 +176,7 @@ class OrderListCol extends React.Component {
                 </select>
                 <p>套餐:</p>
                 <select name="set" value={this.state.set} onChange={this.handleChange}>
-                    <option value="無">無</option>
+                    <option value="">無</option>
                     <option value="青菜套餐">青菜套餐</option>
                     <option value="可樂餅套餐">可樂餅套餐</option>
                 </select>
