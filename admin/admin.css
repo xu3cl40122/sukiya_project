@@ -203,6 +203,9 @@ input[type=checkbox] {
   border-bottom: 1px solid #ddd;
   transition: height 0.3s ease-out;
 }
+.mainTable td img {
+  width: 100%;
+}
 .mainTable tr {
   height: 100px;
 }
