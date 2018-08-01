@@ -23,9 +23,24 @@ module.exports = {
                     res.send(err)
                     return
                 }
-                console.log(result)
                 res.send(result)
             }
         )
+    },
+    getFiteredOrders(req,res){
+        // 搜尋日期外面要包 ' ' 才有效果
+        let condition = `WHERE created_at > '${req.body.from}' AND created_at < '${req.body.to}' `
+        let sql = `SELECT * FROM sk_orders JOIN sk_users ON sk_orders.user_id = sk_users.user_id ${condition}`
+        conn.query(sql, (err, result) => {
+            if (err) {
+                console.log(err)
+                res.send(err)
+                return
+            }
+            res.send(result)
+        }
+        )
     }
+    
+    
 }

@@ -6,20 +6,60 @@ import {
 import axios from 'axios'
 import ReactPaginate from 'react-paginate';
 
+function getToday(){
+    return new Date().toJSON().slice(0, 10)
+}
+
 export class Orders extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            orders: []
+            orders: [],
+            currentPage: 1,
+            colPerPage: 10,
+            dateFrom:'',
+            dateTo:''
         }
+        this.handlePage = this.handlePage.bind(this)
+        this.handleInput = this.handleInput.bind(this)
+        this.filterOrders = this.filterOrders.bind(this)
     }
     componentDidMount() {
+        // 取得所有訂單
         axios({
             method: 'post',
             url: 'http://localhost:3000/allOrders',
             data: this.state
         }).then((res) => {
-            console.log(res.data)
+            this.setState({
+                orders: res.data
+            })
+        }).catch((err) => {
+            alert(err)
+        })
+        // 設定 filter 的預設時間為當天
+        this.setState({dateTo:getToday()})
+    }
+    handlePage(data) {
+        this.setState({
+            currentPage: (data.selected + 1)
+        })
+    }
+    handleInput(e){
+        this.setState({
+            [e.target.name]:e.target.value
+        })
+    }
+    filterOrders(){
+        if(this.state.dateFrom === ''){
+            alert('請先選擇日期區間')
+            return
+        }
+        axios({
+            method: 'post',
+            url: 'http://localhost:3000/filterOrders',
+            data: { from: this.state.dateFrom, to: this.state.dateTo }
+        }).then((res) => {
             this.setState({
                 orders: res.data
             })
@@ -28,14 +68,22 @@ export class Orders extends React.Component {
         })
     }
     render() {
-        const { orders } = this.state
+        const { orders, currentPage, colPerPage,dateFrom,dateTo } = this.state
+        const indexOfLast = currentPage * colPerPage
+        const indexOfFirst = indexOfLast - colPerPage
+        const currentList = orders.slice(indexOfFirst, indexOfLast)
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(orders.length / colPerPage); i++) {
+            pageNumbers.push(i);
+        }
         return (
             <div className="mainContainer">
-                <div className="stateControll">
-                    <div className="stateControll_select">
-                        <div>EDIT SECTION</div>
+                <div className="filterControll">
+                    <div className='date_container'>
+                        <span>from:</span><input name='dateFrom' type='date' value={dateFrom} onChange={this.handleInput}></input>
+                        <span>to:</span><input name='dateTo' value={dateTo}type='date' onChange={this.handleInput}></input>
+                        <div className='search' onClick={this.filterOrders}>Search</div>
                     </div>
-                    
                 </div>
                 <table className="mainTable">
                     <tbody>
@@ -51,13 +99,30 @@ export class Orders extends React.Component {
                             <th>Status</th>
                         </tr>
 
-                        {orders.map((order, index) => {
+                        {currentList.map((order, index) => {
                             return (
                                 <Col key={index} order={order} />
                             )
                         })}
                     </tbody >
+
                 </table>
+                <div>
+                    <ReactPaginate
+                        previousLabel={<i className='	fa fa-angle-double-left'></i>}
+                        nextLabel={<i className='	fa fa-angle-double-right'></i>}
+                        breakClassName={"subPage"}
+                        pageCount={pageNumbers.length}
+                        marginPagesDisplayed={1}
+                        pageRangeDisplayed={5}
+                        containerClassName={"pagination"}
+                        previousClassName='previous'
+                        nextClassName='next'
+                        pageLinkClassName={'subPage'}
+                        activeClassName={"active"}
+                        onPageChange={this.handlePage}
+                    />
+                </div>
             </div>
         )
     }
@@ -70,18 +135,19 @@ class Col extends React.Component {
         // 轉換 mysql datetime 格式
         let time = new Date(order.created_at).toLocaleString()
         let products = JSON.parse(order.product_list)
-        console.log(products)
         return (
             <tr>
                 <td className="checkboxTD"><input type="checkbox" /></td>
                 <td className="index">1</td>
                 <td>{order.name}</td>
                 <td className="orderList">
+                    <div className='orderList_wrapper'>
                     {products.map((product, index) => {
                         return (
-                            <p key={index}>{`${product.name} ${product.set} * ${product.num}`}</p>
+                            <p key={index}>{`${product.name} ${product.size} ${product.set} * ${product.num}`}</p>
                         )
                     })}
+                    </div>
                 </td>
                 <td>{order.total}</td>
                 <td>{time}</td>

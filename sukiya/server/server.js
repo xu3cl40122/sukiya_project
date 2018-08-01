@@ -19,7 +19,10 @@ app.get('/products/:id',products.singleProduct)
 app.get('/site',site.getSites)
 app.post('/login',login.login)
 app.post('/catchOrder', order.catchOrder)// 接收訂單
-app.post('/allOrders', order.getAllOrders)
+// --- 後台 ---
+app.post('/allOrders', order.getAllOrders) //後臺顯示所有訂單
+app.post('/filterOrders',order.getFiteredOrders) // 後台訂單條件篩選
+app.post('/backProducts',products.backProducts)// 後台商品列表
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });

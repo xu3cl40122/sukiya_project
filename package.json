@@ -32,6 +32,7 @@
     "react-dom": "^16.3.2",
     "react-google-maps": "^9.4.5",
     "react-modal": "^3.4.4",
+    "react-paginate": "^5.2.3",
     "react-parallax": "^1.7.0",
     "react-provide-scroll-position": "^1.0.2",
     "react-redux": "^5.0.7",

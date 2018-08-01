@@ -47,5 +47,17 @@ module.exports = {
             }
             res.send(result)
         })
+    },
+    //後臺商品列表
+    backProducts:function backProducts(req,res){
+        let sql = `SELECT * FROM sk_products`
+        conn.query(sql,(err,result)=>{
+            if(err){
+                res.send(err)
+                return
+            }
+            console.log(result)
+            res.send(result)
+        })
     }
 }
