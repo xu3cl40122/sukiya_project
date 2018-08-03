@@ -1,6 +1,7 @@
 const conn = require('./connect')
 
 module.exports={
+    // 註冊加登入
     login:function login(req,res){
         // --- login ---
         var response = {msg:'',data:{}}
@@ -15,8 +16,12 @@ module.exports={
                 if(result.length != 0){
                     response.msg = 'login_pass'
                     response.data.name = result[0].name
+                    req.session.name = result[0].name
+                    console.log(req.session)
                     response.data.user_id = result[0].user_id
+                    //req.session.save()
                     res.send(response)
+                    
                     return 
                 }else{
                     response.msg = 'login_fail'
@@ -46,5 +51,20 @@ module.exports={
                 response.data.user_id = results.insertId
                 res.send(response)
             })
+    },
+    test:function addSession(req,res){
+        req.session.user = 'test'
+        console.log(req.session)
+        console.log(new Date(req.session.cookie._expires).toLocaleString())
+        res.send('test')
+    },
+    checkSession:function checkSession(req,res){
+        console.log('check:',req.session)
+        /*if (!req.session.user){
+            console.log('not in')
+            res.send('not in')
+            return
+        }*/
+        res.send(req.session)
     }
 }

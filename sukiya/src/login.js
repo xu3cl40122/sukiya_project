@@ -20,14 +20,12 @@ export class Login extends React.Component {
         })
     }
     submit() {
-        console.log(this.state)
         const {setLoginState} = this.props
         axios({
             method: 'post',
             url: 'http://localhost:3000/login',
             data: this.state
         }).then((res)=>{
-            console.log(res.data)
             if (res.data.msg == 'login_pass'){
                 alert('哈囉 ' + res.data.data.name )
                 setLoginState({

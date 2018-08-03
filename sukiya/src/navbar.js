@@ -3,17 +3,33 @@ import ReactDOM from 'react-dom'
 import { withRouter, Link} from 'react-router-dom'
 import  Cart from './cartContainer'
 import { AnimatedLogo} from './animation'
-
+import axios from 'axios'
 export class Navbar extends React.Component {
     constructor(props){
         super(props)
         this.state={
             hidden:true
         }
+        this.checkSession = this.checkSession.bind(this)
+    }
+    componentDidMount(){
+        axios({
+            method: 'post',
+            url: 'http://localhost:3000/test',
+        }).then((res)=>{
+            console.log('mount',res.data)
+        })
+    }
+    checkSession(){
+        axios({
+            method: 'post',
+            url: 'http://localhost:3000/checkSession',
+        }).then((res) => {
+            console.log(res.data)
+        })
     }
     render() {
         const{match,userState}= this.props
-        console.log(userState)
         return (
             <div className="navbar">
                 {match.path == '/' ? <AnimatedLogo /> : <Link to='/'><div className='smallLogo-base'></div></Link>}
@@ -27,7 +43,7 @@ export class Navbar extends React.Component {
                     <li onClick={()=>{this.setState({
                         hidden:!this.state.hidden
                     })}}><i className="fa fa-users"></i>關於我們</li>
-                    <li><i className="fa fa-info-circle"></i>最新消息</li>
+                    <li onClick={this.checkSession}><i className="fa fa-info-circle"></i>最新消息</li>
                     <li>
                         {userState.username != '' ? <div><i className="fa fa-user"></i>{userState.username}</div> : <Link to='/account' className="link"><i className="fa fa-user"></i>登入</Link>}
                     </li>
