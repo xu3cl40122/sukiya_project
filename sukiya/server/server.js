@@ -9,12 +9,7 @@ const order = require('./order')
 var cors = require('cors')// 跨網域
 
 
-app.use(session({
-    secret: 'fdsh521',
-    resave: true,
-    saveUninitialized: true,
-    cookie: { maxAge: 24 * 60 * 60 * 1000 }
-}));
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 24 * 60 * 60 * 1000 } }))
 app.use(express.static('public'))
 app.use(bodyParser.json());
 app.use(cors())// 允許跨網域
@@ -27,8 +22,12 @@ app.get('/products/:id',products.singleProduct)
 app.get('/site',site.getSites)
 app.post('/login',login.login)
 app.post('/catchOrder', order.catchOrder)// 接收訂單
-app.post('/checkSession',login.checkSession)// 檢查 session
-app.post('/test',login.test)// 寫 session 進去
+app.get('/checkSession',login.checkSession)// 檢查 session
+app.get('/test',login.test)// 寫 session 進去
+app.get('/out',(req,res)=>{
+    req.session.destroy()
+    res.send('log out')
+})
 // --- 後台 ---
 app.post('/allOrders', order.getAllOrders) //後臺顯示所有訂單
 app.post('/filterOrders',order.getFiteredOrders) // 後台訂單條件篩選

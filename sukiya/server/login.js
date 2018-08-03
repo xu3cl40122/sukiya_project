@@ -56,7 +56,9 @@ module.exports={
         req.session.user = 'test'
         console.log(req.session)
         console.log(new Date(req.session.cookie._expires).toLocaleString())
-        res.send('test')
+        res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
+        res.header('Access-Control-Allow-Credentials', 'true')
+        res.send(req.session)
     },
     checkSession:function checkSession(req,res){
         console.log('check:',req.session)
@@ -65,6 +67,8 @@ module.exports={
             res.send('not in')
             return
         }*/
+        res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
+        res.header('Access-Control-Allow-Credentials', 'true')
         res.send(req.session)
     }
 }

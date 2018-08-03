@@ -4,6 +4,9 @@ import { withRouter, Link} from 'react-router-dom'
 import  Cart from './cartContainer'
 import { AnimatedLogo} from './animation'
 import axios from 'axios'
+
+axios.defaults.withCredentials = true
+
 export class Navbar extends React.Component {
     constructor(props){
         super(props)
@@ -14,7 +17,7 @@ export class Navbar extends React.Component {
     }
     componentDidMount(){
         axios({
-            method: 'post',
+            method: 'get',
             url: 'http://localhost:3000/test',
         }).then((res)=>{
             console.log('mount',res.data)
@@ -22,7 +25,7 @@ export class Navbar extends React.Component {
     }
     checkSession(){
         axios({
-            method: 'post',
+            method: 'get',
             url: 'http://localhost:3000/checkSession',
         }).then((res) => {
             console.log(res.data)
