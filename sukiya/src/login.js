@@ -1,5 +1,8 @@
 import React from 'react'
 import axios from 'axios'
+
+// 讓 axios 帶 cookie (預設不會帶)
+axios.defaults.withCredentials = true
 export class Login extends React.Component {
     constructor(props) {
         super(props)

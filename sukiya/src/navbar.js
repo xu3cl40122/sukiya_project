@@ -5,6 +5,7 @@ import  Cart from './cartContainer'
 import { AnimatedLogo} from './animation'
 import axios from 'axios'
 
+// 讓 axios 帶 cookie (預設不會帶)
 axios.defaults.withCredentials = true
 
 export class Navbar extends React.Component {
@@ -18,9 +19,9 @@ export class Navbar extends React.Component {
     componentDidMount(){
         axios({
             method: 'get',
-            url: 'http://localhost:3000/test',
-        }).then((res)=>{
-            console.log('mount',res.data)
+            url: 'http://localhost:3000/checkSession',
+        }).then((res) => {
+            console.log(res.data)
         })
     }
     checkSession(){

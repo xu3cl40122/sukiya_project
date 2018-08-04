@@ -35,16 +35,17 @@ export const deleteFromCart = (newCart) =>({
     value:newCart
 })
 
-export const login = (data)=>({
-    type:LOGIN,
+export const setLoginState = (state)=>({
+    type:SET_LOGIN_STATE,
+    value: state
+})
+
+
+export const login = (data) => ({
+    type: LOGIN,
     payload: axios({
         method: 'post',
         url: 'http://localhost:3000/login',
         data: data
     })
-})
-
-export const setLoginState = (state)=>({
-    type:SET_LOGIN_STATE,
-    value: state
 })

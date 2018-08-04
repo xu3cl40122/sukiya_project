@@ -3,6 +3,7 @@ const conn = require('./connect')
 module.exports={
     // 註冊加登入
     login:function login(req,res){
+        addCrosHeader(res)
         // --- login ---
         var response = {msg:'',data:{}}
         if(req.body.isLogin){
@@ -16,12 +17,10 @@ module.exports={
                 if(result.length != 0){
                     response.msg = 'login_pass'
                     response.data.name = result[0].name
-                    req.session.name = result[0].name
-                    console.log(req.session)
+                    req.session.user = result[0].name
                     response.data.user_id = result[0].user_id
-                    //req.session.save()
+                    req.session.user_id = result[0].user_id
                     res.send(response)
-                    
                     return 
                 }else{
                     response.msg = 'login_fail'
@@ -52,23 +51,24 @@ module.exports={
                 res.send(response)
             })
     },
-    test:function addSession(req,res){
+    /*test:function addSession(req,res){
         req.session.user = 'test'
         console.log(req.session)
         console.log(new Date(req.session.cookie._expires).toLocaleString())
         res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
         res.header('Access-Control-Allow-Credentials', 'true')
         res.send(req.session)
-    },
+    },*/
     checkSession:function checkSession(req,res){
-        console.log('check:',req.session)
-        /*if (!req.session.user){
-            console.log('not in')
-            res.send('not in')
+        addCrosHeader(res)
+        if (!req.session.user){
+            res.send('noSession')
             return
-        }*/
-        res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
-        res.header('Access-Control-Allow-Credentials', 'true')
+        }
         res.send(req.session)
     }
+}
+function addCrosHeader(res){
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
+    res.header('Access-Control-Allow-Credentials', 'true')
 }
