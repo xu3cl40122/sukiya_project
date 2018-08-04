@@ -34,6 +34,10 @@ a {
 .link_col {
   display: block;
 }
+input[type=submit] {
+  border: none;
+  cursor: pointer;
+}
 #root {
   height: 100%;
 }
@@ -923,18 +927,21 @@ a {
   padding: 30px 25px;
 }
 .login_body .login_formContainer input[type=text],
-.login_body .login_formContainer input[type=password] {
+.login_body .login_formContainer input[type=password],
+.login_body .login_formContainer input[type=email] {
   border: none;
   color: #565656;
   font-size: 20px;
   padding: 5px 5px;
 }
 .login_body .login_formContainer input[type=text]:focus,
-.login_body .login_formContainer input[type=password]:focus {
+.login_body .login_formContainer input[type=password]:focus,
+.login_body .login_formContainer input[type=email]:focus {
   outline: none;
 }
 .login_body .login_formContainer input[type=text]::placeholder,
-.login_body .login_formContainer input[type=password]::placeholder {
+.login_body .login_formContainer input[type=password]::placeholder,
+.login_body .login_formContainer input[type=email]::placeholder {
   color: #565656;
 }
 .login_body .login_formContainer .login_formContainer_title {

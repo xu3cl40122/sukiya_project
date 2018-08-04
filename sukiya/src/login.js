@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 // 讓 axios 帶 cookie (預設不會帶)
-axios.defaults.withCredentials = true
+//axios.defaults.withCredentials = true
 export class Login extends React.Component {
     constructor(props) {
         super(props)
@@ -22,35 +22,37 @@ export class Login extends React.Component {
             [e.target.name]: e.target.value
         })
     }
-    submit() {
-        const {setLoginState} = this.props
+    submit(e) {
+        const { setLoginState } = this.props
+        e.preventDefault()
         axios({
             method: 'post',
             url: 'http://localhost:3000/login',
-            data: this.state
-        }).then((res)=>{
-            if (res.data.msg == 'login_pass'){
-                alert('哈囉 ' + res.data.data.name )
+            data: this.state,
+            withCredentials : true
+        }).then((res) => {
+            if (res.data.msg == 'login_pass') {
+                alert('哈囉 ' + res.data.data.name)
                 setLoginState({
                     username: res.data.data.name,
                     user_id: res.data.data.user_id
                 })
-            } else if (res.data.msg == 'signup_pass'){
-                alert('已創立帳號!' )
+            } else if (res.data.msg == 'signup_pass') {
+                alert('已創立帳號!')
                 setLoginState({
-                    username:res.data.data.name,
+                    username: res.data.data.name,
                     user_id: res.data.data.user_id
                 })
-            } else if(res.data.msg == 'signup_fail'){
+            } else if (res.data.msg == 'signup_fail') {
                 alert('創建帳號失敗')
-            } else if (res.data.msg == 'login_fail'){
+            } else if (res.data.msg == 'login_fail') {
                 alert('帳號密碼錯誤')
-            } else if (res.data.msg == 'be_used'){
+            } else if (res.data.msg == 'be_used') {
                 alert('該帳號已有人使用')
-            } else{
-                alert('error',res.data.msg)
+            } else {
+                alert('error', res.data.msg)
             }
-        }).catch((err)=>{
+        }).catch((err) => {
             alert(err)
         });
     }
@@ -74,52 +76,56 @@ export class Login extends React.Component {
                         <div className='login_img'>
                             <h2>Login and enjoy<br />best Risotto <br />in the word!</h2>
                         </div>
-                        <div className='login_formContainer'>
+                        <form onSubmit={this.submit}>
+                            <div className='login_formContainer'>
 
-                            <h2 className='login_formContainer_title'>Login</h2>
-                            <div className='login_formContainer_inputBox'>
-                                <input type="text" placeholder='Email' name='email' onChange={this.handleChange} value={this.state.email}/>
+                                <h2 className='login_formContainer_title'>Login</h2>
+                                <div className='login_formContainer_inputBox'>
+                                    <input type="text" placeholder='Email' name='email' onChange={this.handleChange} value={this.state.email} required />
+                                </div>
+                                <div className='login_formContainer_inputBox'>
+                                    <input type="password" placeholder='Password' name='password' onChange={this.handleChange} value={this.state.password} required />
+                                </div>
                             </div>
-                            <div className='login_formContainer_inputBox'>
-                                <input type="password" placeholder='Password' name='password' onChange={this.handleChange} value={this.state.password}/>
+                            <div className='login_formContainer_bottomNav'>
+                                <div className='login_formContainer_bottomNav_change' onClick={this.changeLogin}>Sign up</div>
+                                <input type="submit" className='login_formContainer_bottomNav_submit ' value='Submit' />
                             </div>
-                        </div>
-                        <div className='login_formContainer_bottomNav'>
-                            <div className='login_formContainer_bottomNav_change' onClick={this.changeLogin}>Sign up</div>
-                            <div className='login_formContainer_bottomNav_submit' onClick={this.submit}>Submit</div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             )
-        }else{
+        } else {
             // sign up page
-            return(
+            return (
                 <div className='login_body'>
                     <div className="login_bg"></div>
                     <div className="login_container">
                         <div className='login_img'>
                             <h2>Login and enjoy<br />best Risotto <br />in the word!</h2>
                         </div>
-                        <div className='login_formContainer'>
+                        <form onSubmit={this.submit}>
+                            <div className='login_formContainer'>
 
-                            <h2 className='login_formContainer_title'>SIGN UP</h2>
-                            <div className='login_formContainer_inputBox'>
-                                <input type="text" placeholder='Email' name='email' onChange={this.handleChange} value={this.state.email}/>
+                                <h2 className='login_formContainer_title'>SIGN UP</h2>
+                                <div className='login_formContainer_inputBox'>
+                                    <input type="email" placeholder='Email' name='email' onChange={this.handleChange} value={this.state.email} />
+                                </div>
+                                <div className='login_formContainer_inputBox'>
+                                    <input type="password" placeholder='Password' name='password' onChange={this.handleChange} value={this.state.password} />
+                                </div>
+                                <div className='login_formContainer_inputBox'>
+                                    <input type="text" placeholder='Name' name='name' onChange={this.handleChange} value={this.state.name} />
+                                </div>
+                                <div className='login_formContainer_inputBox'>
+                                    <input type="text" placeholder='Phone' name='phone' onChange={this.handleChange} value={this.state.phone} />
+                                </div>
                             </div>
-                            <div className='login_formContainer_inputBox'>
-                                <input type="password" placeholder='Password' name='password' onChange={this.handleChange} value={this.state.password}/>
+                            <div className='login_formContainer_bottomNav'>
+                                <div className='login_formContainer_bottomNav_change' onClick={this.changeLogin}>Login</div>
+                                <input type="submit" className='login_formContainer_bottomNav_submit ' value='Submit'  />
                             </div>
-                            <div className='login_formContainer_inputBox'>
-                                <input type="text" placeholder='Name' name='name' onChange={this.handleChange} value={this.state.name}/>
-                            </div>
-                            <div className='login_formContainer_inputBox'>
-                                <input type="text" placeholder='Phone' name='phone' onChange={this.handleChange} value={this.state.phone}/>
-                            </div>
-                        </div>
-                        <div className='login_formContainer_bottomNav'>
-                            <div className='login_formContainer_bottomNav_change' onClick={this.changeLogin}>Login</div>
-                            <div className='login_formContainer_bottomNav_submit' onClick={this.submit}>Submit</div>
-                        </div>
+                        </form>
                     </div>
                 </div>
             )

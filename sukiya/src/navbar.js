@@ -6,7 +6,7 @@ import { AnimatedLogo} from './animation'
 import axios from 'axios'
 
 // 讓 axios 帶 cookie (預設不會帶)
-axios.defaults.withCredentials = true
+//axios.defaults.withCredentials = true
 
 export class Navbar extends React.Component {
     constructor(props){
@@ -20,6 +20,7 @@ export class Navbar extends React.Component {
         axios({
             method: 'get',
             url: 'http://localhost:3000/checkSession',
+            withCredentials: true
         }).then((res) => {
             console.log(res.data)
         })
@@ -28,6 +29,7 @@ export class Navbar extends React.Component {
         axios({
             method: 'get',
             url: 'http://localhost:3000/checkSession',
+            withCredentials: true
         }).then((res) => {
             console.log(res.data)
         })
