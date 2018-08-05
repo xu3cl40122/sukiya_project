@@ -2,7 +2,7 @@ import {
     GET_PRODUCTS,
     TO_CART, 
     GET_SINGLE,
-    DELETE_FROM_CART,
+    CHANGE_CART,
     GET_SITE,
     LOGIN,
     SET_LOGIN_STATE
@@ -24,14 +24,9 @@ export const getSite = ()=>({
     type:GET_SITE, 
     payload: axios.get('http://tomlee0122.tw/site')
 })
-//加入購物車
-export const toCart = (products) =>({
-    type:TO_CART,
-    value: products
-})
-
-export const deleteFromCart = (newCart) =>({
-    type:DELETE_FROM_CART,
+// 修改購物車
+export const changeCart = (newCart) =>({
+    type: CHANGE_CART,
     value:newCart
 })
 

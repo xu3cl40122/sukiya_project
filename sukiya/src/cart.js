@@ -53,12 +53,10 @@ export  class Cart extends React.Component {
         })
     }
     handleDelete(id){
-        const { cart, deleteFromCart} = this.props
-        this.setState({
-            change: ++this.state.change
-        })
-        cart.splice(id,1)
-        deleteFromCart(cart)
+        const { cart, changeCart} = this.props
+        let newCart = cart.slice()
+        newCart.splice(id,1)
+        changeCart(newCart)
         
     }
     toChecked(){

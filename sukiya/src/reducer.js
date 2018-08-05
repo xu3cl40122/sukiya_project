@@ -2,7 +2,7 @@ import {
     GET_PRODUCTS, 
     GET_SINGLE, 
     TO_CART,
-    DELETE_FROM_CART,
+    CHANGE_CART,
     GET_SITE,
     LOGIN,
     SET_LOGIN_STATE 
@@ -87,15 +87,9 @@ function AppReducer(state = initialState, action){
                 ...state
             }
         }
-        // add product to cart
-        case TO_CART :{
-            return{
-                ...state,
-                cart:[...state.cart, action.value]
-            }
-        }
+      
         // set deleted cart to redux
-        case DELETE_FROM_CART:{
+        case CHANGE_CART:{
             return{
                 ...state,
                 cart:action.value

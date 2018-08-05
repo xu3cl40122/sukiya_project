@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { Cart } from './cart'
-import{deleteFromCart} from './actions'
+import{changeCart} from './actions'
 // 和 react connect
 // 接收
 const mapStateToProps = state => ({
@@ -9,8 +9,8 @@ const mapStateToProps = state => ({
 
 })
 const mapDispatchToProps = dispatch => ({
-    deleteFromCart: (newCart) => {
-        dispatch(deleteFromCart(newCart))
+    changeCart: (newCart) => {
+        dispatch(changeCart(newCart))
     }
 })
 
