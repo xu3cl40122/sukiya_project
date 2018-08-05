@@ -1,16 +1,20 @@
 import { connect } from 'react-redux'
 import { Cart } from './cart'
-import{changeCart} from './actions'
+import{changeCart,sendOrder} from './actions'
 // 和 react connect
 // 接收
 const mapStateToProps = state => ({
     cart: state.app.cart,
-    userState: state.app.userState
+    userState: state.app.userState,
+    sendOrderRes: state.app.sendOrderRes
 
 })
 const mapDispatchToProps = dispatch => ({
     changeCart: (newCart) => {
         dispatch(changeCart(newCart))
+    },
+    sendOrder:(order)=>{
+        dispatch(sendOrder(order))
     }
 })
 

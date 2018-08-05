@@ -1,11 +1,11 @@
 import { 
     GET_PRODUCTS, 
     GET_SINGLE, 
-    TO_CART,
     CHANGE_CART,
     GET_SITE,
     LOGIN,
-    SET_LOGIN_STATE 
+    SET_LOGIN_STATE,
+    SEND_ORDER 
 } from './actionTypes'
 import { combineReducers } from 'redux'
 const initialState ={
@@ -14,7 +14,8 @@ const initialState ={
     cart:[],
     site:[],
     userState:{},
-    loginResponse:{}
+    loginResponse:{},
+    sendOrderRes:{}
 }
 function AppReducer(state = initialState, action){
     switch(action.type){
@@ -87,7 +88,23 @@ function AppReducer(state = initialState, action){
                 ...state
             }
         }
-      
+        // send order 
+        case `${SEND_ORDER}_PENDING`: {//剛發出 request
+            return {
+                ...state
+            }
+        }
+        case `${SEND_ORDER}_FULFILLED`: {// success
+            return {
+                ...state,
+                sendOrderRes: action.payload.data
+            }
+        }
+        case `${SEND_ORDER}_REJECTED`: {// error
+            return {
+                ...state
+            }
+        }
         // set deleted cart to redux
         case CHANGE_CART:{
             return{

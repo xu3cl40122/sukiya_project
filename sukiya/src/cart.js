@@ -69,7 +69,7 @@ export  class Cart extends React.Component {
         })
     }
     sendOrder(){
-        const { userState,cart} = this.props
+        const { userState,cart,sendOrder} = this.props
         if(userState.username == undefined){
             alert('請先登入帳號再進行訂購')
             return 
@@ -83,18 +83,19 @@ export  class Cart extends React.Component {
             address:this.state.address,
             other_need:this.state.other_need
         }
-        axios({
-            method: 'post',
-            url: 'http://localhost:3000/catchOrder',
-            data: order
-        }).then((res)=>{
-            if(res.data == 'pass'){
-                alert('訂餐成功')
-                return
+        sendOrder(order)
+        
+    }
+    componentDidUpdate(prevProps,prevState){
+        const{sendOrderRes} = this.props
+        if (sendOrderRes != prevProps.sendOrderRes){
+            if (sendOrderRes){
+                alert('訂餐成功!')
             }
-            alert(res.data)
-            
-        })
+            else{
+                alert('訂餐失敗')
+            }
+        }
     }
     render() {
         const { open } = this.state;

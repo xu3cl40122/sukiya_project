@@ -5,7 +5,8 @@ import {
     CHANGE_CART,
     GET_SITE,
     LOGIN,
-    SET_LOGIN_STATE
+    SET_LOGIN_STATE,
+    SEND_ORDER,
 } from './actionTypes'
 import axios from 'axios'
 
@@ -41,5 +42,14 @@ export const login = (data) => ({
         method: 'post',
         url: 'http://localhost:3000/login',
         data: data
+    })
+})
+
+export const sendOrder = (order)=>({
+    type:SEND_ORDER,
+    payload: axios({
+        method: 'post',
+        url: 'http://localhost:3000/catchOrder',
+        data: order
     })
 })
