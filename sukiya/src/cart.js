@@ -10,7 +10,6 @@ export  class Cart extends React.Component {
         super(props)
         this.state = {
             open:false,//modal open
-            total:0,
             checkedorder:false, //是否進入訂單資訊業面
             phone:'',
             address:'',
@@ -20,7 +19,7 @@ export  class Cart extends React.Component {
         this.onCloseModal = this.onCloseModal.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.calTotal = this.calTotal.bind(this)
-        this.changeTotal = this.changeTotal.bind(this)
+        
         this.toChecked = this.toChecked.bind(this)
         this.sendOrder = this.sendOrder.bind(this)
         this.inputChange = this.inputChange.bind(this)
@@ -47,11 +46,7 @@ export  class Cart extends React.Component {
         })
         return tempTotal
     }
-    changeTotal(price){
-        this.setState({
-            total:this.state.total + price
-        })
-    }
+    
     handleDelete(id){
         const { cart, changeCart} = this.props
         let newCart = cart.slice()
@@ -87,10 +82,15 @@ export  class Cart extends React.Component {
         
     }
     componentDidUpdate(prevProps,prevState){
-        const{sendOrderRes} = this.props
+        const { sendOrderRes, changeCart} = this.props
         if (sendOrderRes != prevProps.sendOrderRes){
             if (sendOrderRes){
                 alert('訂餐成功!')
+                changeCart([])
+                this.setState({
+                    open: false,
+                    checkedorder: false, 
+                })
             }
             else{
                 alert('訂餐失敗')
@@ -100,7 +100,7 @@ export  class Cart extends React.Component {
     render() {
         const { open } = this.state;
         const {cart} = this.props
-        this.total = this.calTotal()
+        this.total = this.calTotal()//計算 total
         // 購物車
         if(!this.state.checkedorder){
             return (
