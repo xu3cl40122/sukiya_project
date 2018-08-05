@@ -15,8 +15,6 @@ export  class Cart extends React.Component {
             phone:'',
             address:'',
             other_need:''
-            //change:0 檢查是否有更新 state 但好像沒用了
-            
         }
         this.onOpenModal = this.onOpenModal.bind(this)
         this.onCloseModal = this.onCloseModal.bind(this)
@@ -26,7 +24,7 @@ export  class Cart extends React.Component {
         this.toChecked = this.toChecked.bind(this)
         this.sendOrder = this.sendOrder.bind(this)
         this.inputChange = this.inputChange.bind(this)
-        this.total = 0
+        this.total = 0 //計算總價
     }
     inputChange(e){
         this.setState({
@@ -74,7 +72,7 @@ export  class Cart extends React.Component {
     }
     sendOrder(){
         const { userState,cart} = this.props
-        if(userState.username == ''){
+        if(userState.username == undefined){
             alert('請先登入帳號再進行訂購')
             return 
         }

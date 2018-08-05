@@ -26,13 +26,11 @@ app.get('/products',products.products)
 app.get('/products/:id',products.singleProduct)
 app.get('/site',site.getSites)
 app.post('/login',cors(corsOptions),login.login)
-app.options('/login', cors(corsOptions))
 app.post('/catchOrder', order.catchOrder)// 接收訂單
 app.get('/checkSession',login.checkSession)// 檢查 session
-app.get('/out',(req,res)=>{
-    req.session.destroy()
-    res.send('log out')
-})
+app.get('/logout', cors(corsOptions),login.logout)
+   
+
 // --- 後台 ---
 app.post('/allOrders', order.getAllOrders) //後臺顯示所有訂單
 app.post('/filterOrders',order.getFiteredOrders) // 後台訂單條件篩選

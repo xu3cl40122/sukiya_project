@@ -1,14 +1,18 @@
 import { connect } from 'react-redux'
 import { Login } from './login'
-import { setLoginState } from './actions'
+import { setLoginState,login } from './actions'
 // 和 react connect
 // 接收
 const mapStateToProps = state => ({
-    cart: state.app.isLogin
+    userState: state.app.userState,
+    loginResponse: state.app.loginResponse
 })
 const mapDispatchToProps = dispatch => ({
     setLoginState: (state) => {
         dispatch(setLoginState(state))
+    },
+    login:(state)=>{
+        dispatch(login(state))
     }
 })
 

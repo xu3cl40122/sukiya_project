@@ -51,14 +51,11 @@ module.exports={
                 res.send(response)
             })
     },
-    /*test:function addSession(req,res){
-        req.session.user = 'test'
-        console.log(req.session)
-        console.log(new Date(req.session.cookie._expires).toLocaleString())
-        res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
-        res.header('Access-Control-Allow-Credentials', 'true')
-        res.send(req.session)
-    },*/
+    logout:function logout(req,res){
+        addCrosHeader(res)
+        req.session.distroy
+        res.send('logout')
+    },
     checkSession:function checkSession(req,res){
         addCrosHeader(res)
         if (!req.session.user){

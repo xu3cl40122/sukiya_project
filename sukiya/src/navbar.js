@@ -15,6 +15,7 @@ export class Navbar extends React.Component {
             hidden:true
         }
         this.checkSession = this.checkSession.bind(this)
+        this.logout = this.logout.bind(this)
     }
     componentDidMount(){
         axios({
@@ -29,6 +30,15 @@ export class Navbar extends React.Component {
         axios({
             method: 'get',
             url: 'http://localhost:3000/checkSession',
+            withCredentials: true
+        }).then((res) => {
+            console.log(res.data)
+        })
+    }
+    logout(){
+        axios({
+            method: 'get',
+            url: 'http://localhost:3000/logout',
             withCredentials: true
         }).then((res) => {
             console.log(res.data)
@@ -51,7 +61,7 @@ export class Navbar extends React.Component {
                     })}}><i className="fa fa-users"></i>關於我們</li>
                     <li onClick={this.checkSession}><i className="fa fa-info-circle"></i>最新消息</li>
                     <li>
-                        {userState.username != '' ? <div><i className="fa fa-user"></i>{userState.username}</div> : <Link to='/account' className="link"><i className="fa fa-user"></i>登入</Link>}
+                        {userState.username !== undefined ? <div onClick={this.logout}><i className="fa fa-user"></i>{userState.username}</div> : <Link to='/account' className="link"><i className="fa fa-user"></i>登入</Link>}
                     </li>
                 </ul>
             </div>

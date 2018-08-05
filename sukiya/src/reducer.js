@@ -13,7 +13,8 @@ const initialState ={
     singleProduct:{},
     cart:[],
     site:[],
-    userState:{username:''}
+    userState:{},
+    loginResponse:{}
 }
 function AppReducer(state = initialState, action){
     switch(action.type){
@@ -69,7 +70,24 @@ function AppReducer(state = initialState, action){
                 ...state
             }
         }
-        // set product to cart
+        // login and sign up
+        case `${LOGIN}_PENDING`: {//剛發出 request
+            return {
+                ...state
+            }
+        }
+        case `${LOGIN}_FULFILLED`: {// success
+            return {
+                ...state,
+                loginResponse: action.payload.data
+            }
+        }
+        case `${LOGIN}_REJECTED`: {// error
+            return {
+                ...state
+            }
+        }
+        // add product to cart
         case TO_CART :{
             return{
                 ...state,

@@ -40,7 +40,6 @@ export const setLoginState = (state)=>({
     value: state
 })
 
-
 export const login = (data) => ({
     type: LOGIN,
     payload: axios({

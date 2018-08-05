@@ -11,7 +11,7 @@ export class Login extends React.Component {
             password: '',
             name: '',
             phone: '',
-            isLogin: true
+            isLogin: true// 切換 login 或 sing up
         }
         this.handleChange = this.handleChange.bind(this)
         this.submit = this.submit.bind(this)
@@ -23,39 +23,44 @@ export class Login extends React.Component {
         })
     }
     submit(e) {
-        const { setLoginState } = this.props
+        const { login } = this.props
         e.preventDefault()
-        axios({
-            method: 'post',
-            url: 'http://localhost:3000/login',
-            data: this.state,
-            withCredentials : true
-        }).then((res) => {
-            if (res.data.msg == 'login_pass') {
-                alert('哈囉 ' + res.data.data.name)
-                setLoginState({
-                    username: res.data.data.name,
-                    user_id: res.data.data.user_id
-                })
-            } else if (res.data.msg == 'signup_pass') {
-                alert('已創立帳號!')
-                setLoginState({
-                    username: res.data.data.name,
-                    user_id: res.data.data.user_id
-                })
-            } else if (res.data.msg == 'signup_fail') {
-                alert('創建帳號失敗')
-            } else if (res.data.msg == 'login_fail') {
-                alert('帳號密碼錯誤')
-            } else if (res.data.msg == 'be_used') {
-                alert('該帳號已有人使用')
-            } else {
-                alert('error', res.data.msg)
-            }
-        }).catch((err) => {
-            alert(err)
-        });
+        login(this.state)
     }
+    componentDidUpdate(prevProps,prevState){
+        const { loginResponse, setLoginState} = this.props
+        if (loginResponse != prevProps.loginResponse){
+            switch (loginResponse.msg){
+                case 'login_pass':
+                    alert(`Hello ${loginResponse.data.name} !`)
+                    setLoginState({
+                        username: loginResponse.data.name,
+                        user_id: loginResponse.data.user_id
+                    })
+                    break
+                case 'signup_pass':
+                    alert('申請帳號成功!')
+                    setLoginState({
+                        username: loginResponse.data.name,
+                        user_id: loginResponse.data.user_id
+                    })
+                    break
+                case 'signup_fail':
+                    alert('申請帳號失敗')
+                    break 
+                case 'login_fail':
+                    alert('帳號密碼錯誤')
+                    break 
+                case 'be_used':
+                    alert('該信箱已有人使用')
+                    break 
+                default:
+                    alert(loginResponse.msg)
+            }
+        }
+        
+    }
+    // 切換登入 or 註冊頁面
     changeLogin() {
         this.setState({
             isLogin: !this.state.isLogin,
@@ -109,16 +114,16 @@ export class Login extends React.Component {
 
                                 <h2 className='login_formContainer_title'>SIGN UP</h2>
                                 <div className='login_formContainer_inputBox'>
-                                    <input type="email" placeholder='Email' name='email' onChange={this.handleChange} value={this.state.email} />
+                                    <input type="email" placeholder='Email' name='email' onChange={this.handleChange} value={this.state.email} required/>
                                 </div>
                                 <div className='login_formContainer_inputBox'>
-                                    <input type="password" placeholder='Password' name='password' onChange={this.handleChange} value={this.state.password} />
+                                    <input type="password" placeholder='Password' name='password' onChange={this.handleChange} value={this.state.password} required/>
                                 </div>
                                 <div className='login_formContainer_inputBox'>
-                                    <input type="text" placeholder='Name' name='name' onChange={this.handleChange} value={this.state.name} />
+                                    <input type="text" placeholder='Name' name='name' onChange={this.handleChange} value={this.state.name} required/>
                                 </div>
                                 <div className='login_formContainer_inputBox'>
-                                    <input type="text" placeholder='Phone' name='phone' onChange={this.handleChange} value={this.state.phone} />
+                                    <input type="text" placeholder='Phone' name='phone' onChange={this.handleChange} value={this.state.phone} required/>
                                 </div>
                             </div>
                             <div className='login_formContainer_bottomNav'>
