@@ -37,7 +37,7 @@ class Ani extends React.Component {
         super(props);
         this.onClick = this.onClick.bind(this);
         this.state = { 
-            hidden: false,
+            hidden: false, // 大的logo是否被藏起來
             changeing:false,
         };
     }
@@ -46,10 +46,22 @@ class Ani extends React.Component {
             hidden: !(prevState.hidden)
         }))    
     }
+    changeLogoTo(size){
+        if(size == 'small'){
+            this.setState({ hidden: true, changeing: true }, () => { this.props.setTimeout(() => { this.setState({ changeing: false }) }, 2000) })
+        }
+        else{
+            this.setState({ hidden: false, changeing: true }, () => { this.props.setTimeout(() => { this.setState({ changeing: false }) }, 2000) })
+        } 
+    }
     componentDidUpdate(prevProps,prevState){
         const {scrollTop} = this.props
-        //console.log('prev',prevState,prevProps.scrollTop)
-        //console.log(this.state,scrollTop)
+        console.log('prev',prevState,prevProps.scrollTop)
+        // 預防快速上下產生明明沒在頂 卻是大 logo 的情況
+        if (prevState.hidden == false & prevState.changeing == true & this.state.changeing == false & scrollTop > 50){
+            console.log('777')
+            this.setState({ hidden: true, changeing: true }, () => { this.props.setTimeout(() => { this.setState({ changeing: false }) }, 2000) })
+        }
         // 預防快速上下產生明明在捲到頂卻沒變回大 logo的情況
         if(scrollTop<50 & prevState.changeing == true & this.state.hidden == true & this.state.changeing == false){
             this.setState({ hidden: false, changeing: true }, () => { this.props.setTimeout(() => { this.setState({ changeing: false }) }, 2000) })
