@@ -52,7 +52,7 @@ input[type=checkbox] {
 .navbar .navCol .navCol_text:hover {
   color: #ffd93e;
 }
-.navbar .navCol-active {
+.navbar .navCol-active .navCol_text {
   color: #ffd93e;
 }
 .topPanel {
