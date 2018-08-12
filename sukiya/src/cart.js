@@ -3,7 +3,7 @@ import Modal from 'react-responsive-modal';
 import axios from 'axios'
 
 var modalStyle = {
-    modal:{width:'800px'}
+    modal:{width:'800px',}
 }
 export  class Cart extends React.Component {
     constructor(props){
@@ -19,7 +19,6 @@ export  class Cart extends React.Component {
         this.onCloseModal = this.onCloseModal.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.calTotal = this.calTotal.bind(this)
-        
         this.toChecked = this.toChecked.bind(this)
         this.sendOrder = this.sendOrder.bind(this)
         this.inputChange = this.inputChange.bind(this)

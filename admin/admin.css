@@ -18,6 +18,9 @@ input[type=checkbox] {
 .link {
   text-decoration: none;
 }
+.hidden {
+  display: none;
+}
 .mainContainer {
   padding: 70px 40px;
 }
@@ -167,6 +170,8 @@ input[type=checkbox] {
 .filterControll {
   width: 100%;
   margin-top: 20px;
+  position: relative;
+  min-height: 40px;
 }
 .filterControll .date_container {
   display: flex;
@@ -187,6 +192,19 @@ input[type=checkbox] {
   border-radius: 5px;
   margin-left: 10px;
 }
+.filterControll .openModal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: #1e222a;
+  width: 130px;
+  height: 30px;
+  color: #fff;
+  border-radius: 4px;
+  position: absolute;
+  right: 20px;
+}
 .mainTable {
   width: 100%;
   table-layout: fixed;
@@ -196,21 +214,17 @@ input[type=checkbox] {
   color: #a5a5a5;
   height: 60px;
   border-bottom: 1px solid #ddd;
-  transition: height 0.3s ease-out;
 }
 .mainTable td {
   text-align: center;
   border-bottom: 1px solid #ddd;
-  transition: height 0.3s ease-out;
+  padding: 10px;
 }
 .mainTable td img {
   width: 100%;
 }
-.mainTable tr {
-  height: 100px;
-}
 .mainTable tr:hover .orderList_wrapper {
-  max-height: 100%;
+  max-height: 500px;
 }
 .mainTable tr:nth-child(even) {
   background: #e4e4e4;
@@ -227,6 +241,12 @@ input[type=checkbox] {
 .mainTable .bigCol {
   width: 220px;
 }
+.mainTable .maxCol {
+  width: 350px;
+}
+.mainTable .describeTD {
+  text-align: left;
+}
 .mainTable .orderList {
   text-align: left !important;
   padding: 5px;
@@ -234,10 +254,7 @@ input[type=checkbox] {
 .mainTable .orderList .orderList_wrapper {
   max-height: 100px;
   overflow: hidden;
-  text-overflow: ellipsis;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  transition: height 0.3s ease-out;
+  transition: max-height 0.8s ease-out;
 }
 .mainTable .statusButton {
   width: 100px;
@@ -319,4 +336,116 @@ input[type=checkbox] {
 .pagination .active {
   background: #d7000f;
   color: #fff;
+}
+.addProduct_header {
+  width: 100%;
+  display: flex;
+  height: 65px;
+  padding: 0px 25px;
+  background: #1e222a;
+  color: #fff;
+  font-size: 24px;
+  align-items: center;
+  position: relative;
+}
+.addProduct_header i {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+}
+.addProduct_body {
+  width: 100%;
+  display: flex;
+  padding: 30px;
+}
+.addProduct_body .leftBlock {
+  width: calc(50% - 15px);
+  margin-right: 30px;
+}
+.addProduct_body .leftBlock label {
+  display: block;
+  z-index: 15;
+  cursor: pointer;
+}
+.addProduct_body .addProduct_dragInput {
+  width: 100%;
+  height: 100px;
+  background: #e2e2e2;
+  text-align: center;
+  padding: 15px 0px;
+}
+.addProduct_body .addProduct_dragInput i {
+  font-size: 40px;
+  color: #757575;
+}
+.addProduct_body .addProduct_dragInput h2 {
+  color: #757575;
+  font-size: 16px;
+}
+.addProduct_body .rightBlock {
+  width: calc(50% - 15px);
+}
+.addProduct_body .rightBlock h2 {
+  font-size: 20px;
+  color: #1e222a;
+}
+.addProduct_body .rightBlock textarea {
+  width: 100%;
+  height: 150px;
+  resize: none;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+.addProduct_body .rightBlock input[type=text] {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+.addProduct_body .rightBlock_price_row {
+  width: 100%;
+}
+.addProduct_body .rightBlock_price_col {
+  width: 100%;
+  display: flex;
+  padding: 10px 0;
+}
+.addProduct_body .rightBlock_price_col input[type=text] {
+  width: 100px;
+}
+.addProduct_body .rightBlock_price_col p {
+  margin-right: 10px;
+}
+.addProduct_body .rightBlock_price_col i {
+  margin-left: 15px;
+  cursor: pointer;
+  color: #1e222a;
+}
+.addProduct_body .rightBlock_price_col_price {
+  margin-left: 10px;
+}
+.addProduct_body .addPriceCol {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  color: #1e222a;
+  width: 80px;
+  height: 30px;
+  border-radius: 4px;
+}
+.addProduct_body .submit {
+  border-radius: 4px;
+  height: 30px;
+  color: #fff;
+  width: 60px;
+  background: #1e222a;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 20px;
+}
+.addProduct_body form {
+  position: relative;
+  padding-bottom: 20px;
 }
