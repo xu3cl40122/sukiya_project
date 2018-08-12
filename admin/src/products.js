@@ -21,24 +21,14 @@ export class Products extends React.Component{
             isModalOpen:true,
         }
         this.handlePage = this.handlePage.bind(this)
-        this.onOpenModal = this.onOpenModal.bind(this)
-        this.onCloseModal = this.onCloseModal.bind(this)
+        
     }
     handlePage(data) {
         this.setState({
             currentPage: (data.selected + 1)
         })
     }
-    onCloseModal(){
-        this.setState({
-            isModalOpen:false
-        })
-    }
-    onOpenModal(){
-        this.setState({
-            isModalOpen: true
-        })
-    }
+   
     componentDidMount(){
         // 取得所有訂單
         axios({
@@ -54,7 +44,7 @@ export class Products extends React.Component{
         })
     }
     render(){
-        const { products, isModalOpen} = this.state
+        const { products} = this.state
         const {currentPage, colPerPage, } = this.state
         const indexOfLast = currentPage * colPerPage
         const indexOfFirst = indexOfLast - colPerPage
@@ -65,49 +55,8 @@ export class Products extends React.Component{
         }
         return(
             <div className="mainContainer">
-                <Modal open={isModalOpen} onClose={this.onCloseModal} styles={modalStyle} showCloseIcon={false} center>
-                    <div className='addProduct_header'>ADD NEW PRODUCT<i className='	fa fa-close' onClick={this.onCloseModal}></i></div>
-                    <div className='addProduct_body'>
-                        <div className='leftBlock'> 
-                            <label className=''>
-                                <div className='addProduct_dragInput'>
-                                    <i className='	fa fa-cloud-upload'></i>
-                                    <h2>Drag an image or click here to upload…</h2>
-                                </div>
-                                <input type='file' className='hidden' />
-                            </label>
-                        </div>
-                        <div className='rightBlock'>
-                            <form>
-                                <h2>Name</h2>
-                                <input type='text' />
-                                <h2>Describe</h2>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <h2>Price</h2>
-                                <div className='rightBlock_price_row'>
-                                    <div className='rightBlock_price_col'>
-                                        <p>Size:</p>
-                                        <select name="" id="">
-                                            <option value="">迷你碗</option>
-                                            <option value="">中碗</option>
-                                            <option value="">超值碗</option>
-                                            <option value="">超大碗</option>
-                                            <option value="">one size</option>
-                                        </select>
-                                        <p className='rightBlock_price_col_price'>Price:</p>
-                                        <input type='text' />
-                                        <i className='fa fa-close'></i>
-                                    </div>
-                                </div>
-                                <div className='addPriceCol'>Add Size</div>
-                                <input type='submit' className='submit' value='Save'/>
-                            </form>
-                        </div>
-                       
-                    </div>
-                </Modal>
                 <div className="filterControll">
-                    <div className='openModal' onClick={this.onOpenModal}>New Product</div>
+                    <AddProductModal />
                 </div>
                 <table className="mainTable">
                     <tbody>
@@ -165,5 +114,74 @@ class Col extends React.Component{
             </tr>
         )
        
+    }
+}
+class AddProductModal extends React.Component{
+    constructor(props){
+        super(props)
+        this.state = {
+            isModalOpen: true,
+        }
+        this.onOpenModal = this.onOpenModal.bind(this)
+        this.onCloseModal = this.onCloseModal.bind(this)
+    }
+    onCloseModal() {
+        this.setState({
+            isModalOpen: false
+        })
+    }
+    onOpenModal() {
+        this.setState({
+            isModalOpen: true
+        })
+    }
+    render(){
+        const{isModalOpen} = this.props
+        return(
+            <div>
+                <div className='openModal' onClick={this.onOpenModal}>New Product</div>
+                <Modal open={isModalOpen} onClose={this.onCloseModal} styles={modalStyle} showCloseIcon={false} center>
+                    <div className='addProduct_header'>ADD NEW PRODUCT<i className='	fa fa-close' onClick={this.onCloseModal}></i></div>
+                    <div className='addProduct_body'>
+                        <div className='leftBlock'>
+                            <label className=''>
+                                <div className='addProduct_dragInput'>
+                                    <i className='	fa fa-cloud-upload'></i>
+                                    <h2>Drag an image or click here to upload…</h2>
+                                </div>
+                                <input type='file' className='hidden' />
+                            </label>
+                        </div>
+                        <div className='rightBlock'>
+                            <form>
+                                <h2>Name</h2>
+                                <input type='text' />
+                                <h2>Describe</h2>
+                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <h2>Price</h2>
+                                <div className='rightBlock_price_row'>
+                                    <div className='rightBlock_price_col'>
+                                        <p>Size:</p>
+                                        <select name="" id="">
+                                            <option value="">迷你碗</option>
+                                            <option value="">中碗</option>
+                                            <option value="">超值碗</option>
+                                            <option value="">超大碗</option>
+                                            <option value="">one size</option>
+                                        </select>
+                                        <p className='rightBlock_price_col_price'>Price:</p>
+                                        <input type='text' />
+                                        <i className='fa fa-close'></i>
+                                    </div>
+                                </div>
+                                <div className='addPriceCol'>Add Size</div>
+                                <input type='submit' className='submit' value='Save' />
+                            </form>
+                        </div>
+
+                    </div>
+                </Modal>
+            </div>
+        )
     }
 }
