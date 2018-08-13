@@ -111,7 +111,11 @@ class Col extends React.Component{
                 <td>{product.name}</td>
                 <td><img src={product.img_path} alt=""/></td>
                 <td>{product.type}</td>
-                <td></td>
+                <td>
+                    {product.type == 'other'? product.price_s:null}
+                    {product.type == 'bowl' ? <div><p>{`迷你碗: ${product.price_s}`}</p><p>{`中碗: ${product.price_m}`}</p><p>{`超值碗: ${product.price_l}`}</p><p>{`超大碗: ${product.price_xl}`}</p></div>:null}
+                    {product.type == 'curry' ? <div><p>{`迷你碗: ${product.price_s}`}</p><p>{`中碗: ${product.price_m}`}</p><p>{`超值碗: ${product.price_l}`}</p></div> : null}
+                </td>
                 <td className='describeTD'>{product.intro}</td>
             </tr>
         )
@@ -123,6 +127,7 @@ class AddProductModal extends React.Component{
         super(props)
         this.state = {
             isModalOpen: true,
+            isOneSize:false,
             name:"",
             describe:"",
             s:'',
@@ -135,6 +140,7 @@ class AddProductModal extends React.Component{
         this.onCloseModal = this.onCloseModal.bind(this)
         this.handleInput = this.handleInput.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.switchSizeNum = this.switchSizeNum.bind(this)
     }
     onCloseModal() {
         this.setState({
@@ -154,12 +160,17 @@ class AddProductModal extends React.Component{
     handleSubmit(e){
         e.preventDefault()
     }
+    switchSizeNum(){
+        this.setState({
+            isOneSize:!this.state.isOneSize
+        })
+    }
     render(){
         const{isModalOpen,name,describe} = this.state
         return(
             <div>
                 <div className='openModal' onClick={this.onOpenModal}>New Product</div>
-                <Modal open={isModalOpen} onClose={this.onCloseModal} styles={modalStyle} showCloseIcon={false} center>
+                <Modal open={isModalOpen} onClose={this.onCloseModal} styles={modalStyle} showCloseIcon={false} closeOnOverlayClick={false}center>
                     <div className='addProduct_header'>ADD NEW PRODUCT<i className='	fa fa-close' onClick={this.onCloseModal}></i></div>
                     <div className='addProduct_body'>
                         <div className='leftBlock'>
