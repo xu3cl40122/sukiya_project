@@ -11,8 +11,6 @@ var modalStyle = {
     modal: { width: '800px',padding: 0 }
 }
 
-var sizeList = [{ ch: '迷你碗', en: 's' }, { ch: '中碗', en: 'm' }, { ch: '超值碗', en: 'l' }, { ch: '超大碗', en: 'xl' }]
-
 export class Products extends React.Component{
     constructor(props){
         super(props)
@@ -23,7 +21,6 @@ export class Products extends React.Component{
             isModalOpen:true,
         }
         this.handlePage = this.handlePage.bind(this)
-        
     }
     handlePage(data) {
         this.setState({
@@ -166,7 +163,11 @@ class AddProductModal extends React.Component{
         })
     }
     render(){
-        const{isModalOpen,name,describe} = this.state
+        const{isModalOpen,name,describe,isOneSize} = this.state
+        var sizeList = [{ ch: '迷你碗', en: 's' }, { ch: '中碗', en: 'm' }, { ch: '超值碗', en: 'l' }, { ch: '超大碗', en: 'xl' }]
+        if(isOneSize){
+            var sizeList = []
+        }
         return(
             <div>
                 <div className='openModal' onClick={this.onOpenModal}>New Product</div>
@@ -191,15 +192,14 @@ class AddProductModal extends React.Component{
                                 <h2>Price</h2>
                                 {sizeList.map((size,index)=>{
                                     return(
-                                        <div key={index}className='rightBlock_price_row'>
-                                            <div className='rightBlock_price_col'>
+                                            <div className='rightBlock_price_col' key={index}>
                                                 <p>{size.ch}</p>
                                                 <input name={size.en} type='text' pattern='[0-9]*|null' onChange={this.handleInput} value={this.state[size.en]}/>
                                             </div>
-                                        </div>
                                     )
                                 })}
-                                <div className='changeSize'>One Size</div>
+                                {isOneSize ? <div className='rightBlock_price_col'><p>價格:</p><input name='s' type='text' pattern='[0-9]*|null' onChange={this.handleInput} value={this.state.s} /></div>:null}
+                                <div className='changeSize' onClick={this.switchSizeNum}>One Size</div>
                                 <input type='submit' className='submit' value='Save' />
                             </form>
                         </div>
