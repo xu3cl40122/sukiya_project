@@ -229,6 +229,12 @@ input[type=checkbox] {
 .mainTable tr:nth-child(even) {
   background: #e4e4e4;
 }
+.mainTable .tofixedHeight {
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .mainTable .firstRow {
   height: 60px;
 }
@@ -236,7 +242,7 @@ input[type=checkbox] {
   width: 20px;
 }
 .mainTable .index {
-  width: 50px;
+  width: 80px;
 }
 .mainTable .bigCol {
   width: 220px;
@@ -418,25 +424,26 @@ input[type=checkbox] {
 }
 .addProduct_body .rightBlock_price_col p {
   margin-right: 10px;
+  display: inline-block;
+  width: 80px;
 }
 .addProduct_body .rightBlock_price_col i {
   margin-left: 15px;
   cursor: pointer;
   color: #1e222a;
 }
-.addProduct_body .rightBlock_price_col_price {
-  margin-left: 10px;
-}
-.addProduct_body .addPriceCol {
+.addProduct_body .changeSize {
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border: 1px solid #ccc;
-  color: #1e222a;
+  color: #fff;
   width: 80px;
   height: 30px;
   border-radius: 4px;
+  position: absolute;
+  background: #616161;
+  right: 100px;
 }
 .addProduct_body .submit {
   border-radius: 4px;

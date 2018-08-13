@@ -138,7 +138,7 @@ class Col extends React.Component {
         return (
             <tr>
                 <td className="checkboxTD"><input type="checkbox" /></td>
-                <td className="index">1</td>
+                <td className="index"><div className='tofixedHeight'>{order.order_id}</div></td>
                 <td>{order.name}</td>
                 <td className="orderList">
                     <div className='orderList_wrapper'>

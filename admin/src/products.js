@@ -11,6 +11,8 @@ var modalStyle = {
     modal: { width: '800px',padding: 0 }
 }
 
+var sizeList = [{ ch: '迷你碗', en: 's' }, { ch: '中碗', en: 'm' }, { ch: '超值碗', en: 'l' }, { ch: '超大碗', en: 'xl' }]
+
 export class Products extends React.Component{
     constructor(props){
         super(props)
@@ -62,7 +64,7 @@ export class Products extends React.Component{
                     <tbody>
                         <tr className="firstRow">
                             <th className="checkboxTD"><input type="checkbox" /></th>
-                            <th>Product_id</th>
+                            <th className='index'>Product_id</th>
                             <th>Name</th>
                             <th>Img</th>
                             <th>Type</th>
@@ -105,7 +107,7 @@ class Col extends React.Component{
         return(
             <tr>
                 <td className="checkboxTD"><input type="checkbox" /></td>
-                <td>{product.product_id}</td>
+                <td><div className='tofixedHeight'>{product.product_id}</div></td>
                 <td>{product.name}</td>
                 <td><img src={product.img_path} alt=""/></td>
                 <td>{product.type}</td>
@@ -121,9 +123,18 @@ class AddProductModal extends React.Component{
         super(props)
         this.state = {
             isModalOpen: true,
+            name:"",
+            describe:"",
+            s:'',
+            m:'',
+            l:'',
+            xl:''
+            
         }
         this.onOpenModal = this.onOpenModal.bind(this)
         this.onCloseModal = this.onCloseModal.bind(this)
+        this.handleInput = this.handleInput.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
     }
     onCloseModal() {
         this.setState({
@@ -135,8 +146,16 @@ class AddProductModal extends React.Component{
             isModalOpen: true
         })
     }
+    handleInput(e){
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+    handleSubmit(e){
+        e.preventDefault()
+    }
     render(){
-        const{isModalOpen} = this.props
+        const{isModalOpen,name,describe} = this.state
         return(
             <div>
                 <div className='openModal' onClick={this.onOpenModal}>New Product</div>
@@ -153,28 +172,23 @@ class AddProductModal extends React.Component{
                             </label>
                         </div>
                         <div className='rightBlock'>
-                            <form>
+                            <form onSubmit={this.handleSubmit}>
                                 <h2>Name</h2>
-                                <input type='text' />
+                                <input type='text' name='name' onChange={this.handleInput} value={name} required/>
                                 <h2>Describe</h2>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
+                                <textarea  name='describe' onChange={this.handleInput} value={describe} required></textarea>
                                 <h2>Price</h2>
-                                <div className='rightBlock_price_row'>
-                                    <div className='rightBlock_price_col'>
-                                        <p>Size:</p>
-                                        <select name="" id="">
-                                            <option value="">迷你碗</option>
-                                            <option value="">中碗</option>
-                                            <option value="">超值碗</option>
-                                            <option value="">超大碗</option>
-                                            <option value="">one size</option>
-                                        </select>
-                                        <p className='rightBlock_price_col_price'>Price:</p>
-                                        <input type='text' />
-                                        <i className='fa fa-close'></i>
-                                    </div>
-                                </div>
-                                <div className='addPriceCol'>Add Size</div>
+                                {sizeList.map((size,index)=>{
+                                    return(
+                                        <div key={index}className='rightBlock_price_row'>
+                                            <div className='rightBlock_price_col'>
+                                                <p>{size.ch}</p>
+                                                <input name={size.en} type='text' pattern='[0-9]*|null' onChange={this.handleInput} value={this.state[size.en]}/>
+                                            </div>
+                                        </div>
+                                    )
+                                })}
+                                <div className='changeSize'>One Size</div>
                                 <input type='submit' className='submit' value='Save' />
                             </form>
                         </div>
