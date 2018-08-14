@@ -141,6 +141,9 @@ class AddProductModal extends React.Component{
         this.switchSizeNum = this.switchSizeNum.bind(this)
         this.handleImgChange = this.handleImgChange.bind(this)
         this.uploadFile = this.uploadFile.bind(this)
+        this.onDrageOver = this.onDrageOver.bind(this)
+        this.onDrop = this.onDrop.bind(this)
+        this.onDragEnter = this.onDragEnter.bind(this)
     }
     onCloseModal() {
         this.setState({
@@ -166,13 +169,26 @@ class AddProductModal extends React.Component{
             isOneSize:!this.state.isOneSize
         })
     }
-    handleImgChange(e){
-        const file = e.target.files[0]
+    onDrageOver(e) {
+        e.preventDefault()
+        e.stopPropagation()
+        e.dataTransfer.dropEffect = 'copy'
+    }
+    onDragEnter(e) {
+        e.stopPropagation()
+        e.preventDefault()
+    }
+    handleImgChange(e,byDrop = false){
+        if(byDrop){
+            var file = e.nativeEvent.dataTransfer.files[0]
+        }else{
+            var file = e.target.files[0]
+        }
         if (file.size > 10000000) {
             alert('不能超過10MB')
             return
         }
-        if (file.type != 'image/jpeg' | file.type != 'image/png') {
+        if (file.type != 'image/jpeg' & file.type != 'image/png') {
             alert('只接受 jpg 或 png 檔')
             return
         }
@@ -187,6 +203,11 @@ class AddProductModal extends React.Component{
                 imgSrc:data.target.result
             })
         }
+    }
+    onDrop(e){
+        e.stopPropagation()
+        e.preventDefault()
+        this.handleImgChange(e,true)
     }
     uploadFile(){
         var formData = new FormData()
@@ -213,7 +234,7 @@ class AddProductModal extends React.Component{
                     <div className='addProduct_body'>
                         <div className='leftBlock'>
                             <label className=''>
-                                <div className='addProduct_dragInput'>
+                                <div className='addProduct_dragInput' onDragEnter={this.onDragEnter} onDragOver={this.onDrageOver} onDrop={this.onDrop}>
                                     <i className='	fa fa-cloud-upload'></i>
                                     <h2>Drag an image or click here to upload…</h2>
                                 </div>
