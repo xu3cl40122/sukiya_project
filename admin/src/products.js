@@ -128,6 +128,7 @@ class AddProductModal extends React.Component{
             name:"",
             describe:"",
             img:'',
+            imgSrc:'',
             s:'',
             m:'',
             l:'',
@@ -166,9 +167,26 @@ class AddProductModal extends React.Component{
         })
     }
     handleImgChange(e){
+        const file = e.target.files[0]
+        if (file.size > 10000000) {
+            alert('不能超過10MB')
+            return
+        }
+        if (file.type != 'image/jpeg' | file.type != 'image/png') {
+            alert('只接受 jpg 或 png 檔')
+            return
+        }
         this.setState({
-            img:e.target.files[0]
+            img: file
         })
+        var reader = new FileReader()
+        reader.readAsDataURL(file)
+        // 非同步
+        reader.onload = (data) => {
+            this.setState({
+                imgSrc:data.target.result
+            })
+        }
     }
     uploadFile(){
         var formData = new FormData()
@@ -182,12 +200,11 @@ class AddProductModal extends React.Component{
         })
     }
     render(){
-        const{isModalOpen,name,describe,isOneSize,img} = this.state
+        const{isModalOpen,name,describe,isOneSize,imgSrc} = this.state
         var sizeList = [{ ch: '迷你碗', en: 's' }, { ch: '中碗', en: 'm' }, { ch: '超值碗', en: 'l' }, { ch: '超大碗', en: 'xl' }]
         if(isOneSize){
             var sizeList = []
         }
-        console.log(img)
         return(
             <div>
                 <div className='openModal' onClick={this.onOpenModal}>New Product</div>
@@ -203,7 +220,7 @@ class AddProductModal extends React.Component{
                                 <input type='file' className='hidden' onChange={this.handleImgChange}/>
                             </label>
                             <div className='leftBlock_preview'>
-                                <img src='./dscf5328.jpg' />
+                                <img src={imgSrc} />
                             </div>
                         </div>
                         <div className='rightBlock'>
