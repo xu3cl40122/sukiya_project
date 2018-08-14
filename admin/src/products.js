@@ -127,17 +127,19 @@ class AddProductModal extends React.Component{
             isOneSize:false,
             name:"",
             describe:"",
+            img:'',
             s:'',
             m:'',
             l:'',
             xl:''
-            
         }
         this.onOpenModal = this.onOpenModal.bind(this)
         this.onCloseModal = this.onCloseModal.bind(this)
         this.handleInput = this.handleInput.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
         this.switchSizeNum = this.switchSizeNum.bind(this)
+        this.handleImgChange = this.handleImgChange.bind(this)
+        this.uploadFile = this.uploadFile.bind(this)
     }
     onCloseModal() {
         this.setState({
@@ -156,18 +158,36 @@ class AddProductModal extends React.Component{
     }
     handleSubmit(e){
         e.preventDefault()
+        this.uploadFile()
     }
     switchSizeNum(){
         this.setState({
             isOneSize:!this.state.isOneSize
         })
     }
+    handleImgChange(e){
+        this.setState({
+            img:e.target.files[0]
+        })
+    }
+    uploadFile(){
+        var formData = new FormData()
+        formData.append('myFile',this.state.img,this.state.img.name)
+        axios({
+            method: 'post',
+            url: 'http://localhost:3000/upload',
+            data: formData
+        }).then((res)=>{
+            console.log(res.data)
+        })
+    }
     render(){
-        const{isModalOpen,name,describe,isOneSize} = this.state
+        const{isModalOpen,name,describe,isOneSize,img} = this.state
         var sizeList = [{ ch: '迷你碗', en: 's' }, { ch: '中碗', en: 'm' }, { ch: '超值碗', en: 'l' }, { ch: '超大碗', en: 'xl' }]
         if(isOneSize){
             var sizeList = []
         }
+        console.log(img)
         return(
             <div>
                 <div className='openModal' onClick={this.onOpenModal}>New Product</div>
@@ -180,8 +200,11 @@ class AddProductModal extends React.Component{
                                     <i className='	fa fa-cloud-upload'></i>
                                     <h2>Drag an image or click here to upload…</h2>
                                 </div>
-                                <input type='file' className='hidden' />
+                                <input type='file' className='hidden' onChange={this.handleImgChange}/>
                             </label>
+                            <div className='leftBlock_preview'>
+                                <img src='./dscf5328.jpg' />
+                            </div>
                         </div>
                         <div className='rightBlock'>
                             <form onSubmit={this.handleSubmit}>
@@ -200,7 +223,7 @@ class AddProductModal extends React.Component{
                                 })}
                                 {isOneSize ? <div className='rightBlock_price_col'><p>價格:</p><input name='s' type='text' pattern='[0-9]*|null' onChange={this.handleInput} value={this.state.s} /></div>:null}
                                 <div className='changeSize' onClick={this.switchSizeNum}>One Size</div>
-                                <input type='submit' className='submit' value='Save' />
+                                <input type='submit' className='submit' value='Save'/>
                             </form>
                         </div>
 

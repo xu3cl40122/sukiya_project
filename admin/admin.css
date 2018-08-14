@@ -373,6 +373,15 @@ input[type=checkbox] {
   z-index: 15;
   cursor: pointer;
 }
+.addProduct_body .leftBlock_preview {
+  width: 100%;
+  margin-top: 50px;
+}
+.addProduct_body .leftBlock_preview img {
+  max-width: 60%;
+  display: block;
+  margin: 0 auto;
+}
 .addProduct_body .addProduct_dragInput {
   width: 100%;
   height: 100px;
