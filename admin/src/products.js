@@ -126,6 +126,7 @@ class AddProductModal extends React.Component{
             isModalOpen: true,
             isOneSize:false,
             name:"",
+            type:'',
             describe:"",
             img:'',
             imgSrc:'',
@@ -210,8 +211,11 @@ class AddProductModal extends React.Component{
         this.handleImgChange(e,true)
     }
     uploadFile(){
+        const {name,describe,type,img,s,m,l,xl,isOneSize} = this.state
+        const productData = JSON.stringify({...this.state,img:''})
         var formData = new FormData()
-        formData.append('myFile',this.state.img,this.state.img.name)
+        formData.append('myFile', img, img.name)
+        formData.append('productData',productData)
         axios({
             method: 'post',
             url: 'http://localhost:3000/upload',
@@ -248,6 +252,12 @@ class AddProductModal extends React.Component{
                             <form onSubmit={this.handleSubmit}>
                                 <h2>Name</h2>
                                 <input type='text' name='name' onChange={this.handleInput} value={name} required/>
+                                <h2>Name</h2>
+                                <select name="type" id="" onChange={this.handleInput}>
+                                    <option value="bowl" >丼飯</option>
+                                    <option value="curry">咖哩飯</option>
+                                    <option value="other">其他</option>
+                                </select>
                                 <h2>Describe</h2>
                                 <textarea  name='describe' onChange={this.handleInput} value={describe} required></textarea>
                                 <h2>Price</h2>

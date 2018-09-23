@@ -6,7 +6,7 @@ const products = require('./products')
 const login = require('./login')
 const site = require('./site')
 const order = require('./order')
-const upload = require('./upload')
+const newProduct = require('./newProduct')
 var cors = require('cors')// 跨網域
 
 var corsOptions = {
@@ -30,7 +30,7 @@ app.post('/login',cors(corsOptions),login.login)
 app.post('/catchOrder', order.catchOrder)// 接收訂單
 app.get('/checkSession',login.checkSession)// 檢查 session
 app.get('/logout', cors(corsOptions),login.logout)
-app.post('/upload',upload.uploadImg)
+app.post('/upload', newProduct.uploadImg)
    
 
 // --- 後台 ---

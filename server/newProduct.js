@@ -6,7 +6,13 @@ module.exports = {
     uploadImg: function uploadImg(req, res) {
         var form = new formidable.IncomingForm()
         form.parse(req, function (err, fields, files) {
-            console.log(files.myFile.path)
+            console.log(fields)
+            
+            if (Object.keys(files) == 0){
+                console.log('no image')
+                res.send('no image')
+                return
+            }
             var oldpath = files.myFile.path
             var newpath = '../pic/' + files.myFile.name
             
