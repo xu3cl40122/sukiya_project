@@ -93,7 +93,7 @@ input[type=submit] {
   position: absolute;
   top: 6px;
   left: 75px;
-  background: url("./pic/Logo_sukiya.jpg");
+  background: url("../pic/Logo_sukiya.jpg");
   background-size: cover;
   border: 2px solid #fff;
   display: block;
@@ -117,7 +117,7 @@ input[type=submit] {
   position: absolute;
   top: 15px;
   left: 75px;
-  background: url("./pic/Logo_sukiya.jpg");
+  background: url("../pic/Logo_sukiya.jpg");
   background-size: cover;
   border: 2px solid #fff;
   display: block;
@@ -137,7 +137,7 @@ input[type=submit] {
   position: absolute;
   top: 10px;
   left: 75px;
-  background: url("./pic/Logo_sukiya.jpg");
+  background: url("../pic/Logo_sukiya.jpg");
   background-size: cover;
   border: 2px solid #fff;
   display: block;
@@ -157,7 +157,7 @@ input[type=submit] {
 .header {
   width: 100%;
   height: calc(100vh - 70px);
-  background: url("./pic/Sb5z1Earu99GijzNUpURmIoS3GIU5XZtGQJAbRkCQG0.jpg");
+  background: url("../pic/Sb5z1Earu99GijzNUpURmIoS3GIU5XZtGQJAbRkCQG0.jpg");
   background-size: cover;
   background-position: top;
   background-attachment: fixed;
@@ -235,7 +235,7 @@ input[type=submit] {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("./pic/2.jpg");
+  background: url("../pic/2.jpg");
   background-size: cover;
   background-position: 25%;
   opacity: 0.4;
@@ -253,7 +253,7 @@ input[type=submit] {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("./pic/n-black-d-20141230-870x597.jpg");
+  background: url("../pic/n-black-d-20141230-870x597.jpg");
   background-size: cover;
   background-position: top;
   opacity: 0.4;
@@ -271,7 +271,7 @@ input[type=submit] {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url("./pic/wat.png");
+  background: url("../pic/wat.png");
   background-size: cover;
   opacity: 0.4;
   border-radius: 3px;
@@ -774,7 +774,7 @@ input[type=submit] {
   margin-bottom: 15px;
 }
 .site {
-  background: url("./pic/Logo_sukiya.jpg");
+  background: url("../pic/Logo_sukiya.jpg");
   width: 2rem;
   height: 1.5rem;
   background-size: cover;
@@ -861,7 +861,7 @@ input[type=submit] {
 .login_body .login_img {
   width: 380px;
   height: 100%;
-  background: url("./pic/Fotolia_142974889_Subscription_Monthly_M.jpg");
+  background: url("../pic/Fotolia_142974889_Subscription_Monthly_M.jpg");
   background-size: cover;
   position: relative;
   z-index: 10;

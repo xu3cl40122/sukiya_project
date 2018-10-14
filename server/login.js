@@ -3,7 +3,7 @@ const conn = require('./connect')
 module.exports={
     // 註冊加登入
     login:function login(req,res){
-        addCrosHeader(res)
+        addCrosHeader(req,res)
         // --- login ---
         var response = {msg:'',data:{}}
         if(req.body.isLogin){
@@ -52,12 +52,12 @@ module.exports={
             })
     },
     logout:function logout(req,res){
-        addCrosHeader(res)
+        addCrosHeader(req,res)
         req.session.distroy
         res.send('logout')
     },
     checkSession:function checkSession(req,res){
-        addCrosHeader(res)
+        addCrosHeader(req,res)
         if (!req.session.user){
             res.send('noSession')
             return
@@ -65,7 +65,11 @@ module.exports={
         res.send(req.session)
     }
 }
-function addCrosHeader(res){
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
+function addCrosHeader(req,res){
+    // 因為 header.orgin 只能設定一個 domain 或 * ，如果想要有白名單必須在 server 端對 origin 做判斷，如果符合條件再設置相對應的 orgin
+    // domain 多時可用 array 儲存增加可讀性
+    if (req.headers.origin == 'null' | req.headers.origin == 'http://localhost:8080'){
+        res.header('Access-Control-Allow-Origin', req.headers.origin)
+    }
     res.header('Access-Control-Allow-Credentials', 'true')
 }
