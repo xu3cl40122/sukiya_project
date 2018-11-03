@@ -255,7 +255,7 @@ input[type=submit] {
   height: 100%;
   background: url("../pic/n-black-d-20141230-870x597.jpg");
   background-size: cover;
-  background-position: top;
+  background-position: 25%;
   opacity: 0.4;
   border-radius: 3px;
   transition: 0.3s opacity ease-out;
@@ -273,6 +273,7 @@ input[type=submit] {
   height: 100%;
   background: url("../pic/wat.png");
   background-size: cover;
+  background-position: 25%;
   opacity: 0.4;
   border-radius: 3px;
   transition: 0.3s opacity ease-out;
