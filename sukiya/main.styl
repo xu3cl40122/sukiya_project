@@ -1,7 +1,7 @@
 html 
     font-family Microsoft JhengHei,Arial,Helvetica,sans-serif
-html  
     height 100%
+    font-size 16px
 body  
     min-height 100%
     height 100% 
@@ -38,9 +38,12 @@ input[type=submit]
     cursor pointer
 #root 
     height 100%
-
+.hide 
+    display none !important
 //--- class ---
 navbar_height = 70px
+navbar_height-momile = 8vh 
+navbar_z = 30
 .navbar
     background s_red
     width 100%
@@ -48,10 +51,12 @@ navbar_height = 70px
     position fixed
     top 0
     left 0
-    z-index 30
+    z-index navbar_z
     display flex
     justify-content flex-end
     align-items center
+    @media screen and (max-width: 600px)
+        display none
     i 
         margin-right 10px
         font-size 1.5rem
@@ -83,6 +88,26 @@ navbar_height = 70px
                 background-color white
                 transition 0.3s all ease-out
                 transform scale3d(0,1,1)
+    
+.navbar-mobile
+    width 100% 
+    height navbar_height-momile 
+    background s_red 
+    display none 
+    position fixed
+    top 0
+    align-items center
+    z-index navbar_z
+    @media screen and (max-width: 600px)
+        display flex
+    .logo 
+        background url('../pic/Logo_sukiya.jpg')
+        width 42px
+        height 35px
+        background-size cover 
+        border 1px solid white 
+        margin-left 5%
+
 .navbar_logo-base
     width 68px
     height 58px
@@ -202,12 +227,10 @@ navbar_height = 70px
   animation-duration: 1000ms;
 }
 
-.null //用來空空格
-    width 100%
-    height navbar_height   
 .header
     width 100%
-    height calc(100vh - 70px)
+    height "calc(100vh - %s)" %navbar_height // stylus 要 calc 變數的語法
+    // 如果多個變數就像這樣 left "calc(%s - %s)" % (measure arrow-size)
     background url('../pic/Sb5z1Earu99GijzNUpURmIoS3GIU5XZtGQJAbRkCQG0.jpg')
     background-size cover
     background-position top
@@ -216,6 +239,10 @@ navbar_height = 70px
     display flex
     align-items center
     justify-content center
+    margin-top navbar_height
+    @media screen and (max-width: 600px)
+        height 100vh - navbar_height-momile
+        margin-top navbar_height-momile
     &:before 
         content ""
         position absolute 
@@ -224,7 +251,6 @@ navbar_height = 70px
         background #9e9e808a
     .title 
         font-family 'Sawarabi Mincho'
-        font-size 3rem
         text-align center
         top 50%
         left 50%
@@ -234,6 +260,11 @@ navbar_height = 70px
             margin 0 0 0.2rem 0
         h3 
             font-size 1.5rem
+        @media screen and (max-width: 600px)
+            h2 
+                font-size 80px
+            h3 
+                font-size 24px
 .banner 
     width 100%
     display block
@@ -262,7 +293,10 @@ navBrick_col-before(url)
     justify-content space-between
     position relative
     background white
-    //margin-top 90vh
+    @media screen and (max-width: 600px)
+        width 100%
+        flex-wrap wrap
+        padding 20px 0
     .navBrick_col
         z-index 20 
         width 250px
@@ -278,6 +312,9 @@ navBrick_col-before(url)
         h2 
             text-align center
             margin-top 100px
+        @media screen and (max-width: 600px)
+            width 100%
+            margin 10px 10px
         .navBrick_col_button 
             width w = 100px
             height h = 40px
@@ -351,20 +388,29 @@ navBrick_col-before(url)
         color #b1b1b1
 .footer
     width 100%
-    height 100px
+    //height 100px
     background s_red
     color white
     text-align center
+    padding 10px 0
+    @media screen and (max-width: 600px)
+            padding 3px 0 
     .footer_socialLink
-        width 400px
-        padding 10px 0px
+        max-width 400px
         margin 0 auto
         font-size 2rem
+        text-align center
     i 
         cursor pointer
         margin 0px 5px
         &:hover
             text-shadow:2px 2px 4px #3e3e3e
+        @media screen and (max-width: 600px)
+            font-size 1.5rem 
+    p 
+        margin-top 5px
+       
+        
 
 sidebar_width = 13% // 連動 sidebar 和 product_container 
 .sidebar

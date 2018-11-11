@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 export class News extends React.Component {
     render() {
         return (
-            <div className="news_bg">
+            <div className="news_bg hide">
                 <div className="news_container">
                     <div className="news_slogan"><h2>最新消息</h2></div>
                     <div className="news_list">
