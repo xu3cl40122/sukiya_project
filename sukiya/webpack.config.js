@@ -9,6 +9,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle.js',
-    publicPath:'/dist'//其他資源要放在哪裡 ex: 圖片
-  }
+    publicPath:'/dist'
+  },
+  
 };

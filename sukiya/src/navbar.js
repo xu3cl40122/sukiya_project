@@ -4,7 +4,7 @@ import { withRouter, Link} from 'react-router-dom'
 import  Cart from './cartContainer'
 import { AnimatedLogo} from './animation'
 import axios from 'axios'
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 // 讓 axios 帶 cookie (預設不會帶)
 //axios.defaults.withCredentials = true
 
@@ -77,16 +77,58 @@ class MobileNavbar extends React.Component{
         this.state={
             isShowBar : false
         }
+        this.toggleBar = this.toggleBar.bind(this)
+    }
+    toggleBar(){
+        this.setState({
+            isShowBar:!this.state.isShowBar
+        })
     }
     render(){
+        const{isShowBar} = this.state
         return(
             <div className='navbar-mobile'>
                 <div className='logo'></div>
-                <div className='toggle'>
+                <div className='toggle' onClick={this.toggleBar}>
                     <i className='fa fa-bars'></i>
                 </div>
-                <div className='bar'></div>
+                {isShowBar? <Bar toggleBar ={this.toggleBar}/> : null}
             </div>
+        )
+    }
+}
+class Bar extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            show:false
+        }
+    }
+    render(){
+        const { toggleBar } = this.props
+        return(
+            <ReactCSSTransitionGroup
+                transitionName="bar"
+                transitionAppear={true}
+                transitionAppearTimeout={1000}
+                transitionEnterTimeout={1000}
+                transitionLeaveTimeout={1000}>
+                <div className='bar-base'>
+                    <div className='bar_row'>
+                        <div className='bar_col'>
+                            <Link to='/' className="link"><i className="fa fa-home"></i>回到首頁</Link>
+                        </div>
+                        <div className='bar_col'>
+                            <Link to='/products/bowl' className="link"><i className="fa fa-cutlery"></i>線上訂餐</Link>
+                        </div>
+                        <div className='bar_col'>
+                            <Link to='/map' className="link"><i className="fa fa-map-marker"></i>門市地點</Link>
+                        </div>
+
+                    </div>
+                    <div className='bar_back' onClick={toggleBar}><i className='fa fa-remove'></i></div>
+                </div>
+            </ReactCSSTransitionGroup >
         )
     }
 }

@@ -35,6 +35,7 @@ class SimpleMap extends Component {
         return (
             // Important! Always set the container height explicitly
             <div className='mapContainer'>
+                <SearchBox site={site} zoomIn={this.zoomIn} />
                 <div className='mapBox'>
                     <GoogleMapReact
                         bootstrapURLKeys={{ key: 'AIzaSyCfHAr-ZARIBL8FD7OXmzBgkcZ3jXGwPOE' }}
@@ -54,7 +55,7 @@ class SimpleMap extends Component {
                     })}    
                     </GoogleMapReact>
                 </div>
-                <SearchBox site={site} zoomIn = {this.zoomIn}/>
+                
             </div>
         );
     }

@@ -349,10 +349,63 @@ input[type=submit] {
   color: #fff;
   font-size: 25px;
 }
-.navbar-mobile .bar {
+.navbar-mobile .bar-base {
   width: 100vw;
   height: 100vh;
-  background: #d7000f;
+  top: 0;
+  left: 0;
+  background: #1e222a;
+  position: fixed;
+  z-index: 30;
+  padding: 25% 0;
+  opacity: 1;
+}
+.navbar-mobile .bar-enter {
+  opacity: 0.01;
+}
+.navbar-mobile .bar-enter .bar-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+}
+.navbar-mobile .bar_row {
+  width: 60%;
+  margin: 0 auto;
+}
+.navbar-mobile .bar_col {
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar-mobile .bar_col i {
+  margin-right: 10px;
+}
+.navbar-mobile .bar_back {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  color: #fff;
+  font-size: 2rem;
+}
+.bar-base {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background: #1e222a;
+  position: fixed;
+  z-index: 30;
+  padding: 25% 0;
+}
+.bar-appear {
+  opacity: 0.01;
+}
+.bar-appear.bar-appear-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
 }
 .header {
   width: 100%;
@@ -1035,11 +1088,22 @@ input[type=submit] {
   display: flex;
   justify-content: space-around;
 }
+@media screen and (max-width: 600px) {
+  .mapContainer {
+    flex-wrap: wrap;
+    padding: 10px 0;
+  }
+}
 .mapContainer .mapBox {
   height: 500px;
   width: 70%;
   border-radius: 10px;
   overflow: hidden;
+}
+@media screen and (max-width: 600px) {
+  .mapContainer .mapBox {
+    width: 100%;
+  }
 }
 .mapContainer .searchBox {
   width: 25%;
@@ -1060,6 +1124,13 @@ input[type=submit] {
   border-radius: 5px;
   font-size: 1.3rem;
   margin: 0 1rem;
+}
+@media screen and (max-width: 600px) {
+  .mapContainer .searchBox {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 10px;
+  }
 }
 .mapContainer .searchBox_searchButton {
   width: 60px;

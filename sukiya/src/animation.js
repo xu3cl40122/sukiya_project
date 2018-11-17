@@ -80,7 +80,6 @@ class Ani extends React.Component {
     }
     
     render() {
-        //console.log(this.props)
         return <div>
             <BigLogo hidden={this.state.hidden}></BigLogo>
             <SmallLogo hidden={!this.state.hidden}></SmallLogo>
