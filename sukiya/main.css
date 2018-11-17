@@ -343,11 +343,16 @@ input[type=submit] {
   border: 1px solid #fff;
   margin-left: 5%;
 }
-.navbar-mobile .bar {
+.navbar-mobile .toggle {
   position: absolute;
   right: 15px;
   color: #fff;
   font-size: 25px;
+}
+.navbar-mobile .bar {
+  width: 100vw;
+  height: 100vh;
+  background: #d7000f;
 }
 .header {
   width: 100%;

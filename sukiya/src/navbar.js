@@ -66,18 +66,30 @@ export class Navbar extends React.Component {
                         </li>
                     </ul>
                 </div>
-                <div className='navbar-mobile'>
-                    <div className='logo'></div>
-                    <div className='bar'>
-                        <i className='fa fa-bars'></i>
-                    </div>
-                    <div className></div>
-                </div>
+                <MobileNavbar />
             </div>
         )
     }
 }
-
+class MobileNavbar extends React.Component{
+    constructor(props){
+        super(props)
+        this.state={
+            isShowBar : false
+        }
+    }
+    render(){
+        return(
+            <div className='navbar-mobile'>
+                <div className='logo'></div>
+                <div className='toggle'>
+                    <i className='fa fa-bars'></i>
+                </div>
+                <div className='bar'></div>
+            </div>
+        )
+    }
+}
 export class Header extends React.Component{
     render(){
         return(
