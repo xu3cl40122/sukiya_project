@@ -68,6 +68,10 @@ export class Navbar extends React.Component {
                 </div>
                 <div className='navbar-mobile'>
                     <div className='logo'></div>
+                    <div className='bar'>
+                        <i className='fa fa-bars'></i>
+                    </div>
+                    <div className></div>
                 </div>
             </div>
         )
@@ -126,12 +130,6 @@ class Sidebar extends React.Component {
 Sidebar = withRouter(Sidebar)
 export {Sidebar}
 
-export class BgPink extends React.Component {
-    render() {
-        return (
-            <div className="BgPink"></div>
-        )
-    }
-}
+
 
 

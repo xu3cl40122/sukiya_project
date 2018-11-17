@@ -60,7 +60,121 @@ navbar_z = 30
     i 
         margin-right 10px
         font-size 1.5rem
+    .navbar_logo-base
+    width 68px
+    height 58px
+    position absolute
+    top 6px
+    left 75px
+    background url('../pic/Logo_sukiya.jpg')
+    background-size cover 
+    border 2px solid white
+    display block 
     
+    .navbar_logo-enter {
+        animation-name: fade-in;
+        animation-duration: 300ms;
+    }
+    .navbar_logo-enter.navbar_logo-enter-active {
+    opacity: 1;
+    top: 58px
+    transition: all 1500ms ease-in;
+    }
+
+    @keyframes bigger-out{
+        from{
+            width 68px
+            height 58px
+        }
+        to{
+            width 136px
+            height 116px
+        }
+    }
+    
+    // 用來 animation 的 style
+    .bigLogo-base {
+        width 136px
+        height 116px
+        position absolute
+        top 15px
+        left 75px
+        background url('../pic/Logo_sukiya.jpg')
+        background-size cover 
+        border 2px solid white
+        display block 
+        z-index 30 // 為了在邊際情形時蓋掉小的
+    }
+
+    .bigLogo-enter {
+    animation-name: fade-in;
+    animation-duration: 1000ms;
+    }
+    .bigLogo-leave {
+    animation-name: fade-out;
+    animation-duration: 1000ms;
+    }
+
+    @keyframes fade-out {
+    from {
+        //opacity: 0.0;
+        top 15px
+    }
+    to {
+        //opacity: 1.0;
+        top -150px
+    }
+    }
+    @keyframes fade-in {
+    from {
+        //opacity: 0.0;
+        top -150px
+    }
+    to {
+        //opacity: 1.0;
+        top 15px
+    }
+    }
+    @keyframes fade-out_small {
+    from {
+        //opacity: 0.0;
+        top 10px
+    }
+    to {
+        //opacity: 1.0;
+        top -150px
+    }
+    }
+    @keyframes fade-in_small {
+    from {
+        //opacity: 0.0;
+        top -150px
+    }
+    to {
+        //opacity: 1.0;
+        top 10px
+    }
+    }
+
+    .smallLogo-base {
+        width 60px
+        height 50px
+        position absolute
+        top 10px
+        left 75px
+        background url('../pic/Logo_sukiya.jpg')
+        background-size cover 
+        border 2px solid white
+        display block 
+    }
+    .smallLogo-enter {
+    animation-name: fade-in_small;
+    animation-duration: 1000ms;
+    }
+    .smallLogo-leave {
+    animation-name: fade-out_small;
+    animation-duration: 1000ms;
+    }
     .navlist
         display inline-flex
         list-style none
@@ -107,125 +221,12 @@ navbar_z = 30
         background-size cover 
         border 1px solid white 
         margin-left 5%
+    .bar 
+        position absolute
+        right 15px
+        color white
+        font-size 25px
 
-.navbar_logo-base
-    width 68px
-    height 58px
-    position absolute
-    top 6px
-    left 75px
-    background url('../pic/Logo_sukiya.jpg')
-    background-size cover 
-    border 2px solid white
-    display block 
-    /*.navbar_logo-enter 
-        animation-name fade-in
-        animation-duration 800ms
-        */
-.navbar_logo-enter {
-    animation-name: fade-in;
-    animation-duration: 300ms;
-}
-
-.navbar_logo-enter.navbar_logo-enter-active {
-  opacity: 1;
-  top: 58px
-  transition: all 1500ms ease-in;
-}
-
-@keyframes bigger-out{
-    from{
-        width 68px
-        height 58px
-    }
-    to{
-        width 136px
-        height 116px
-    }
-}
-// 用來 animation 的 style
-.bigLogo-base {
-    width 136px
-    height 116px
-    position absolute
-    top 15px
-    left 75px
-    background url('../pic/Logo_sukiya.jpg')
-    background-size cover 
-    border 2px solid white
-    display block 
-    z-index 30 // 為了在邊際情形時蓋掉小的
-}
-
-.bigLogo-enter {
-  animation-name: fade-in;
-  animation-duration: 1000ms;
-}
-.bigLogo-leave {
-  animation-name: fade-out;
-  animation-duration: 1000ms;
-}
-
-@keyframes fade-out {
-  from {
-    //opacity: 0.0;
-    top 15px
-  }
-  to {
-    //opacity: 1.0;
-    top -150px
-  }
-}
-@keyframes fade-in {
-  from {
-    //opacity: 0.0;
-    top -150px
-  }
-  to {
-    //opacity: 1.0;
-    top 15px
-  }
-}
-@keyframes fade-out_small {
-  from {
-    //opacity: 0.0;
-    top 10px
-  }
-  to {
-    //opacity: 1.0;
-    top -150px
-  }
-}
-@keyframes fade-in_small {
-  from {
-    //opacity: 0.0;
-    top -150px
-  }
-  to {
-    //opacity: 1.0;
-    top 10px
-  }
-}
-
-.smallLogo-base {
-    width 60px
-    height 50px
-    position absolute
-    top 10px
-    left 75px
-    background url('../pic/Logo_sukiya.jpg')
-    background-size cover 
-    border 2px solid white
-    display block 
-}
-.smallLogo-enter {
-  animation-name: fade-in_small;
-  animation-duration: 1000ms;
-}
-.smallLogo-leave {
-  animation-name: fade-out_small;
-  animation-duration: 1000ms;
-}
 
 .header
     width 100%
@@ -293,7 +294,7 @@ navBrick_col-before(url)
     justify-content space-between
     position relative
     background white
-    @media screen and (max-width: 600px)
+    @media screen and (max-width: 960px)
         width 100%
         flex-wrap wrap
         padding 20px 0

@@ -64,6 +64,64 @@ input[type=submit] {
   margin-right: 10px;
   font-size: 1.5rem;
 }
+.navbar .navbar_logo-base,
+.navbar width 68px,
+.navbar height 58px,
+.navbar position absolute,
+.navbar top 6px,
+.navbar left 75px,
+.navbar background url('../pic/Logo_sukiya.jpg'),
+.navbar background-size cover,
+.navbar border 2px solid white,
+.navbar display block,
+.navbar .navbar_logo-enter {
+  animation-name: fade-in;
+  animation-duration: 300ms;
+}
+.navbar .navbar_logo-enter.navbar_logo-enter-active {
+  opacity: 1;
+  top: 58px;
+  transition: all 1500ms ease-in;
+}
+.navbar .bigLogo-base {
+  width: 136px;
+  height: 116px;
+  position: absolute;
+  top: 15px;
+  left: 75px;
+  background: url("../pic/Logo_sukiya.jpg");
+  background-size: cover;
+  border: 2px solid #fff;
+  display: block;
+  z-index: 30;
+}
+.navbar .bigLogo-enter {
+  animation-name: fade-in;
+  animation-duration: 1000ms;
+}
+.navbar .bigLogo-leave {
+  animation-name: fade-out;
+  animation-duration: 1000ms;
+}
+.navbar .smallLogo-base {
+  width: 60px;
+  height: 50px;
+  position: absolute;
+  top: 10px;
+  left: 75px;
+  background: url("../pic/Logo_sukiya.jpg");
+  background-size: cover;
+  border: 2px solid #fff;
+  display: block;
+}
+.navbar .smallLogo-enter {
+  animation-name: fade-in_small;
+  animation-duration: 1000ms;
+}
+.navbar .smallLogo-leave {
+  animation-name: fade-out_small;
+  animation-duration: 1000ms;
+}
 .navbar .navlist {
   display: inline-flex;
   list-style: none;
@@ -94,6 +152,174 @@ input[type=submit] {
   transition: 0.3s all ease-out;
   transform: scale3d(0, 1, 1);
 }
+@-moz-keyframes bigger-out {
+  from {
+    width: 68px;
+    height: 58px;
+  }
+  to {
+    width: 136px;
+    height: 116px;
+  }
+}
+@-webkit-keyframes bigger-out {
+  from {
+    width: 68px;
+    height: 58px;
+  }
+  to {
+    width: 136px;
+    height: 116px;
+  }
+}
+@-o-keyframes bigger-out {
+  from {
+    width: 68px;
+    height: 58px;
+  }
+  to {
+    width: 136px;
+    height: 116px;
+  }
+}
+@keyframes bigger-out {
+  from {
+    width: 68px;
+    height: 58px;
+  }
+  to {
+    width: 136px;
+    height: 116px;
+  }
+}
+@-moz-keyframes fade-out {
+  from {
+    top: 15px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@-webkit-keyframes fade-out {
+  from {
+    top: 15px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@-o-keyframes fade-out {
+  from {
+    top: 15px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@keyframes fade-out {
+  from {
+    top: 15px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@-moz-keyframes fade-in {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 15px;
+  }
+}
+@-webkit-keyframes fade-in {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 15px;
+  }
+}
+@-o-keyframes fade-in {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 15px;
+  }
+}
+@keyframes fade-in {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 15px;
+  }
+}
+@-moz-keyframes fade-out_small {
+  from {
+    top: 10px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@-webkit-keyframes fade-out_small {
+  from {
+    top: 10px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@-o-keyframes fade-out_small {
+  from {
+    top: 10px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@keyframes fade-out_small {
+  from {
+    top: 10px;
+  }
+  to {
+    top: -150px;
+  }
+}
+@-moz-keyframes fade-in_small {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 10px;
+  }
+}
+@-webkit-keyframes fade-in_small {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 10px;
+  }
+}
+@-o-keyframes fade-in_small {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 10px;
+  }
+}
+@keyframes fade-in_small {
+  from {
+    top: -150px;
+  }
+  to {
+    top: 10px;
+  }
+}
 .navbar-mobile {
   width: 100%;
   height: 8vh;
@@ -117,68 +343,11 @@ input[type=submit] {
   border: 1px solid #fff;
   margin-left: 5%;
 }
-.navbar_logo-base {
-  width: 68px;
-  height: 58px;
+.navbar-mobile .bar {
   position: absolute;
-  top: 6px;
-  left: 75px;
-  background: url("../pic/Logo_sukiya.jpg");
-  background-size: cover;
-  border: 2px solid #fff;
-  display: block;
-/*.navbar_logo-enter 
-        animation-name fade-in
-        animation-duration 800ms
-        */
-}
-.navbar_logo-enter {
-  animation-name: fade-in;
-  animation-duration: 300ms;
-}
-.navbar_logo-enter.navbar_logo-enter-active {
-  opacity: 1;
-  top: 58px;
-  transition: all 1500ms ease-in;
-}
-.bigLogo-base {
-  width: 136px;
-  height: 116px;
-  position: absolute;
-  top: 15px;
-  left: 75px;
-  background: url("../pic/Logo_sukiya.jpg");
-  background-size: cover;
-  border: 2px solid #fff;
-  display: block;
-  z-index: 30;
-}
-.bigLogo-enter {
-  animation-name: fade-in;
-  animation-duration: 1000ms;
-}
-.bigLogo-leave {
-  animation-name: fade-out;
-  animation-duration: 1000ms;
-}
-.smallLogo-base {
-  width: 60px;
-  height: 50px;
-  position: absolute;
-  top: 10px;
-  left: 75px;
-  background: url("../pic/Logo_sukiya.jpg");
-  background-size: cover;
-  border: 2px solid #fff;
-  display: block;
-}
-.smallLogo-enter {
-  animation-name: fade-in_small;
-  animation-duration: 1000ms;
-}
-.smallLogo-leave {
-  animation-name: fade-out_small;
-  animation-duration: 1000ms;
+  right: 15px;
+  color: #fff;
+  font-size: 25px;
 }
 .header {
   width: 100%;
@@ -242,7 +411,7 @@ input[type=submit] {
   position: relative;
   background: #fff;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 960px) {
   .navBrick_row {
     width: 100%;
     flex-wrap: wrap;
@@ -1019,172 +1188,4 @@ input[type=submit] {
   width: 100%;
   border-bottom: 1px solid rgba(99,99,99,0.251);
   margin-bottom: 15px;
-}
-@-moz-keyframes bigger-out {
-  from {
-    width: 68px;
-    height: 58px;
-  }
-  to {
-    width: 136px;
-    height: 116px;
-  }
-}
-@-webkit-keyframes bigger-out {
-  from {
-    width: 68px;
-    height: 58px;
-  }
-  to {
-    width: 136px;
-    height: 116px;
-  }
-}
-@-o-keyframes bigger-out {
-  from {
-    width: 68px;
-    height: 58px;
-  }
-  to {
-    width: 136px;
-    height: 116px;
-  }
-}
-@keyframes bigger-out {
-  from {
-    width: 68px;
-    height: 58px;
-  }
-  to {
-    width: 136px;
-    height: 116px;
-  }
-}
-@-moz-keyframes fade-out {
-  from {
-    top: 15px;
-  }
-  to {
-    top: -150px;
-  }
-}
-@-webkit-keyframes fade-out {
-  from {
-    top: 15px;
-  }
-  to {
-    top: -150px;
-  }
-}
-@-o-keyframes fade-out {
-  from {
-    top: 15px;
-  }
-  to {
-    top: -150px;
-  }
-}
-@keyframes fade-out {
-  from {
-    top: 15px;
-  }
-  to {
-    top: -150px;
-  }
-}
-@-moz-keyframes fade-in {
-  from {
-    top: -150px;
-  }
-  to {
-    top: 15px;
-  }
-}
-@-webkit-keyframes fade-in {
-  from {
-    top: -150px;
-  }
-  to {
-    top: 15px;
-  }
-}
-@-o-keyframes fade-in {
-  from {
-    top: -150px;
-  }
-  to {
-    top: 15px;
-  }
-}
-@keyframes fade-in {
-  from {
-    top: -150px;
-  }
-  to {
-    top: 15px;
-  }
-}
-@-moz-keyframes fade-out_small {
-  from {
-    top: 10px;
-  }
-  to {
-    top: -150px;
-  }
-}
-@-webkit-keyframes fade-out_small {
-  from {
-    top: 10px;
-  }
-  to {
-    top: -150px;
-  }
-}
-@-o-keyframes fade-out_small {
-  from {
-    top: 10px;
-  }
-  to {
-    top: -150px;
-  }
-}
-@keyframes fade-out_small {
-  from {
-    top: 10px;
-  }
-  to {
-    top: -150px;
-  }
-}
-@-moz-keyframes fade-in_small {
-  from {
-    top: -150px;
-  }
-  to {
-    top: 10px;
-  }
-}
-@-webkit-keyframes fade-in_small {
-  from {
-    top: -150px;
-  }
-  to {
-    top: 10px;
-  }
-}
-@-o-keyframes fade-in_small {
-  from {
-    top: -150px;
-  }
-  to {
-    top: 10px;
-  }
-}
-@keyframes fade-in_small {
-  from {
-    top: -150px;
-  }
-  to {
-    top: 10px;
-  }
 }
