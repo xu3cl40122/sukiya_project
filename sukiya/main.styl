@@ -12,6 +12,9 @@ p
     padding 0
 a 
     color white
+ul 
+    margin 0 
+    padding 0
 // ---- main color --- 
 s_red = #d7000f
 s_yellow = #FFD93E
@@ -55,7 +58,7 @@ navbar_z = 30
     display flex
     justify-content flex-end
     align-items center
-    @media screen and (max-width: 600px)
+    @media screen and (max-width: 1000px)
         display none
     i 
         margin-right 10px
@@ -212,7 +215,7 @@ navbar_z = 30
     top 0
     align-items center
     z-index navbar_z
-    @media screen and (max-width: 600px)
+    @media screen and (max-width: 1000px)
         display flex
     .logo 
         background url('../pic/Logo_sukiya.jpg')
@@ -226,21 +229,6 @@ navbar_z = 30
         right 15px
         color white
         font-size 25px
-    .bar-base 
-        width 100vw 
-        height 100vh 
-        top 0
-        left 0
-        background s_gray 
-        position fixed
-        z-index navbar_z
-        padding 25% 0
-        opacity 1
-    .bar-enter  
-        opacity 0.01
-    .bar-enter .bar-enter-active
-        opacity 1
-        transition opacity 1000ms ease-in
     .bar_row 
         width 60% 
         margin 0 auto 
@@ -260,7 +248,8 @@ navbar_z = 30
         right 20px
         color white 
         font-size 2rem
-.bar-base 
+    // bar animation 
+    .bar-base 
         width 100vw 
         height 100vh 
         top 0
@@ -269,17 +258,13 @@ navbar_z = 30
         position fixed
         z-index navbar_z
         padding 25% 0
-.bar-appear  
-    opacity 0.01
-.bar-appear.bar-appear-active
-    opacity 1
-    transition opacity 1000ms ease-in
-    
-
-
-
-
-
+        opacity 1
+    .bar-enter  
+        opacity 0.01
+    .bar-enter.bar-enter-active
+        opacity 1
+        transition opacity 300ms ease-in-out
+ 
 .header
     width 100%
     height "calc(100vh - %s)" %navbar_height // stylus 要 calc 變數的語法
@@ -465,7 +450,8 @@ navBrick_col-before(url)
        
         
 
-sidebar_width = 13% // 連動 sidebar 和 product_container 
+sidebar_width = 14% // 連動 sidebar 和 product_container 
+bigScreen_sidebar_width = 200px //大螢幕時套用，以免過寬
 .sidebar
     box-shadow 3px 3px 6px 3px rgba(0,0,0,0.2)
     width sidebar_width
@@ -479,6 +465,8 @@ sidebar_width = 13% // 連動 sidebar 和 product_container
     top 0px
     left 0px
     z-index 20
+    @media screen and (min-width: 1440px)
+        width bigScreen_sidebar_width
     .sidebar_line
         padding 10px 15px
         transition 0.3s background ease-out 
@@ -499,6 +487,32 @@ sidebar_width = 13% // 連動 sidebar 和 product_container
         &:hover 
             cursor pointer
             background s_yellow
+.sidebar-mobile 
+    width 100% 
+    height h = navbar_height-momile 
+    margin-top h 
+    //border-bottom 1px solid #989898
+    //to horizontal scroll 
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    position relative
+    &::before 
+        content ''
+        width 95% 
+        height 1px
+        border-bottom 1px solid #989898
+        position absolute
+        bottom 10px
+    .col 
+        height 100% 
+        margin 0 10px
+        display: inline-block
+        line-height h
+        color #989898
+        font-weight bold
+
+
 .product_container
     z-index 5 // 為了在 react 內建包在外面的 div 上面
     margin-left sidebar_width
@@ -510,6 +524,12 @@ sidebar_width = 13% // 連動 sidebar 和 product_container
     flex-wrap wrap
     align-items flex-start
     justify-content center
+    @media screen and (min-width: 1440px) 
+        margin-left bigScreen_sidebar_width 
+        width "calc(100% - %s)" %bigScreen_sidebar_width
+    @media screen and (max-width: 1000px) 
+        margin-left 0
+        width 100%
     .product_row
         width 85%
         display flex 
