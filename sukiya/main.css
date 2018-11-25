@@ -326,7 +326,7 @@ input[type=submit] {
 }
 .navbar-mobile {
   width: 100%;
-  height: 8vh;
+  height: 45px;
   background: #d7000f;
   display: none;
   position: fixed;
@@ -409,8 +409,7 @@ input[type=submit] {
 }
 @media screen and (max-width: 600px) {
   .header {
-    height: 92vh;
-    margin-top: 8vh;
+    margin-top: 45px;
   }
 }
 .header:before {
@@ -645,10 +644,16 @@ input[type=submit] {
   top: 0px;
   left: 0px;
   z-index: 20;
+  display: block;
 }
 @media screen and (min-width: 1440px) {
   .sidebar {
     width: 200px;
+  }
+}
+@media screen and (max-width: 1000px) {
+  .sidebar {
+    display: none;
   }
 }
 .sidebar .sidebar_line {
@@ -679,28 +684,55 @@ input[type=submit] {
 }
 .sidebar-mobile {
   width: 100%;
-  height: 8vh;
-  margin-top: 8vh;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  white-space: nowrap;
+  margin-top: 45px;
+  padding: 0 20px;
+  height: 40px;
+  display: none;
+}
+@media screen and (max-width: 1000px) {
+  .sidebar-mobile {
+    display: block;
+  }
+}
+.sidebar-mobile .container {
+  overflow: hidden;
+  width: 100%;
   position: relative;
-}
-.sidebar-mobile::before {
-  content: '';
-  width: 95%;
-  height: 1px;
-  border-bottom: 1px solid #989898;
-  position: absolute;
-  bottom: 10px;
-}
-.sidebar-mobile .col {
   height: 100%;
-  margin: 0 10px;
+}
+.sidebar-mobile .arrowLeft {
+  position: absolute;
+  left: 15px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.5rem;
+  color: #d7000f;
+}
+.sidebar-mobile .arrowRight {
+  position: absolute;
+  right: 15px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 1.5rem;
+  color: #d7000f;
+}
+.sidebar-mobile ul {
+  overflow: scroll;
+  height: 100%;
+  border-bottom: 1px solid #d6d6d6;
+  white-space: nowrap;
+  line-height: 40px;
+}
+.sidebar-mobile li {
+  list-style-type: none;
   display: inline-block;
-  line-height: 8vh;
+  height: 100%;
+  padding: 0px 20px;
   color: #989898;
   font-weight: bold;
+}
+.sidebar-mobile .sidebar-mobile_line-active {
+  color: #d7000f;
 }
 .product_container {
   z-index: 5;
@@ -724,6 +756,7 @@ input[type=submit] {
   .product_container {
     margin-left: 0;
     width: 100%;
+    margin-top: 0;
   }
 }
 .product_container .product_row {
@@ -747,6 +780,11 @@ input[type=submit] {
 }
 .product_container .product_col:hover img {
   transform: scale(1.1);
+}
+@media screen and (max-width: 600px) {
+  .product_container .product_col {
+    width: 100%;
+  }
 }
 .product_container .product_col_placeholder {
   width: 280px;

@@ -161,7 +161,7 @@ class Sidebar extends React.Component {
         const { match } = this.props
         return (
             <div>
-                <div className="sidebar hide">
+                <div className="sidebar">
                     <Link to='/products/bowl' className="link">
                         <div className={'sidebar_line ' + (match.params.type == 'bowl' && 'sidebar_line-active')}>丼飯</div>
                     </Link>
@@ -174,16 +174,15 @@ class Sidebar extends React.Component {
                     <Cart />
                 </div>
                 <div className='sidebar-mobile '>
-                    <ul>
-                        <li className='col'>咖哩飯</li>
-                        <li className='col'>咖哩飯</li>
-                        <li className='col'>咖哩飯</li>
-                        <li className='col'>咖哩飯</li>
-                        <li className='col'>咖哩飯</li>
-                        <li className='col'>咖哩飯</li>
-                        <li className='col'>咖哩飯</li>
-                        <li className='col'>咖哩飯</li>
-                    </ul>
+                    <div className='arrowLeft'><i className='fa fa-angle-left'></i></div>
+                    <div className='arrowRight'><i className='fa fa-angle-right'></i></div>
+                    <div className='container'>
+                        <ul>
+                            <Link to='/products/bowl' className="link"><li className={match.params.type == 'bowl' ? 'sidebar-mobile_line-active': null}>丼飯</li></Link>
+                            <Link to='/products/curry' className="link"><li className={match.params.type == 'curry' ? 'sidebar-mobile_line-active' : null}>咖哩</li></Link>
+                            <Link to='/products/other' className="link"><li className={match.params.type == 'other' ? 'sidebar-mobile_line-active' : null}>其他</li></Link>
+                        </ul>
+                    </div>
                 </div>
             </div>
         )

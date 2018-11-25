@@ -45,7 +45,7 @@ input[type=submit]
     display none !important
 //--- class ---
 navbar_height = 70px
-navbar_height-momile = 8vh 
+navbar_height-momile = 45px 
 navbar_z = 30
 .navbar
     background s_red
@@ -279,7 +279,6 @@ navbar_z = 30
     justify-content center
     margin-top navbar_height
     @media screen and (max-width: 600px)
-        height 100vh - navbar_height-momile
         margin-top navbar_height-momile
     &:before 
         content ""
@@ -465,8 +464,11 @@ bigScreen_sidebar_width = 200px //大螢幕時套用，以免過寬
     top 0px
     left 0px
     z-index 20
+    display block
     @media screen and (min-width: 1440px)
         width bigScreen_sidebar_width
+    @media screen and (max-width: 1000px)
+        display none
     .sidebar_line
         padding 10px 15px
         transition 0.3s background ease-out 
@@ -487,32 +489,51 @@ bigScreen_sidebar_width = 200px //大螢幕時套用，以免過寬
         &:hover 
             cursor pointer
             background s_yellow
+
+
+sidebar_height = 40px
 .sidebar-mobile 
     width 100% 
-    height h = navbar_height-momile 
-    margin-top h 
-    //border-bottom 1px solid #989898
-    //to horizontal scroll 
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    position relative
-    &::before 
-        content ''
-        width 95% 
-        height 1px
-        border-bottom 1px solid #989898
+    margin-top navbar_height-momile 
+    padding 0 20px
+    height sidebar_height
+    display none
+    @media screen and (max-width: 1000px)
+        display block
+    .container 
+        overflow hidden
+        width 100% 
+        position relative
+        height 100%
+    .arrowLeft 
         position absolute
-        bottom 10px
-    .col 
-        height 100% 
-        margin 0 10px
-        display: inline-block
-        line-height h
+        left 15px
+        height sidebar_height
+        line-height sidebar_height
+        font-size 1.5rem
+        color s_red
+    .arrowRight 
+        position absolute
+        right 15px
+        height sidebar_height
+        line-height sidebar_height
+        font-size 1.5rem
+        color s_red
+    ul  
+        overflow: scroll;
+        height: 100%;
+        border-bottom: 1px solid #D6D6D6;
+        white-space: nowrap;
+        line-height sidebar_height
+    li 
+        list-style-type: none;
+        display: inline-block;
+        height 100%
+        padding 0px 20px
         color #989898
         font-weight bold
-
-
+    .sidebar-mobile_line-active 
+        color s_red
 .product_container
     z-index 5 // 為了在 react 內建包在外面的 div 上面
     margin-left sidebar_width
@@ -530,6 +551,7 @@ bigScreen_sidebar_width = 200px //大螢幕時套用，以免過寬
     @media screen and (max-width: 1000px) 
         margin-left 0
         width 100%
+        margin-top 0
     .product_row
         width 85%
         display flex 
@@ -549,6 +571,8 @@ bigScreen_sidebar_width = 200px //大螢幕時套用，以免過寬
             box-shadow  0px 1px 13px 5px rgba(0,0,0,0.1)
             img 
                 transform scale(1.1)
+        @media screen and (max-width: 600px) 
+            width 100%
     .product_col_placeholder 
         width 280px
         height 1px
