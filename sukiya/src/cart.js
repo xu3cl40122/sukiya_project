@@ -9,7 +9,7 @@ export  class Cart extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            open:false,//modal open
+            isOpen:false,//modal isOpen
             checkedorder:false, //是否進入訂單資訊業面
             phone:'',
             address:'',
@@ -30,11 +30,11 @@ export  class Cart extends React.Component {
         })
     }
     onOpenModal(){
-        this.setState({ open: true });
+        this.setState({ isOpen: true });
     };
 
     onCloseModal(){
-        this.setState({ open: false });
+        this.setState({ isOpen: false });
     };
     // 好像沒有在 render 那邊 call 就不用 bind(this)?
     calTotal(){
@@ -87,7 +87,7 @@ export  class Cart extends React.Component {
                 alert('訂餐成功!')
                 changeCart([])
                 this.setState({
-                    open: false,
+                    isOpen: false,
                     checkedorder: false, 
                 })
             }
@@ -97,7 +97,7 @@ export  class Cart extends React.Component {
         }
     }
     render() {
-        const { open } = this.state;
+        const { isOpen } = this.state;
         const {cart} = this.props
         this.total = this.calTotal()//計算 total
         // 購物車
@@ -105,7 +105,15 @@ export  class Cart extends React.Component {
             return (
                 <div>
                     <div onClick={this.onOpenModal} className='sidebar_cart_button'><i className="fa fa-shopping-cart"></i>購物車</div>
-                    <Modal open={open} onClose={this.onCloseModal} styles={modalStyle} center>
+                    <Modal_page1 
+                        onCloseModal = {this.onCloseModal}
+                        isOpen = {isOpen}
+                        cart = {cart}
+                        handleDelete = {this.handleDelete}
+                        total = {this.total}
+                        toChecked = {this.toChecked}
+                    />
+                    {/*<Modal open={isOpen} onClose={this.onCloseModal} styles={modalStyle} center>
                         <div className='modalContainer'>
                             <h2 className='modal_title'>SHOPPING CART</h2>
                             <div className='modal_title_border'></div>
@@ -128,7 +136,7 @@ export  class Cart extends React.Component {
                                 <div className='button modal_buyButton' onClick={this.toChecked}>已確認商品</div>
                             </div>
                         </div>
-                    </Modal>
+                            </Modal>*/}
                 </div>
             );
         }
@@ -136,7 +144,7 @@ export  class Cart extends React.Component {
         return(
             <div>
                 <div onClick={this.onOpenModal} className='sidebar_cart_button'><i className="fa fa-shopping-cart"></i>購物車</div>
-                <Modal open={open} onClose={this.onCloseModal} styles={modalStyle} center>
+                <Modal open={isOpen} onClose={this.onCloseModal} styles={modalStyle} center>
                     <div className='modalContainer'>
                         <h2 className='modal_title'>訂單資訊</h2>
                         <div className='modal_title_border'></div>
@@ -153,7 +161,6 @@ export  class Cart extends React.Component {
                                 <h2>其他需求</h2>
                                 <textarea name="other_need" id="" value={this.state.other_need} onChange={this.inputChange}></textarea>
                             </div>
-                           
                         </div>
                        
                         <div className='modal_totalContainer-forChecked '>
@@ -167,10 +174,41 @@ export  class Cart extends React.Component {
                 </Modal>
             </div>
         )
-        
+    }
+}
+class Modal_page1 extends React.Component{
+    render(){
+        const{onCloseModal, isOpen, cart, handleDelete, total, toChecked} = this.props
+        return(
+            <Modal open={isOpen} onClose={onCloseModal} styles={modalStyle} center>
+                <div className='modalContainer'>
+                    <h2 className='modal_title'>SHOPPING CART</h2>
+                    <div className='modal_title_border'></div>
+                    <div className='modal_row'>
+                        <div className='modal_row_firstLine'></div>
+                        {cart.map((product, index) => {
+                            return (
+                                <ModalCol
+                                    key={index}
+                                    id={index}
+                                    product={product}
+                                    handleDelete={handleDelete}
+                                />
+                            )
+                        })}
+                        {cart.length == 0 ? <h2>購物車內沒有商品</h2> : null}
+                    </div>
+                    <div className='modal_totalContainer'>
+                        <h2>合計: </h2><h2>{total}</h2>
+                        <div className='button modal_buyButton' onClick={toChecked}>已確認商品</div>
+                    </div>
+                </div>
+            </Modal>
+        )
         
     }
 }
+
 
 class ModalCol extends React.Component{
     constructor(props){
@@ -194,7 +232,7 @@ class ModalCol extends React.Component{
                     <p className='modal_col_productName'>{product.name}</p>
                     <p>{product.size}</p>
                 </div>
-                <p className='modal_col_setName'>{'+ ' + product.set}</p>
+                <p className='modal_col_setName'>{product.set ==''? '' : '+ ' + product.set}</p>
                 <p className='modal_col_num'>{'x' + product.num}</p>
                 <p className='modal_col_price'>{'$' + product.total}</p>
                 <i className='fa fa-close modal_col_close' onClick={this.deleteProduct}></i>
