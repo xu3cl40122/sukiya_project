@@ -45,7 +45,7 @@ export class Navbar extends React.Component {
         })
     }
     render() {
-        const { match, userState } = this.props
+        const { match, userState, location } = this.props
         return (
             <div>
                 <div className="navbar">
@@ -183,6 +183,7 @@ class Sidebar extends React.Component {
                             <Link to='/products/other' className="link"><li className={match.params.type == 'other' ? 'sidebar-mobile_line-active' : null}>其他</li></Link>
                         </ul>
                     </div>
+                    <Cart />
                 </div>
             </div>
         )

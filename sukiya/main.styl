@@ -493,17 +493,17 @@ bigScreen_sidebar_width = 200px //大螢幕時套用，以免過寬
 
 sidebar_height = 40px
 .sidebar-mobile 
-    width 100% 
+    width 80% 
     margin-top navbar_height-momile 
     padding 0 20px
     height sidebar_height
     display none
+    position relative
     @media screen and (max-width: 1000px)
         display block
     .container 
         overflow hidden
         width 100% 
-        position relative
         height 100%
     .arrowLeft 
         position absolute
@@ -519,6 +519,12 @@ sidebar_height = 40px
         line-height sidebar_height
         font-size 1.5rem
         color s_red
+    .sidebar_cart_button
+        width 20px 
+        height 20px 
+        z-index 50 
+        background blue 
+        position absolute
     ul  
         overflow: scroll;
         height: 100%;
@@ -557,10 +563,11 @@ sidebar_height = 40px
         display flex 
         justify-content space-between
         flex-wrap wrap
-        
+        padding 20px 0
+        a 
+            margin 15px
     .product_col
         width 280px
-        margin-top 30px
         box-shadow  0px 1px 13px 1px rgba(0,0,0,0.1)
         border-radius 3px
         overflow hidden
@@ -573,12 +580,13 @@ sidebar_height = 40px
                 transform scale(1.1)
         @media screen and (max-width: 600px) 
             width 100%
+    
     .product_col_placeholder 
         width 280px
         height 1px
     .product_row_img 
         width 100%
-        height 195px
+        //height 195px
         display block
         z-index -10
         position relative
