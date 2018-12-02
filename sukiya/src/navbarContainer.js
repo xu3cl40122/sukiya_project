@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import {Navbar} from './navbar'
-import {login} from './actions'
+import {setLoginState} from './actions'
 import {
     withRouter
 } from 'react-router-dom'
@@ -11,8 +11,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch =>({
-    login: (state) => {
-        dispatch(login(state))
+    setLoginState: (state) => {
+        dispatch(setLoginState(state))
     }
 })
 // withRouter 要包在最外面!!! 不然不會觸發 update 事件

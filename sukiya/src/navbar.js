@@ -11,9 +11,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 export class Navbar extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {
-            hidden: true
-        }
+        
         this.checkSession = this.checkSession.bind(this)
         this.logout = this.logout.bind(this)
     }
@@ -27,6 +25,14 @@ export class Navbar extends React.Component {
             withCredentials: true
         }).then((res) => {
             console.log(res.data)
+            
+            if(res.data!= 'noSession'){
+                this.props.setLoginState({
+                    username : res.data.user,
+                    user_id : res.data.user_id
+                })
+            }
+            
         })
     }
     logout() {
@@ -35,7 +41,8 @@ export class Navbar extends React.Component {
             url: 'http://localhost:3000/logout',
             withCredentials: true
         }).then((res) => {
-            console.log(res.data)
+            this.props.history.push('/')
+            this.props.setLoginState({})
         })
     }
     render() {
@@ -51,11 +58,7 @@ export class Navbar extends React.Component {
                         <li>
                             <Link to='/map' className="link"><i className="fa fa-map-marker"></i>門市地點</Link>
                         </li>
-                        <li onClick={() => {
-                            this.setState({
-                                hidden: !this.state.hidden
-                            })
-                        }}><i className="fa fa-users"></i>關於我們</li>
+                        <li><i className="fa fa-users"></i>關於我們</li>
                         <li onClick={this.checkSession}><i className="fa fa-info-circle"></i>最新消息</li>
                         <li>
                             {userState.username !== undefined ? <div onClick={this.logout}><i className="fa fa-user"></i>{userState.username}</div> : <Link to='/account' className="link"><i className="fa fa-user"></i>登入</Link>}

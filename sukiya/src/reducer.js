@@ -5,7 +5,8 @@ import {
     GET_SITE,
     LOGIN,
     SET_LOGIN_STATE,
-    SEND_ORDER 
+    SEND_ORDER,
+    CHECK_SESSION 
 } from './actionTypes'
 import { combineReducers } from 'redux'
 const initialState ={

@@ -53,7 +53,9 @@ module.exports={
     },
     logout:function logout(req,res){
         addCrosHeader(req,res)
-        req.session.distroy
+        req.session.destroy(function (err) {
+            console.log(err)
+        })
         res.send('logout')
     },
     checkSession:function checkSession(req,res){

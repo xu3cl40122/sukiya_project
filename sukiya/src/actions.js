@@ -7,6 +7,7 @@ import {
     LOGIN,
     SET_LOGIN_STATE,
     SEND_ORDER,
+    CHECK_SESSION
 } from './actionTypes'
 import axios from 'axios'
 
@@ -54,3 +55,14 @@ export const sendOrder = (order)=>({
         data: order
     })
 })
+
+export const checkSession = ()=>({
+    type: CHECK_SESSION,
+    payload: axios({
+        method: 'get',
+        url: 'http://localhost:3000/checkSession',
+        withCredentials: true
+    })
+
+})
+
