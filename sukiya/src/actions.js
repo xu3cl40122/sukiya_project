@@ -41,7 +41,8 @@ export const login = (data) => ({
     payload: axios({
         method: 'post',
         url: 'http://localhost:3000/login',
-        data: data
+        data: data,
+        withCredentials: true
     })
 })
 

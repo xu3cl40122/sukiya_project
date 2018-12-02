@@ -18,13 +18,7 @@ export class Navbar extends React.Component {
         this.logout = this.logout.bind(this)
     }
     componentDidMount() {
-        axios({
-            method: 'get',
-            url: 'http://localhost:3000/checkSession',
-            withCredentials: true
-        }).then((res) => {
-            console.log(res.data)
-        })
+        this.checkSession()
     }
     checkSession() {
         axios({

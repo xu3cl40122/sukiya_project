@@ -10,7 +10,7 @@ const newProduct = require('./newProduct')
 var cors = require('cors')// 跨網域
 
 var corsOptions = {
-    origin: 'http://localhost:8080',
+    origin: true,//true =>允許所有 origin 
     credentials:true
 }
 
