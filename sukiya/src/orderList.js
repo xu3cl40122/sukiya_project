@@ -48,7 +48,7 @@ export class OrderList extends React.Component {
     render() {
         const { orderListMap } = this.state
         return (
-            <div className="mealList_container">
+            <div className="mealList_container hide">
                 <h2 className="mealList_title">客製餐點</h2>
                 <div className="mealList_title_border"></div>
                 <div className="mealList_row">

@@ -134,33 +134,7 @@ export class Cart extends React.Component {
                     sendOrder={this.sendOrder}
                     backToCheckOrder={this.backToCheckOrder}
                 />
-                {/*<Modal open={isOpen} onClose={this.onCloseModal} styles={modalStyle} center>
-                    <div className='modalContainer'>
-                        <h2 className='modal_title'>訂單資訊</h2>
-                        <div className='modal_title_border'></div>
-                        <div className='modal_formContainer'>
-                            <div className='left'>
-                                <div className='modal_inputBox'>
-                                    <input type="text" placeholder='送餐地址' name='address' onChange={this.inputChange} />
-                                </div>
-                                <div className='modal_inputBox'>
-                                    <input type="text" placeholder='聯絡電話' name='phone' onChange={this.inputChange} />
-                                </div>
-                            </div>
-                            <div className='right'>
-                                <h2>其他需求</h2>
-                                <textarea name="other_need" id="" value={this.state.other_need} onChange={this.inputChange}></textarea>
-                            </div>
-                        </div>
-                        <div className='modal_totalContainer-forChecked '>
-                            <div className='button modal_buyButton modal_buyButton-back' onClick={() => { this.setState({ checkedorder: false }) }} >回上一頁</div>
-                            <div className='rightBlock'>
-                                <h2>合計: </h2><h2>{this.total}</h2>
-                                <div className='button modal_buyButton' onClick={this.sendOrder}>送出訂單!</div>
-                            </div>
-                        </div>
-                    </div>
-        </Modal>*/}
+                
             </div>
         )
     }
