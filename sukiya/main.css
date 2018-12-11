@@ -1376,3 +1376,66 @@ input[type=submit] {
   border-bottom: 1px solid rgba(99,99,99,0.251);
   margin-bottom: 15px;
 }
+.about {
+  width: 100%;
+  margin-top: 70px;
+  padding: 30px 3%;
+}
+.about .title {
+  color: #d7000f;
+  margin-bottom: 120px;
+  max-width: 250px;
+}
+.about .title_row {
+  transform: rotate(-10deg);
+}
+.about .title_row h2 {
+  font-size: 86px;
+  margin: 20px 0;
+  display: block;
+  letter-spacing: 5px;
+  font-style: italic;
+  font-family: 'Lato', Microsoft JhengHei, Arial, Helvetica, sans-serif;
+}
+.about .title_row h3 {
+  font-size: 32px;
+  margin: 0;
+  display: block;
+  font-weight: 900;
+}
+.about .main {
+  display: flex;
+}
+.about .main_logo {
+  background: url("./pic/icon_whatssukiya.png");
+  width: 144px;
+  height: 144px;
+  background-size: cover;
+}
+.about .main_logo_2 {
+  background: url("./pic/logo_153729_en.jpg");
+  width: 144px;
+  height: 144px;
+  margin-top: 20px;
+  background-size: cover;
+}
+.about .main_intro {
+  margin-left: 200px;
+}
+.about .main_intro h2 {
+  font-size: 42px;
+  color: #d7000f;
+  margin: 0;
+}
+.about .main_intro h3 {
+  color: #d7000f;
+  font-weight: 900;
+  font-size: 24px;
+  margin: 15px 0 40px 0;
+}
+.about .main_intro p {
+  color: #717071;
+  font-size: 18px;
+  line-height: 1.8;
+  font-weight: bold;
+}

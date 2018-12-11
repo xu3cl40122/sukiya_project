@@ -16,7 +16,6 @@ class SimpleMap extends Component {
         this.zoomIn = this.zoomIn.bind(this)
     }
     zoomIn(center){
-        console.log(center)
         this.setState({
             zoom:16,
             center:{
@@ -67,7 +66,7 @@ SimpleMap.defaultProps = {
     },
     zoom: 13
 }
-
+//地圖上的 icon
 class Site extends React.Component{
     render(){
         const { name } = this.props
