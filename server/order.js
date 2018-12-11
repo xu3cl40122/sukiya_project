@@ -27,7 +27,7 @@ module.exports = {
             }
         )
     },
-    getFiteredOrders(req,res){
+    getFilterOrders(req,res){
         // 搜尋日期外面要包 ' ' 才有效果
         let condition = `WHERE created_at > '${req.body.from}' AND created_at < '${req.body.to}' `
         let sql = `SELECT * FROM sk_orders JOIN sk_users ON sk_orders.user_id = sk_users.user_id ${condition}`
@@ -40,7 +40,15 @@ module.exports = {
             res.send(result)
         }
         )
+    },
+    changeOrderStatus(req,res){
+        let sql = `UPDATE sk_orders SET status = ? WHERE order_id = ?`
+        conn.query(sql,[req.body.status, req.body.id], (err,result)=>{
+            if(err){console.log(err)}
+            res.send('done')
+        })
     }
+    
     
     
 }
