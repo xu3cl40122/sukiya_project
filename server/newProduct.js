@@ -14,7 +14,7 @@ module.exports = {
                 return
             }
             var oldpath = files.myFile.path
-            var newpath = '../pic/' + files.myFile.name
+            var newpath = '../pic/products/' + files.myFile.name
             
             fs.rename(oldpath, newpath, function (err) {
                 if (err){

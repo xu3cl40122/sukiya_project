@@ -82,42 +82,45 @@ class SearchBox extends React.Component{
     constructor(props){
         super(props)
         this.state={
-            raw:'',
-            center:{},
-            site:''
+            selectedSite:null,
+            address:''
         }
         this.onChange = this.onChange.bind(this)
+        this.handleZoomIn = this.handleZoomIn.bind(this)
     }
-    //是監測 value 和 option 的 value 是否相等來判斷選哪一個，及使選到那個 option ， 
+    //是監測 value 和 option 的 value 是否相等來判斷選哪一個，即使選到那個 option ， 
     //setState 沒有設定對應的 value 還是不會選到
     onChange(e){
-        //array schema 1:name 2:x 3:y
-        let list = e.target.value.split(',')
         this.setState({
-            raw: e.target.value,
-            site: list[0],
-            center: {
-                lat: parseFloat(list[2]),
-                lng: parseFloat(list[1])
-            }
+            selectedSite:e.target.value
         })
+        
     }
-    
+    handleZoomIn(){
+        const{zoomIn,site} = this.props
+        const{selectedSite}= this.state
+        zoomIn({ lat: site[selectedSite].y, lng: site[selectedSite].x})
+        console.log(site[selectedSite].address)
+        this.setState({ address: site[selectedSite].address})
+    }
     render(){
-        const {site,zoomIn} = this.props
+        const {site} = this.props
+        const { selectedSite,address } = this.state
         return(
             <div className='searchBox'>
                 <h2>門市查詢</h2>
                 <p>門市:</p>
                 <select value={this.state.raw} onChange={this.onChange}>
                     <option>選擇門市</option>
-                    {site.map(item => {
+                    {site.map((item,index) => {
                         return (
-                            <SiteOption site={item} key={item.site_id}/>
+                            <SiteOption site={item} key={index} index={index}/>
                         )
                     })}
                 </select>
-                <div className='button searchBox_searchButton' onClick={()=>{zoomIn(this.state.center)}}>查詢</div>
+                <div className='button searchBox_searchButton' onClick={this.handleZoomIn}>查詢</div>
+                <div className='searchBox_address'><p>{address}</p></div>
+                
             </div>
         )
     }
@@ -128,9 +131,9 @@ class SiteOption extends React.Component{
         super(props)
     }
     render(){
-        const {site} = this.props
+        const {site,index} = this.props
         return(
-            <option value={[site.name,site.x,site.y]}>{site.name}</option>
+            <option value={index}>{site.name}</option>
         )
     }
 }
