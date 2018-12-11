@@ -123,7 +123,7 @@ class AddProductModal extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            isModalOpen: true,
+            isModalOpen: false,
             isOneSize:false,
             name:"",
             type:'',
@@ -179,7 +179,9 @@ class AddProductModal extends React.Component{
         e.stopPropagation()
         e.preventDefault()
     }
+    
     handleImgChange(e,byDrop = false){
+        //因為用拖得跟直接從介面選檔案存在的地方會不一樣
         if(byDrop){
             var file = e.nativeEvent.dataTransfer.files[0]
         }else{
@@ -211,17 +213,23 @@ class AddProductModal extends React.Component{
         this.handleImgChange(e,true)
     }
     uploadFile(){
-        const {name,describe,type,img,s,m,l,xl,isOneSize} = this.state
-        const productData = JSON.stringify({...this.state,img:''})
+        const {img} = this.state
+        const productData = JSON.stringify({...this.state})
         var formData = new FormData()
         formData.append('myFile', img, img.name)
         formData.append('productData',productData)
         axios({
             method: 'post',
-            url: 'http://localhost:3000/upload',
+            url: 'http://localhost:3000/addProduct',
             data: formData
         }).then((res)=>{
-            console.log(res.data)
+            if(res.data.err == true){
+                alert('error!')
+                return
+            }
+            alert('已成功新增商品!')
+            window.location.reload();
+            
         })
     }
     render(){

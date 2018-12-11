@@ -30,7 +30,7 @@ app.post('/login',cors(corsOptions),login.login)
 app.post('/catchOrder', order.catchOrder)// 接收訂單
 app.get('/checkSession',login.checkSession)// 檢查 session
 app.get('/logout', cors(corsOptions),login.logout)
-app.post('/upload', newProduct.uploadImg)
+app.post('/addProduct', newProduct.addProduct)
    
 
 // --- 後台 ---
