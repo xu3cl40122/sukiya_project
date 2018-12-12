@@ -61,12 +61,13 @@ export class Products extends React.Component{
                     <tbody>
                         <tr className="firstRow">
                             <th className="checkboxTD"><input type="checkbox" /></th>
-                            <th className='index'>Product_id</th>
+                            <th className='index'>Id</th>
                             <th>Name</th>
                             <th>Img</th>
                             <th>Type</th>
                             <th>Price</th>
                             <th className='maxCol'>Decsribe</th>
+                            <th className='editCol'></th>
                         </tr>
                         {currentList.map((product,index)=>{
                             return(
@@ -114,6 +115,9 @@ class Col extends React.Component{
                     {product.type == 'curry' ? <div><p>{`迷你碗: ${product.price_s}`}</p><p>{`中碗: ${product.price_m}`}</p><p>{`超值碗: ${product.price_l}`}</p></div> : null}
                 </td>
                 <td className='describeTD'>{product.intro}</td>
+                <td className='editTD'>
+                    <div className='edit'>Edit</div>
+                </td>
             </tr>
         )
        
