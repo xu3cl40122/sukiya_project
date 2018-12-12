@@ -44,7 +44,22 @@ module.exports = {
     changeOrderStatus(req,res){
         let sql = `UPDATE sk_orders SET status = ? WHERE order_id = ?`
         conn.query(sql,[req.body.status, req.body.id], (err,result)=>{
-            if(err){console.log(err)}
+            if(err){
+                console.log(err)
+                res.send(err)
+                return
+            }
+            res.send('done')
+        })
+    },
+    deleteOrder(req,res){
+        let sql =`DELETE FROM sk_orders WHERE order_id = ?`
+        conn.query(sql, req.query.id ,(err,result)=>{
+            if(err){
+                console.log(err)
+                res.send(err)
+                return
+            }
             res.send('done')
         })
     }

@@ -36,7 +36,8 @@ app.post('/addProduct', newProduct.addProduct)
 app.post('/allOrders', order.getAllOrders) //後臺顯示所有訂單
 app.post('/filterOrders',order.getFilterOrders) // 後台訂單條件篩選
 app.post('/backProducts',products.backProducts)// 後台商品列表
-app.put('/changeOrder',order.changeOrderStatus)   
+app.put('/changeOrder',order.changeOrderStatus) 
+app.delete('/deleteOrder',order.deleteOrder)  
 
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');

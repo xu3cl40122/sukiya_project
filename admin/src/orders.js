@@ -24,9 +24,16 @@ export class Orders extends React.Component {
         this.handleInput = this.handleInput.bind(this)
         this.filterOrders = this.filterOrders.bind(this)
         this.changeOrderStatus = this.changeOrderStatus.bind(this)
+        this.getAllOrders = this.getAllOrders.bind(this)
+        this.deleteOrder = this.deleteOrder.bind(this)
     }
     componentDidMount() {
         // 取得所有訂單
+        this.getAllOrders()
+        // 設定 filter 的預設時間為當天
+        this.setState({dateTo:getToday()})
+    }
+    getAllOrders(){
         axios({
             method: 'post',
             url: 'http://localhost:3000/allOrders',
@@ -38,8 +45,6 @@ export class Orders extends React.Component {
         }).catch((err) => {
             alert(err)
         })
-        // 設定 filter 的預設時間為當天
-        this.setState({dateTo:getToday()})
     }
     changeOrderStatus(id,status){
         axios({
@@ -50,9 +55,19 @@ export class Orders extends React.Component {
                 status:status
             }
         }).then((res) => {
-            console.log(res.data)
+            this.getAllOrders()
         }).catch((err) => {
             alert(err)
+        })
+    }
+    deleteOrder(id){
+        var isSure = confirm('確定要刪除該筆訂單?')
+        if(!isSure){return}
+        axios.delete('http://localhost:3000/deleteOrder', { params: { id: id } })
+        .then((res)=>{
+            this.getAllOrders()
+        }).catch((err)=>{
+            console.log(err)
         })
     }
     handlePage(data) {
@@ -116,7 +131,7 @@ export class Orders extends React.Component {
 
                         {currentList.map((order, index) => {
                             return (
-                                <Col key={index} order={order} changeOrderStatus={this.changeOrderStatus}/>
+                                <Col key={index} order={order} changeOrderStatus={this.changeOrderStatus} deleteOrder={this.deleteOrder}/>
                             )
                         })}
                     </tbody >
@@ -146,7 +161,7 @@ export class Orders extends React.Component {
 class Col extends React.Component {
 
     render() {
-        const { order, changeOrderStatus } = this.props
+        const { order, changeOrderStatus,deleteOrder } = this.props
         // 轉換 mysql datetime 格式
         let time = new Date(order.created_at).toLocaleString()
         let products = JSON.parse(order.product_list)
@@ -180,7 +195,7 @@ class Col extends React.Component {
                                 <div className='dropdown_col' onClick={()=>{changeOrderStatus(order.order_id,'done')}}>Done</div>
                                 <div className='dropdown_col' onClick={() => { changeOrderStatus(order.order_id, 'doing') }}>Doing</div>
                                 <div className='dropdown_col' onClick={() => { changeOrderStatus(order.order_id, 'new') }}>New</div>
-                                <div className='dropdown_col'>Remove</div>
+                                <div className='dropdown_col' onClick={()=>{deleteOrder(order.order_id)}}>Remove</div>
                             </div>
                         </div>
                     </div>
