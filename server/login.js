@@ -1,6 +1,9 @@
 const conn = require('./connect')
 
+
+
 module.exports={
+    
     // 註冊加登入
     login:function login(req,res){
         addCrosHeader(req,res)
@@ -65,12 +68,15 @@ module.exports={
             return
         }
         res.send(req.session)
+    },
+    handleCros: function handleCros(req,res) {
+        addCrosHeader(req,res)
     }
 }
-export function addCrosHeader(req,res){
+function addCrosHeader(req, res) {
     // 因為 header.orgin 只能設定一個 domain 或 * ，如果想要有白名單必須在 server 端對 origin 做判斷，如果符合條件再設置相對應的 orgin
     // domain 多時可用 array 儲存增加可讀性
-    if (req.headers.origin == 'null' | req.headers.origin == 'http://localhost:8080'){
+    if (req.headers.origin == 'null' | req.headers.origin == 'http://localhost:8080') {
         res.header('Access-Control-Allow-Origin', req.headers.origin)
     }
     res.header('Access-Control-Allow-Credentials', 'true')

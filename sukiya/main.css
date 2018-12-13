@@ -1284,6 +1284,11 @@ input[type=submit] {
   position: relative;
   box-shadow: 2px 2px 19px 6px rgba(0,0,0,0.2);
 }
+@media screen and (max-width: 600px) {
+  .login_body .login_container {
+    width: 90%;
+  }
+}
 .login_body .login_img {
   width: 380px;
   height: 100%;
@@ -1291,6 +1296,11 @@ input[type=submit] {
   background-size: cover;
   position: relative;
   z-index: 10;
+}
+@media screen and (max-width: 600px) {
+  .login_body .login_img {
+    display: none;
+  }
 }
 .login_body .login_img:before {
   content: "";
