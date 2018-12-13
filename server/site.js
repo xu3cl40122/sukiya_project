@@ -1,6 +1,5 @@
 const conn = require('./connect')
-
-
+import { addCrosHeader} from './login'
 
 module.exports={
     getSites: function getSites(req, res) {
@@ -15,8 +14,4 @@ module.exports={
             }
         })
     }
-}
-function addCrosHeader(res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
-    res.header('Access-Control-Allow-Credentials', 'true')
 }

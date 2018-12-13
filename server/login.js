@@ -67,7 +67,7 @@ module.exports={
         res.send(req.session)
     }
 }
-function addCrosHeader(req,res){
+export function addCrosHeader(req,res){
     // 因為 header.orgin 只能設定一個 domain 或 * ，如果想要有白名單必須在 server 端對 origin 做判斷，如果符合條件再設置相對應的 orgin
     // domain 多時可用 array 儲存增加可讀性
     if (req.headers.origin == 'null' | req.headers.origin == 'http://localhost:8080'){

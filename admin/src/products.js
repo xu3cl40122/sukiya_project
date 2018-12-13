@@ -21,15 +21,23 @@ export class Products extends React.Component{
             isModalOpen:true,
         }
         this.handlePage = this.handlePage.bind(this)
+        this.removeProduct = this.removeProduct.bind(this)
+        this.getProducts = this.getProducts.bind(this)
     }
     handlePage(data) {
         this.setState({
             currentPage: (data.selected + 1)
         })
     }
-   
-    componentDidMount(){
-        // 取得所有訂單
+    removeProduct(id){
+        axios.delete('http://localhost:3000/deleteProduct', { params: { id: id } }
+        ).then((res)=>{
+            this.getProducts()
+        }).catch((err)=>{
+            alert(err)
+        })
+    }
+    getProducts(){
         axios({
             method: 'post',
             url: 'http://localhost:3000/backProducts',
@@ -41,6 +49,10 @@ export class Products extends React.Component{
         }).catch((err) => {
             alert(err)
         })
+    }
+    componentDidMount(){
+        // 取得所有訂單
+       this.getProducts()
     }
     render(){
         const { products} = this.state
@@ -71,7 +83,7 @@ export class Products extends React.Component{
                         </tr>
                         {currentList.map((product,index)=>{
                             return(
-                                <Col product={product} key={index} />
+                                <Col product={product} key={index} removeProduct={this.removeProduct}/>
                             )
                         })}
                        
@@ -101,7 +113,7 @@ export class Products extends React.Component{
 
 class Col extends React.Component{
     render(){
-        const{product} = this.props
+        const{product,removeProduct} = this.props
         return(
             <tr>
                 <td className="checkboxTD"><input type="checkbox" /></td>
@@ -116,7 +128,7 @@ class Col extends React.Component{
                 </td>
                 <td className='describeTD'>{product.intro}</td>
                 <td className='editTD'>
-                    <div className='edit'>Edit</div>
+                    <div className='edit' onClick={() => { removeProduct(product.product_id)}}>Remove</div>
                 </td>
             </tr>
         )

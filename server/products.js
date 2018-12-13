@@ -58,5 +58,15 @@ module.exports = {
             }
             res.send(result)
         })
+    },
+    deleteProduct:function deleteProduct(req,res) {
+        let sql = `DELETE FROM sk_products WHERE product_id = ?`
+        conn.query(sql,[req.query.id],(err,result)=>{
+            if(err){
+                res.send(err)
+                return
+            }
+            res.send('done')
+        })
     }
 }
