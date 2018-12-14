@@ -168,7 +168,7 @@ export class Footer extends React.Component {
                     <i className="fa fa-facebook-square"></i>
                     <i className="fa fa-twitter-square"></i>
                 </div>
-                <p>©Hao Lee All Rights Reserved.</p>
+                <p>©這不是真的 sukiya 網站</p>
             </div>
         )
     }
