@@ -408,6 +408,8 @@ navBrick_col-before(url)
         height h = 40px
         line-height h
         position relative
+    .news_line + .news_line 
+        border-top none
     .news_line_newsType
         border-radius 5px
         background #ea4242
@@ -525,7 +527,7 @@ sidebar_height = 40px
     .sidebar_cart_button
         background #5a5a57 
         position fixed
-        bottom 20px 
+        top 15%
         right 10px
         z-index 20
         padding 5px 5px
@@ -780,14 +782,14 @@ sidebar_height = 40px
             background white 
             color s_brown
             box-shadow  0px 1px 11px 3px rgba(0,0,0,0.2)
-    .mealList_col_price 
+    #mealList_col_price 
         color s_red
         margin 0
         font-weight bold
-        margin-right 35px
+        margin-right 25px
 .modalContainer
     width 100%
-    min-height 40vh
+    position relative
     .modal_title
         margin 0 0 15px 0 
         padding 0
@@ -802,7 +804,10 @@ sidebar_height = 40px
     .modal_row 
         width 100%
         margin-top 20px
-        padding 0 5%
+        max-height 70vh 
+        overflow-y scroll
+        .element::-webkit-scrollbar 
+            display:none
     .modal_row_firstLine
         width 100%
         height 1px
@@ -815,30 +820,35 @@ sidebar_height = 40px
         align-items center
         padding 0px 5px
         position relative
+        justify-content: space-between
         //box-shadow  0px 1px 11px 3px rgba(0,0,0,0.2)
         img 
             width 70px
-            margin-right 2rem 
-        p 
-            display block
+        span 
+            margin-right 20px
     .modal_col_nameContainer
-        margin 0 1rem
-        width 11rem
+        width auto
+        display flex 
+        align-items: center
+        @media screen and (max-width: 600px) 
+            flex-wrap wrap 
+            width 110px
+            span  
+                display block
+                width 100%
+                margin 0
     .modal_col_productName 
         color s_gray 
         font-size 1.3rem 
         font-weight bold 
-        margin-bottom 0.2rem
-    .modal_col_setName 
-        width 7rem 
-        margin-right 3rem
-    .modal_col_num 
-        margin-right 3rem
-        width 3rem
-    .modal_col_price 
+        @media screen and (max-width: 600px)  
+            font-size 1rem
+    #modal_col_price 
         color s_gray 
         font-weight bold
         font-size 1.2rem
+        margin-right 30px
+        width 40px 
     .modal_col_close 
         position absolute 
         right 10px
@@ -872,17 +882,23 @@ sidebar_height = 40px
         margin-left 20px
         &:hover 
             background #5ed668
-    .modal_buyButton-back 
+    .modal_buyButton-back
+        @media screen and (max-width: 600px) 
+            display none
         &:hover 
             background s_yellow
     .modal_formContainer
         width 100%
-        
         display flex
+        @media screen and (max-width: 600px) 
+            flex-wrap wrap
         .left
             width 50%
             height 100%
             padding 20px
+            @media screen and (max-width: 600px) 
+                width 100%
+                padding 0
             input[type=text]
                 border none
                 color #565656 
@@ -898,6 +914,9 @@ sidebar_height = 40px
             width 50%
             height 100%
             padding 20px
+            @media screen and (max-width: 600px) 
+                width 100%
+                padding 0
             h2 
                 color #565656 
                 margin 0 0 10px 0
@@ -914,6 +933,16 @@ sidebar_height = 40px
         width 100% 
         border-bottom 1px solid #63636340
         margin-bottom 15px
+    .modal_prePage 
+        position absolute
+        top -8px 
+        font-size 30px
+        @media screen and (min-width: 600px) 
+            display none
+.modalClass 
+    width 800px
+    @media screen and (max-width 600px)
+        width 90vw
 .site 
     background url('../pic/Logo_sukiya.jpg')
     width 2rem

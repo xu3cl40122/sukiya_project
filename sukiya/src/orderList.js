@@ -192,7 +192,7 @@ class OrderListCol extends React.Component {
                     </div>
                     <div className='mealList_col_wrapper'>
                         <span>價格:</span>
-                        <span className="mealList_col_price">{this.state.total}</span>
+                        <span id="mealList_col_price">{this.state.total}</span>
                     </div>
                     <i className="fa fa-close mealList_col_delete" onClick={this.handleDelete}></i>
                 </div>

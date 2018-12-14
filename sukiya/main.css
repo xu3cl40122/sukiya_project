@@ -578,6 +578,9 @@ input[type=submit] {
   line-height: 40px;
   position: relative;
 }
+.news_bg .news_line + .news_line {
+  border-top: none;
+}
 .news_bg .news_line_newsType {
   border-radius: 5px;
   background: #ea4242;
@@ -720,7 +723,7 @@ input[type=submit] {
 .sidebar-mobile .sidebar_cart_button {
   background: #5a5a57;
   position: fixed;
-  bottom: 20px;
+  top: 15%;
   right: 10px;
   z-index: 20;
   padding: 5px 5px;
@@ -1046,15 +1049,15 @@ input[type=submit] {
   color: #795548;
   box-shadow: 0px 1px 11px 3px rgba(0,0,0,0.2);
 }
-.mealList_container .mealList_col_price {
+.mealList_container #mealList_col_price {
   color: #d7000f;
   margin: 0;
   font-weight: bold;
-  margin-right: 35px;
+  margin-right: 25px;
 }
 .modalContainer {
   width: 100%;
-  min-height: 40vh;
+  position: relative;
 }
 .modalContainer .modal_title {
   margin: 0 0 15px 0;
@@ -1072,7 +1075,11 @@ input[type=submit] {
 .modalContainer .modal_row {
   width: 100%;
   margin-top: 20px;
-  padding: 0 5%;
+  max-height: 70vh;
+  overflow-y: scroll;
+}
+.modalContainer .modal_row .element::-webkit-scrollbar {
+  display: none;
 }
 .modalContainer .modal_row_firstLine {
   width: 100%;
@@ -1087,36 +1094,46 @@ input[type=submit] {
   align-items: center;
   padding: 0px 5px;
   position: relative;
+  justify-content: space-between;
 }
 .modalContainer .modal_col img {
   width: 70px;
-  margin-right: 2rem;
 }
-.modalContainer .modal_col p {
-  display: block;
+.modalContainer .modal_col span {
+  margin-right: 20px;
 }
 .modalContainer .modal_col_nameContainer {
-  margin: 0 1rem;
-  width: 11rem;
+  width: auto;
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width: 600px) {
+  .modalContainer .modal_col_nameContainer {
+    flex-wrap: wrap;
+    width: 110px;
+  }
+  .modalContainer .modal_col_nameContainer span {
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
 }
 .modalContainer .modal_col_productName {
   color: #1e222a;
   font-size: 1.3rem;
   font-weight: bold;
-  margin-bottom: 0.2rem;
 }
-.modalContainer .modal_col_setName {
-  width: 7rem;
-  margin-right: 3rem;
+@media screen and (max-width: 600px) {
+  .modalContainer .modal_col_productName {
+    font-size: 1rem;
+  }
 }
-.modalContainer .modal_col_num {
-  margin-right: 3rem;
-  width: 3rem;
-}
-.modalContainer .modal_col_price {
+.modalContainer #modal_col_price {
   color: #1e222a;
   font-weight: bold;
   font-size: 1.2rem;
+  margin-right: 30px;
+  width: 40px;
 }
 .modalContainer .modal_col_close {
   position: absolute;
@@ -1161,6 +1178,11 @@ input[type=submit] {
 .modalContainer .modal_buyButton:hover {
   background: #5ed668;
 }
+@media screen and (max-width: 600px) {
+  .modalContainer .modal_buyButton-back {
+    display: none;
+  }
+}
 .modalContainer .modal_buyButton-back:hover {
   background: #ffd93e;
 }
@@ -1168,10 +1190,21 @@ input[type=submit] {
   width: 100%;
   display: flex;
 }
+@media screen and (max-width: 600px) {
+  .modalContainer .modal_formContainer {
+    flex-wrap: wrap;
+  }
+}
 .modalContainer .modal_formContainer .left {
   width: 50%;
   height: 100%;
   padding: 20px;
+}
+@media screen and (max-width: 600px) {
+  .modalContainer .modal_formContainer .left {
+    width: 100%;
+    padding: 0;
+  }
 }
 .modalContainer .modal_formContainer .left input[type=text] {
   border: none;
@@ -1192,6 +1225,12 @@ input[type=submit] {
   height: 100%;
   padding: 20px;
 }
+@media screen and (max-width: 600px) {
+  .modalContainer .modal_formContainer .right {
+    width: 100%;
+    padding: 0;
+  }
+}
 .modalContainer .modal_formContainer .right h2 {
   color: #565656;
   margin: 0 0 10px 0;
@@ -1211,6 +1250,24 @@ input[type=submit] {
   width: 100%;
   border-bottom: 1px solid rgba(99,99,99,0.251);
   margin-bottom: 15px;
+}
+.modalContainer .modal_prePage {
+  position: absolute;
+  top: -8px;
+  font-size: 30px;
+}
+@media screen and (min-width: 600px) {
+  .modalContainer .modal_prePage {
+    display: none;
+  }
+}
+.modalClass {
+  width: 800px;
+}
+@media screen and (max-width: 600px) {
+  .modalClass {
+    width: 90vw;
+  }
 }
 .site {
   background: url("../pic/Logo_sukiya.jpg");

@@ -133,6 +133,7 @@ export class Cart extends React.Component {
                     other_need={other_need}
                     sendOrder={this.sendOrder}
                     backToCheckOrder={this.backToCheckOrder}
+                    total={this.total}
                 />
                 
             </div>
@@ -143,7 +144,7 @@ class Modal_page1 extends React.Component {
     render() {
         const { onCloseModal, isOpen, cart, handleDelete, total, toChecked } = this.props
         return (
-            <Modal open={isOpen} onClose={onCloseModal} styles={modalStyle} center>
+            <Modal open={isOpen} onClose={onCloseModal} classNames={{ 'modal': 'modalClass'}}center>
                 <div className='modalContainer'>
                     <h2 className='modal_title'>SHOPPING CART</h2>
                     <div className='modal_title_border'></div>
@@ -173,7 +174,7 @@ class Modal_page1 extends React.Component {
 
 class Modal_page2 extends React.Component{
     render(){
-        const{isOpen, onCloseModal, inputChange, other_need, sendOrder, backToCheckOrder} = this.props
+        const { isOpen, onCloseModal, inputChange, other_need, sendOrder, backToCheckOrder, total} = this.props
         return(
             <Modal open={isOpen} onClose={onCloseModal} styles={modalStyle} center>
                 <div className='modalContainer'>
@@ -196,10 +197,11 @@ class Modal_page2 extends React.Component{
                     <div className='modal_totalContainer-forChecked '>
                         <div className='button modal_buyButton modal_buyButton-back' onClick={backToCheckOrder} >回上一頁</div>
                         <div className='rightBlock'>
-                            <h2>合計: </h2><h2>{this.total}</h2>
+                            <h2>合計: </h2><h2>{total}</h2>
                             <div className='button modal_buyButton' onClick={sendOrder}>送出訂單!</div>
                         </div>
                     </div>
+                    <div className='modal_prePage' onClick={backToCheckOrder}><i className='fa fa-angle-double-left'></i></div>
                 </div>
             </Modal>
         )
@@ -226,12 +228,12 @@ class ModalCol extends React.Component {
             <div className='modal_col'>
                 <img src={product.img_path} alt="" />
                 <div className='modal_col_nameContainer'>
-                    <p className='modal_col_productName'>{product.name}</p>
-                    <p>{product.size}</p>
+                    <span className='modal_col_productName'>{product.name}</span>
+                    <span>{product.size}</span>
+                    <span className=''>{product.set == '' ? '' : '+ ' + product.set}</span>
                 </div>
-                <p className='modal_col_setName'>{product.set == '' ? '' : '+ ' + product.set}</p>
-                <p className='modal_col_num'>{'x' + product.num}</p>
-                <p className='modal_col_price'>{'$' + product.total}</p>
+                <span className=''>{'x' + product.num}</span>
+                <span id='modal_col_price'>{'$' + product.total}</span>
                 <i className='fa fa-close modal_col_close' onClick={this.deleteProduct}></i>
             </div>
         )
