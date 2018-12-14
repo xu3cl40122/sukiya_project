@@ -14,7 +14,9 @@ const initialState ={
     singleProduct:{},
     cart:[],
     site:[],
-    userState:{},
+    userState:{
+        isCheckedSession: false //是否檢查過 session 登入情形
+    },
     loginResponse:{},
     sendOrderRes:{}
 }

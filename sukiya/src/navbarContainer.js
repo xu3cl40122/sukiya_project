@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 // 和 react connect
 const mapStateToProps = state => ({
-    nav:state.app.nav, //global state . 在 reducer 時指定的的 name . key
+    //global state . 在 reducer 時指定的的 name . key
     userState: state.app.userState,
 })
 

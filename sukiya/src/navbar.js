@@ -11,38 +11,54 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 export class Navbar extends React.Component {
     constructor(props) {
         super(props)
-        
         this.checkSession = this.checkSession.bind(this)
         this.logout = this.logout.bind(this)
     }
     componentDidMount() {
-        this.checkSession()
+        const{userState} = this.props
+        if(userState.isCheckedSession == false){
+            this.checkSession()
+        }
     }
     checkSession() {
+        const{setLoginState, userState} = this.props
         axios({
             method: 'get',
             url: 'http://localhost:3000/checkSession',
             withCredentials: true
         }).then((res) => {
             console.log(res.data)
-            
+           
             if(res.data!= 'noSession'){
-                this.props.setLoginState({
+                setLoginState({
+                    ...userState,
+                    isCheckedSession:true,
                     username : res.data.user,
                     user_id : res.data.user_id
+                })
+            }else{
+                setLoginState({
+                    ...userState,
+                    isCheckedSession: true,
                 })
             }
             
         })
     }
     logout() {
+        var isSure = confirm('確定要登出?')
+        if(!isSure){
+            return
+        }
         axios({
             method: 'get',
             url: 'http://localhost:3000/logout',
             withCredentials: true
         }).then((res) => {
             this.props.history.push('/')
-            this.props.setLoginState({})
+            this.props.setLoginState({ 
+                isCheckedSession: true
+            })
         })
     }
     render() {
@@ -61,7 +77,9 @@ export class Navbar extends React.Component {
                         <li>
                             <Link to='/about' className="link"><i className="fa fa-users"></i>關於我們</Link >
                         </li>
-                        <li onClick={this.checkSession}><i className="fa fa-info-circle"></i>最新消息</li>
+                        <li onClick={() => { alert('該功能還在開發中') }}>
+                            <Link to='' className='link'><i className="fa fa-info-circle"></i>最新消息</Link >
+                        </li>
                         <li>
                             {userState.username !== undefined ? <div onClick={this.logout}><i className="fa fa-user"></i>{userState.username}</div> : <Link to='/account' className="link"><i className="fa fa-user"></i>登入</Link>}
                         </li>
