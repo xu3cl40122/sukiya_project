@@ -57,7 +57,6 @@ class Ani extends React.Component {
     }
     componentDidUpdate(prevProps,prevState){
         const {scrollTop} = this.props
-        console.log('prev',prevState,prevProps.scrollTop)
         // 預防快速上下產生明明沒在頂 卻是大 logo 的情況
         if (prevState.hidden == false & prevState.changeing == true & this.state.changeing == false & scrollTop > 50){
             this.changeLogoTo('small')
@@ -80,7 +79,6 @@ class Ani extends React.Component {
     }
     
     render() {
-        //console.log(this.props)
         return <div>
             <BigLogo hidden={this.state.hidden}></BigLogo>
             <SmallLogo hidden={!this.state.hidden}></SmallLogo>

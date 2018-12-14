@@ -23,9 +23,17 @@ export class Orders extends React.Component {
         this.handlePage = this.handlePage.bind(this)
         this.handleInput = this.handleInput.bind(this)
         this.filterOrders = this.filterOrders.bind(this)
+        this.changeOrderStatus = this.changeOrderStatus.bind(this)
+        this.getAllOrders = this.getAllOrders.bind(this)
+        this.deleteOrder = this.deleteOrder.bind(this)
     }
     componentDidMount() {
         // 取得所有訂單
+        this.getAllOrders()
+        // 設定 filter 的預設時間為當天
+        this.setState({dateTo:getToday()})
+    }
+    getAllOrders(){
         axios({
             method: 'post',
             url: 'http://localhost:3000/allOrders',
@@ -37,8 +45,30 @@ export class Orders extends React.Component {
         }).catch((err) => {
             alert(err)
         })
-        // 設定 filter 的預設時間為當天
-        this.setState({dateTo:getToday()})
+    }
+    changeOrderStatus(id,status){
+        axios({
+            method: 'put',
+            url: 'http://localhost:3000/changeOrder',
+            data: {
+                id:id,
+                status:status
+            }
+        }).then((res) => {
+            this.getAllOrders()
+        }).catch((err) => {
+            alert(err)
+        })
+    }
+    deleteOrder(id){
+        var isSure = confirm('確定要刪除該筆訂單?')
+        if(!isSure){return}
+        axios.delete('http://localhost:3000/deleteOrder', { params: { id: id } })
+        .then((res)=>{
+            this.getAllOrders()
+        }).catch((err)=>{
+            console.log(err)
+        })
     }
     handlePage(data) {
         this.setState({
@@ -101,7 +131,7 @@ export class Orders extends React.Component {
 
                         {currentList.map((order, index) => {
                             return (
-                                <Col key={index} order={order} />
+                                <Col key={index} order={order} changeOrderStatus={this.changeOrderStatus} deleteOrder={this.deleteOrder}/>
                             )
                         })}
                     </tbody >
@@ -131,10 +161,14 @@ export class Orders extends React.Component {
 class Col extends React.Component {
 
     render() {
-        const { order } = this.props
+        const { order, changeOrderStatus,deleteOrder } = this.props
         // 轉換 mysql datetime 格式
         let time = new Date(order.created_at).toLocaleString()
         let products = JSON.parse(order.product_list)
+        var buttonClass = 'statusButton'
+        //隨 status 變色
+        order.status == 'done' ? buttonClass +=' statusButton-done': null
+        order.status == 'doing' ? buttonClass += ' statusButton-doing' : null
         return (
             <tr>
                 <td className="checkboxTD"><input type="checkbox" /></td>
@@ -154,14 +188,14 @@ class Col extends React.Component {
                 <td>{order.address}</td>
                 <td>{order.phone}</td>
                 <td>
-                    <div className="statusButton">
+                    <div className={buttonClass}>
                         <p>{order.status}</p>
                         <div className='dropdown'>
                             <div className='dropdown_row'>
-                                <div className='dropdown_col'>Done</div>
-                                <div className='dropdown_col'>Doing</div>
-                                <div className='dropdown_col'>New</div>
-                                <div className='dropdown_col'>Remove</div>
+                                <div className='dropdown_col' onClick={()=>{changeOrderStatus(order.order_id,'done')}}>Done</div>
+                                <div className='dropdown_col' onClick={() => { changeOrderStatus(order.order_id, 'doing') }}>Doing</div>
+                                <div className='dropdown_col' onClick={() => { changeOrderStatus(order.order_id, 'new') }}>New</div>
+                                <div className='dropdown_col' onClick={()=>{deleteOrder(order.order_id)}}>Remove</div>
                             </div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@ const newProduct = require('./newProduct')
 var cors = require('cors')// 跨網域
 
 var corsOptions = {
-    origin: 'http://localhost:8080',
+    origin: true,//true =>允許所有 origin 
     credentials:true
 }
 
@@ -30,13 +30,16 @@ app.post('/login',cors(corsOptions),login.login)
 app.post('/catchOrder', order.catchOrder)// 接收訂單
 app.get('/checkSession',login.checkSession)// 檢查 session
 app.get('/logout', cors(corsOptions),login.logout)
-app.post('/upload', newProduct.uploadImg)
-   
+app.post('/addProduct', newProduct.addProduct)
 
 // --- 後台 ---
 app.post('/allOrders', order.getAllOrders) //後臺顯示所有訂單
-app.post('/filterOrders',order.getFiteredOrders) // 後台訂單條件篩選
+app.post('/filterOrders',order.getFilterOrders) // 後台訂單條件篩選
 app.post('/backProducts',products.backProducts)// 後台商品列表
+app.put('/changeOrder',order.changeOrderStatus) 
+app.delete('/deleteOrder',order.deleteOrder)
+app.delete('/deleteProduct', products.deleteProduct)  
+
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');
 });

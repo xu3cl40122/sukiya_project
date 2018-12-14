@@ -37,6 +37,7 @@ export class Login extends React.Component {
                         username: loginResponse.data.name,
                         user_id: loginResponse.data.user_id
                     })
+                    this.props.history.push('/')
                     break
                 case 'signup_pass':
                     alert('申請帳號成功!')
@@ -44,6 +45,7 @@ export class Login extends React.Component {
                         username: loginResponse.data.name,
                         user_id: loginResponse.data.user_id
                     })
+                    this.props.history.push('/')
                     break
                 case 'signup_fail':
                     alert('申請帳號失敗')

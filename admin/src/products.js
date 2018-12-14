@@ -21,15 +21,23 @@ export class Products extends React.Component{
             isModalOpen:true,
         }
         this.handlePage = this.handlePage.bind(this)
+        this.removeProduct = this.removeProduct.bind(this)
+        this.getProducts = this.getProducts.bind(this)
     }
     handlePage(data) {
         this.setState({
             currentPage: (data.selected + 1)
         })
     }
-   
-    componentDidMount(){
-        // 取得所有訂單
+    removeProduct(id){
+        axios.delete('http://localhost:3000/deleteProduct', { params: { id: id } }
+        ).then((res)=>{
+            this.getProducts()
+        }).catch((err)=>{
+            alert(err)
+        })
+    }
+    getProducts(){
         axios({
             method: 'post',
             url: 'http://localhost:3000/backProducts',
@@ -41,6 +49,10 @@ export class Products extends React.Component{
         }).catch((err) => {
             alert(err)
         })
+    }
+    componentDidMount(){
+        // 取得所有訂單
+       this.getProducts()
     }
     render(){
         const { products} = this.state
@@ -61,16 +73,17 @@ export class Products extends React.Component{
                     <tbody>
                         <tr className="firstRow">
                             <th className="checkboxTD"><input type="checkbox" /></th>
-                            <th className='index'>Product_id</th>
+                            <th className='index'>Id</th>
                             <th>Name</th>
                             <th>Img</th>
                             <th>Type</th>
                             <th>Price</th>
                             <th className='maxCol'>Decsribe</th>
+                            <th className='editCol'></th>
                         </tr>
                         {currentList.map((product,index)=>{
                             return(
-                                <Col product={product} key={index} />
+                                <Col product={product} key={index} removeProduct={this.removeProduct}/>
                             )
                         })}
                        
@@ -100,7 +113,7 @@ export class Products extends React.Component{
 
 class Col extends React.Component{
     render(){
-        const{product} = this.props
+        const{product,removeProduct} = this.props
         return(
             <tr>
                 <td className="checkboxTD"><input type="checkbox" /></td>
@@ -114,6 +127,9 @@ class Col extends React.Component{
                     {product.type == 'curry' ? <div><p>{`迷你碗: ${product.price_s}`}</p><p>{`中碗: ${product.price_m}`}</p><p>{`超值碗: ${product.price_l}`}</p></div> : null}
                 </td>
                 <td className='describeTD'>{product.intro}</td>
+                <td className='editTD'>
+                    <div className='edit' onClick={() => { removeProduct(product.product_id)}}>Remove</div>
+                </td>
             </tr>
         )
        
@@ -123,7 +139,7 @@ class AddProductModal extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            isModalOpen: true,
+            isModalOpen: false,
             isOneSize:false,
             name:"",
             type:'',
@@ -179,7 +195,9 @@ class AddProductModal extends React.Component{
         e.stopPropagation()
         e.preventDefault()
     }
+    
     handleImgChange(e,byDrop = false){
+        //因為用拖得跟直接從介面選檔案存在的地方會不一樣
         if(byDrop){
             var file = e.nativeEvent.dataTransfer.files[0]
         }else{
@@ -211,17 +229,23 @@ class AddProductModal extends React.Component{
         this.handleImgChange(e,true)
     }
     uploadFile(){
-        const {name,describe,type,img,s,m,l,xl,isOneSize} = this.state
-        const productData = JSON.stringify({...this.state,img:''})
+        const {img} = this.state
+        const productData = JSON.stringify({...this.state})
         var formData = new FormData()
         formData.append('myFile', img, img.name)
         formData.append('productData',productData)
         axios({
             method: 'post',
-            url: 'http://localhost:3000/upload',
+            url: 'http://localhost:3000/addProduct',
             data: formData
         }).then((res)=>{
-            console.log(res.data)
+            if(res.data.err == true){
+                alert('error!')
+                return
+            }
+            alert('已成功新增商品!')
+            window.location.reload();
+            
         })
     }
     render(){

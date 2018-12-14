@@ -31,7 +31,7 @@ export class SingleProduct extends React.Component {
                 <div className="single_container">
                     <img src={product.img_path} alt="" className="single_img" />
                     <div className="single_inf_container">
-                        <div>
+                        <div className='single_inf_top'>
                             <h2 className="single_inf_name">{product.name}</h2>
                             <p className="single_inf_intro">{product.intro}</p>
                         </div>

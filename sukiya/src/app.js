@@ -9,6 +9,7 @@ import ProductsRow from './productsRowContainer'
 import Navbar from './navbarContainer'
 import SingleProduct from './SingleProductContainer'
 import Login from './loginContainer'
+import {AboutUs} from './aboutUs'
 import { ParallaxProvider } from 'react-scroll-parallax'
 import {
     HashRouter as Router,
@@ -75,6 +76,17 @@ class Account extends React.Component {
     }
 }
 
+class About extends React.Component{
+    render(){
+        return(
+            <div>
+                <Navbar />
+                <AboutUs />
+            </div>
+        )
+    }
+}
+
 export default class App extends React.Component{
     render(){
         return(
@@ -86,6 +98,7 @@ export default class App extends React.Component{
                     <Route path='/single/:type/:id' component={Single} />
                     <Route path='/map' component={Map} />
                     <Route path='/account' component={Account} />
+                    <Route path='/about' component={About} />
                     </div>
                 </Router>
             </ParallaxProvider>

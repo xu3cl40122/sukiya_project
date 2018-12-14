@@ -1,10 +1,9 @@
 const conn = require('./connect')
-
-
+const login = require('./login')
 
 module.exports={
     getSites: function getSites(req, res) {
-        addCrosHeader(res)
+        login.handleCros(req,res)
         let sql = 'SELECT * FROM sk_site'
         conn.query(sql, (err, results) => {
             if (err) {
@@ -15,8 +14,4 @@ module.exports={
             }
         })
     }
-}
-function addCrosHeader(res) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8080')
-    res.header('Access-Control-Allow-Credentials', 'true')
 }
