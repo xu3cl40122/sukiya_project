@@ -24,7 +24,7 @@ export class Navbar extends React.Component {
         const{setLoginState, userState} = this.props
         axios({
             method: 'get',
-            url: 'http://localhost:3000/checkSession',
+            url: 'http://tomlee0122.tw/checkSession',
             withCredentials: true
         }).then((res) => {
             console.log(res.data)
@@ -52,7 +52,7 @@ export class Navbar extends React.Component {
         }
         axios({
             method: 'get',
-            url: 'http://localhost:3000/logout',
+            url: 'http://tomlee0122.tw/logout',
             withCredentials: true
         }).then((res) => {
             this.props.history.push('/')

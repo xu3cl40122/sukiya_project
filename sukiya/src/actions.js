@@ -41,7 +41,7 @@ export const login = (data) => ({
     type: LOGIN,
     payload: axios({
         method: 'post',
-        url: 'http://localhost:3000/login',
+        url: 'http://tomlee0122.tw/login',
         data: data,
         withCredentials: true
     })
@@ -51,7 +51,7 @@ export const sendOrder = (order)=>({
     type:SEND_ORDER,
     payload: axios({
         method: 'post',
-        url: 'http://localhost:3000/catchOrder',
+        url: 'http://tomlee0122.tw/catchOrder',
         data: order
     })
 })
@@ -60,7 +60,7 @@ export const checkSession = ()=>({
     type: CHECK_SESSION,
     payload: axios({
         method: 'get',
-        url: 'http://localhost:3000/checkSession',
+        url: 'http://tomlee0122.tw/checkSession',
         withCredentials: true
     })
 
