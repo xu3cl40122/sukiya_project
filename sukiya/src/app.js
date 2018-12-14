@@ -90,18 +90,16 @@ class About extends React.Component{
 export default class App extends React.Component{
     render(){
         return(
-            <ParallaxProvider >
-                <Router>
+                <Router onChange={() => console.log(777)}>
                     <div>
-                    <Route exact path='/' component={Home} />
-                    <Route path='/products/:type' component={Products} />
-                    <Route path='/single/:type/:id' component={Single} />
-                    <Route path='/map' component={Map} />
-                    <Route path='/account' component={Account} />
-                    <Route path='/about' component={About} />
+                        <Route exact path='/' component={Home} />
+                        <Route path='/products/:type' component={Products} />
+                        <Route path='/single/:type/:id' component={Single} />
+                        <Route path='/map' component={Map} />
+                        <Route path='/account' component={Account} />
+                        <Route path='/about' component={About} />
                     </div>
                 </Router>
-            </ParallaxProvider>
         )
     }
 }
