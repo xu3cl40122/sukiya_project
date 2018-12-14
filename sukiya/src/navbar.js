@@ -16,6 +16,7 @@ export class Navbar extends React.Component {
     }
     componentDidMount() {
         const{userState} = this.props
+        window.scrollTo(0, 0)//換頁時把頁面捲回去
         if(userState.isCheckedSession == false){
             this.checkSession()
         }
