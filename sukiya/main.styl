@@ -640,6 +640,8 @@ sidebar_height = 40px
     box-shadow  0px 1px 13px 1px rgba(0,0,0,0.1)
     display inline-flex
     align-items center
+    @media screen and (max-width: 1000px)
+        width 90% 
     @media screen and (max-width: 600px) 
         width 90%
         display flex
@@ -684,6 +686,8 @@ sidebar_height = 40px
     width 80%
     position relative
     padding-bottom 50px
+    @media screen and (max-width: 1000px)
+        width 90% 
     .mealList_title
         margin 0 0 15px 0 
         padding 0
@@ -706,6 +710,7 @@ sidebar_height = 40px
         margin 20px 0px
     .mealList_col
         height 70px
+        width 100%
         background white
         border-radius 15px
         margin-bottom 10px
@@ -715,16 +720,29 @@ sidebar_height = 40px
         padding 10px 10px
         font-size 1.2rem
         position relative
+        justify-content: space-around
         p 
             margin 0 15px 0 20px
+        @media screen and (max-width: 600px) 
+            height auto
+            flex-wrap: wrap
+    
+    .mealList_col_wrapper 
+        span 
+            margin-right 10px
+        @media screen and (max-width: 600px)
+            width 100% 
+            margin-bottom 10px
     .mealList_col_select_container
         max-width value
     .mealList_col_name
         font-size 1.3rem
         color s_brown
         display inline-block
-        width 160px
         text-align center
+        @media screen and (max-width: 600px)  
+            display block
+            width 100%
     .mealList_col_num 
         width 3rem
     .mealList_col_delete
@@ -766,6 +784,7 @@ sidebar_height = 40px
         color s_red
         margin 0
         font-weight bold
+        margin-right 35px
 .modalContainer
     width 100%
     min-height 40vh

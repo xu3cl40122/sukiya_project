@@ -48,7 +48,7 @@ export class OrderList extends React.Component {
     render() {
         const { orderListMap } = this.state
         return (
-            <div className="mealList_container hide">
+            <div className="mealList_container">
                 <h2 className="mealList_title">客製餐點</h2>
                 <div className="mealList_title_border"></div>
                 <div className="mealList_row">
@@ -166,26 +166,37 @@ class OrderListCol extends React.Component {
     }
     render() {
         return (
-            <div className="mealList_col">
-                <h2 className="mealList_col_name">{this.state.name}</h2>
-                <p>大小:</p>
-                <select name="size" value={this.state.size} onChange={this.handleChange}>
-                    <option value="迷你碗">迷你碗</option>
-                    <option value="中碗">中碗</option>
-                    <option value="超值碗">超值碗</option>
-                    <option value="超大碗">超大碗</option>
-                </select>
-                <p>套餐:</p>
-                <select name="set" value={this.state.set} onChange={this.handleChange}>
-                    <option value="">無</option>
-                    <option value="青菜套餐">青菜套餐</option>
-                    <option value="可樂餅套餐">可樂餅套餐</option>
-                </select>
-                <p>數量:</p>
-                <input name='num' value={this.state.num} onChange={this.handleChange} type="number" min="1" max="20" className="mealList_col_num" />
-                <p>價格:</p>
-                <span className="mealList_col_price">{this.state.total}</span>
-                <i className="fa fa-close mealList_col_delete" onClick={this.handleDelete}></i>
+            <div>
+                <div className="mealList_col">
+                    <h2 className="mealList_col_name">{this.state.name}</h2>
+                    <div className='mealList_col_wrapper'>
+                        <span>大小:</span>
+                        <select name="size" value={this.state.size} onChange={this.handleChange}>
+                            <option value="迷你碗">迷你碗</option>
+                            <option value="中碗">中碗</option>
+                            <option value="超值碗">超值碗</option>
+                            <option value="超大碗">超大碗</option>
+                        </select>
+                    </div>
+                    <div className='mealList_col_wrapper'>
+                        <span>套餐:</span>
+                        <select name="set" value={this.state.set} onChange={this.handleChange}>
+                            <option value="">無</option>
+                            <option value="青菜套餐">青菜套餐</option>
+                            <option value="可樂餅套餐">可樂餅套餐</option>
+                        </select>
+                    </div>
+                    <div className='mealList_col_wrapper'>
+                        <span>數量:</span>
+                        <input name='num' value={this.state.num} onChange={this.handleChange} type="number" min="1" max="20" className="mealList_col_num" />
+                    </div>
+                    <div className='mealList_col_wrapper'>
+                        <span>價格:</span>
+                        <span className="mealList_col_price">{this.state.total}</span>
+                    </div>
+                    <i className="fa fa-close mealList_col_delete" onClick={this.handleDelete}></i>
+                </div>
+                
             </div>
         )
     }

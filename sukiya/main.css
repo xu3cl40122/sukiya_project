@@ -862,6 +862,11 @@ input[type=submit] {
   display: inline-flex;
   align-items: center;
 }
+@media screen and (max-width: 1000px) {
+  .single_container {
+    width: 90%;
+  }
+}
 @media screen and (max-width: 600px) {
   .single_container {
     width: 90%;
@@ -923,6 +928,11 @@ input[type=submit] {
   position: relative;
   padding-bottom: 50px;
 }
+@media screen and (max-width: 1000px) {
+  .mealList_container {
+    width: 90%;
+  }
+}
 .mealList_container .mealList_title {
   margin: 0 0 15px 0;
   padding: 0;
@@ -948,6 +958,7 @@ input[type=submit] {
 }
 .mealList_container .mealList_col {
   height: 70px;
+  width: 100%;
   background: #fff;
   border-radius: 15px;
   margin-bottom: 10px;
@@ -957,9 +968,25 @@ input[type=submit] {
   padding: 10px 10px;
   font-size: 1.2rem;
   position: relative;
+  justify-content: space-around;
 }
 .mealList_container .mealList_col p {
   margin: 0 15px 0 20px;
+}
+@media screen and (max-width: 600px) {
+  .mealList_container .mealList_col {
+    height: auto;
+    flex-wrap: wrap;
+  }
+}
+.mealList_container .mealList_col_wrapper span {
+  margin-right: 10px;
+}
+@media screen and (max-width: 600px) {
+  .mealList_container .mealList_col_wrapper {
+    width: 100%;
+    margin-bottom: 10px;
+  }
 }
 .mealList_container .mealList_col_select_container {
   max-width: value;
@@ -968,8 +995,13 @@ input[type=submit] {
   font-size: 1.3rem;
   color: #795548;
   display: inline-block;
-  width: 160px;
   text-align: center;
+}
+@media screen and (max-width: 600px) {
+  .mealList_container .mealList_col_name {
+    display: block;
+    width: 100%;
+  }
 }
 .mealList_container .mealList_col_num {
   width: 3rem;
@@ -1018,6 +1050,7 @@ input[type=submit] {
   color: #d7000f;
   margin: 0;
   font-weight: bold;
+  margin-right: 35px;
 }
 .modalContainer {
   width: 100%;
