@@ -10,7 +10,7 @@ module.exports = {
         var salt = bcrypt.genSaltSync(10);
         var hash = bcrypt.hashSync(req.body.password, salt)
         // --- login ---
-        var response = {msg:'',data:{}}
+        var response = {msg:'',data:{}}//存要 response 給前端的
         if(req.body.isLogin){
             let sql = `SELECT * FROM sk_users WHERE email = ?`
             conn.query(sql,[req.body.email],(err,result)=>{
