@@ -10,13 +10,13 @@ export class News extends React.Component {
                     <div className="news_list" onClick={() => { alert('功能開發中 敬請期待~~') }} >
                         <div className="news_line">
                             <span className="news_line_newsType">特別活動</span>
-                            <p className="news_line_title">SUKIYA 祝大家聖誕節快樂</p>
-                            <p className="news_line_time">2018/12/13</p>
+                            <span className="news_line_title">SUKIYA 祝大家聖誕節快樂!! 推出聖誕特別套餐</span>
+                            <span className="news_line_time">18/12/13</span>
                         </div>
                         <div className="news_line">
                             <span className="news_line_newsType">特別活動</span>
-                            <p className="news_line_title">5/12到5/19 歡慶母親節特別活動</p>
-                            <p className="news_line_time">2018/05/12</p>
+                            <span className="news_line_title">5/12到5/19 歡慶母親節特別活動</span>
+                            <span className="news_line_time">18/05/12</span>
                         </div>
                     </div>
                 </div>
