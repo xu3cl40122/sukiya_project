@@ -51,7 +51,7 @@ export const sendOrder = (order)=>({
     type:SEND_ORDER,
     payload: axios({
         method: 'post',
-        url: 'http://localhost:3000/catchOrder',
+        url: 'http://tomlee0122.tw/catchOrder',
         data: order
     })
 })
