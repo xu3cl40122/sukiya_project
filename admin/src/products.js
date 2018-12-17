@@ -293,7 +293,7 @@ class AddProductModal extends React.Component{
                                             </div>
                                     )
                                 })}
-                                {isOneSize ? <div className='rightBlock_price_col'><p>價格:</p><input name='s' type='text' pattern='[0-9]*|null' onChange={this.handleInput} value={this.state.s} /></div>:null}
+                                {isOneSize ? <div className='rightBlock_price_col'><p>價格:</p><input name='m' type='text' pattern='[0-9]*|null' onChange={this.handleInput} value={this.state.m} /></div>:null}
                                 <div className='changeSize' onClick={this.switchSizeNum}>One Size</div>
                                 <input type='submit' className='submit' value='Save'/>
                             </form>
