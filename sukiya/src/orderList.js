@@ -33,7 +33,11 @@ export class OrderList extends React.Component {
     }
     addToCart(products){
         const { changeCart,cart}=this.props
-        const{orders}=this.state
+        const{orders,orderListMap}=this.state
+        if (orderListMap.length === 0){
+            alert('請先選擇想要的商品')
+            return
+        }
         let newCart = cart.slice()
         for(let i in orders){
             newCart.push(orders[i])

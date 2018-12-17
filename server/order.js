@@ -2,7 +2,6 @@ const conn = require('./connect')
 
 module.exports = {
     catchOrder: function catchOrder(req,res){
-        let time = new Date().toLocaleString();
         let sql = `INSERT INTO sk_orders (user_id, product_list, phone, address, other_need, total) VALUES (?,?,?,?,?,?)`
         conn.query(sql, [req.body.user_id, req.body.products, req.body.phone, req.body.address, req.body.other_need, req.body.total ],
             (err,result)=>{
@@ -11,7 +10,7 @@ module.exports = {
                     res.send(err)
                     return 
                 }
-                res.send('pass')
+                res.send(result)
         })
     },
     getAllOrders:function getAllOrders(req,res){

@@ -100,7 +100,7 @@ function AppReducer(state = initialState, action){
         case `${SEND_ORDER}_FULFILLED`: {// success
             return {
                 ...state,
-                sendOrderRes: action.payload.data
+                sendOrderRes: action.payload.data.insertId
             }
         }
         case `${SEND_ORDER}_REJECTED`: {// error
