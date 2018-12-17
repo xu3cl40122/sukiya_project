@@ -1164,7 +1164,7 @@ input[type=submit] {
 @media screen and (max-width: 600px) {
   .modalContainer #modal_col_price {
     font-size: 1rem;
-    right: 20px;
+    right: 10px;
   }
 }
 .modalContainer .modal_col_close {
