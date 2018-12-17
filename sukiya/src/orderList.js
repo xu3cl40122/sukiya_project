@@ -1,6 +1,8 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-export class OrderList extends React.Component {
+import {
+    withRouter
+} from 'react-router-dom'
+ export class OrderList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -50,7 +52,8 @@ export class OrderList extends React.Component {
         alert('商品已加入購物車!')
     }
     render() {
-        const { orderListMap } = this.state
+        const { orderListMap} = this.state
+        const{match, product} = this.props
         return (
             <div className="mealList_container">
                 <h2 className="mealList_title">客製餐點</h2>
@@ -61,9 +64,10 @@ export class OrderList extends React.Component {
                             <OrderListCol 
                                 key={order.id} 
                                 id={order.id} 
-                                product={this.props.product} 
+                                product={product} 
                                 removeCol = {this.removeCol}
                                 updateOrder = {this.updateOrder}
+                                match = {match}
                             />
                         )
                     })}
@@ -132,7 +136,16 @@ class OrderListCol extends React.Component {
     }
     // 設定動態新增的 col 的預設值
     componentDidMount() {
-        const { product } = this.props
+        const { product,match } = this.props
+        console.log(this.props)
+        if(match.params.type == 'other'){
+            this.setState({
+                total: product.price_s,
+                price: product.price_s,
+                name: product.name
+            })
+            return
+        }
         this.setState({
             total: product.price_m,
             price: product.price_m,
@@ -169,11 +182,16 @@ class OrderListCol extends React.Component {
         removeCol(id)
     }
     render() {
+        const {match} = this.props
+        var classForOther = null 
+        if (match.params.type == 'other'){
+            classForOther = 'hide'
+        }
         return (
             <div>
                 <div className="mealList_col">
                     <h2 className="mealList_col_name">{this.state.name}</h2>
-                    <div className='mealList_col_wrapper'>
+                    <div className={`mealList_col_wrapper ${classForOther}`}>
                         <span>大小:</span>
                         <select name="size" value={this.state.size} onChange={this.handleChange}>
                             <option value="迷你碗">迷你碗</option>
@@ -182,7 +200,7 @@ class OrderListCol extends React.Component {
                             <option value="超大碗">超大碗</option>
                         </select>
                     </div>
-                    <div className='mealList_col_wrapper'>
+                    <div className={`mealList_col_wrapper ${classForOther}`}>
                         <span>套餐:</span>
                         <select name="set" value={this.state.set} onChange={this.handleChange}>
                             <option value="">無</option>
