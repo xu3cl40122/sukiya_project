@@ -11,7 +11,7 @@ export class AboutUs extends React.Component{
                     </div>
                 </div>
                 <div className='main'>
-                    <div>
+                    <div className='main_wrapper'>
                         <div className='main_logo'></div>
                         <div className='main_logo_2'></div>
                     </div>

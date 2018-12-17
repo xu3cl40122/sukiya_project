@@ -137,7 +137,9 @@ class Bar extends React.Component {
                     <div className='bar_col'>
                         <Link to='/map' className="link" onClick={toggleBar}><i className="fa fa-map-marker"></i>門市地點</Link>
                     </div>
-
+                    <div className='bar_col'>
+                        <Link to='/about' className="link" onClick={toggleBar}><i className="fa fa-map-marker"></i>關於我們</Link>
+                    </div>
                 </div>
                 <div className='bar_back' onClick={toggleBar}><i className='fa fa-remove'></i></div>
             </div>
