@@ -87,18 +87,11 @@ export class Cart extends React.Component {
     }
     componentDidUpdate(prevProps, prevState) {
         const { sendOrderRes, changeCart } = this.props
-        if (sendOrderRes != prevProps.sendOrderRes) {
-            if (sendOrderRes) {
-                alert('訂餐成功!')
-                changeCart([])
-                this.setState({
-                    isOpen: false,
-                    checkedorder: false,
-                })
-            }
-            else {
-                alert('訂餐失敗')
-            }
+        if (sendOrderRes == prevProps.sendOrderRes){
+            console.log('same')
+        }
+        if (sendOrderRes !== prevProps.sendOrderRes) {
+            console.log(sendOrderRes, prevProps.sendOrderRes,this.state,prevState )
         }
     }
     render() {
