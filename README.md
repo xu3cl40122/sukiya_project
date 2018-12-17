@@ -1,5 +1,5 @@
 # 電商網站
-前台:http://tomlee0122.tw/static/sukiya_project/sukiya/index.html#/
+前台:http://tomlee0122.tw/static/sukiya_project/sukiya/index.html#/    
 後台:http://tomlee0122.tw/static/sukiya_project/admin/index.html#/
 * React + Redux 
 * RWD
