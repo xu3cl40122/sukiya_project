@@ -827,14 +827,17 @@ sidebar_height = 40px
         width 100% 
         height 80px 
         border-bottom 1px solid #d8d7d7
-        display flex
         align-items center
+        display flex
         padding 0px 5px
         position relative
-        justify-content: space-between
         //box-shadow  0px 1px 11px 3px rgba(0,0,0,0.2)
         img 
             width 70px
+            margin-right 10%
+            @media screen and (max-width: 600px)  
+                width 35px 
+                margin-right 20px
         span 
             margin-right 20px
     .modal_col_nameContainer
@@ -858,8 +861,12 @@ sidebar_height = 40px
         color s_gray 
         font-weight bold
         font-size 1.2rem
-        margin-right 30px
         width 40px 
+        position absolute
+        right 40px
+        @media screen and (max-width: 600px)
+            font-size 1rem 
+            right 10px
     .modal_col_close 
         position absolute 
         right 10px
@@ -1126,6 +1133,8 @@ sidebar_height = 40px
         color s_red
         margin-bottom 120px
         max-width 250px
+        @media screen and (max-width: 600px)
+            display none
     .title_row
         transform rotate(-10deg)
         h2 
@@ -1135,6 +1144,7 @@ sidebar_height = 40px
             letter-spacing: 5px
             font-style italic
             font-family: 'Lato',Microsoft JhengHei,Arial,Helvetica,sans-serif
+            
 
         h3  
             font-size 32px
@@ -1143,6 +1153,13 @@ sidebar_height = 40px
             font-weight 900
     .main  
         display flex 
+        @media screen and (max-width: 600px)
+            flex-wrap: wrap
+    .main_wrapper
+        @media screen and (max-width: 600px) 
+            width 100%
+            display none
+
     .main_logo 
         background url('./pic/icon_whatssukiya.png')
         width 144px 
@@ -1154,21 +1171,29 @@ sidebar_height = 40px
         height 144px
         margin-top 20px
         background-size cover
+        @media screen and (max-width: 600px)
+            margin 0
     .main_intro 
         margin-left 200px
         h2 
             font-size 42px 
             color s_red
             margin 0
+            @media screen and (max-width: 600px)
+                font-size 24px
         h3      
             color s_red
             font-weight 900
             font-size 24px
             margin 15px 0 40px 0
+            @media screen and (max-width: 600px)
+                font-size 18px
         p 
             color #717071
             font-size 18px
             line-height 1.8
             font-weight bold
-        
+        @media screen and (max-width: 600px) 
+            width 100%
+            margin 0
     
