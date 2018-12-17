@@ -64,7 +64,7 @@ export class Cart extends React.Component {
         })
     }
     sendOrder() {
-        const { userState, cart, sendOrder } = this.props
+        const { userState, cart, changeCart } = this.props
         if (userState.username == undefined) {
             alert('請先登入帳號再進行訂購')
             return
@@ -78,22 +78,27 @@ export class Cart extends React.Component {
             address: this.state.address,
             other_need: this.state.other_need
         }
-        sendOrder(order)
+        axios({
+            method: 'post',
+            url: 'http://tomlee0122.tw/catchOrder',
+            data: order
+        }).then((res)=>{
+            alert('訂餐成功!!')
+            this.setState({
+                isOpen: false,
+                checkedorder: false
+            })
+            changeCart([])//清空購物車
+        }).catch((err)=>{
+            alert('error')
+        })
     }
     backToCheckOrder(){
         this.setState({
             checkedorder: false 
         })
     }
-    componentDidUpdate(prevProps, prevState) {
-        const { sendOrderRes, changeCart } = this.props
-        if (sendOrderRes == prevProps.sendOrderRes){
-            console.log('same')
-        }
-        if (sendOrderRes !== prevProps.sendOrderRes) {
-            console.log(sendOrderRes, prevProps.sendOrderRes,this.state,prevState )
-        }
-    }
+    
     render() {
         const { isOpen, other_need } = this.state;
         const { cart } = this.props

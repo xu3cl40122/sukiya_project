@@ -30,7 +30,7 @@ export class Products extends React.Component{
         })
     }
     removeProduct(id){
-        axios.delete('http://localhost:3000/deleteProduct', { params: { id: id } }
+        axios.delete('http://tomlee0122.tw/deleteProduct', { params: { id: id } }
         ).then((res)=>{
             this.getProducts()
         }).catch((err)=>{
@@ -40,7 +40,7 @@ export class Products extends React.Component{
     getProducts(){
         axios({
             method: 'post',
-            url: 'http://localhost:3000/backProducts',
+            url: 'http://tomlee0122.tw/backProducts',
             data: this.state
         }).then((res) => {
             this.setState({
@@ -236,7 +236,7 @@ class AddProductModal extends React.Component{
         formData.append('productData',productData)
         axios({
             method: 'post',
-            url: 'http://localhost:3000/addProduct',
+            url: 'http://tomlee0122.tw/addProduct',
             data: formData
         }).then((res)=>{
             if(res.data.err == true){

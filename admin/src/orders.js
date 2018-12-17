@@ -36,7 +36,7 @@ export class Orders extends React.Component {
     getAllOrders(){
         axios({
             method: 'post',
-            url: 'http://localhost:3000/allOrders',
+            url: 'http://tomlee0122.tw/allOrders',
             data: this.state
         }).then((res) => {
             this.setState({
@@ -49,7 +49,7 @@ export class Orders extends React.Component {
     changeOrderStatus(id,status){
         axios({
             method: 'put',
-            url: 'http://localhost:3000/changeOrder',
+            url: 'http://tomlee0122.tw/changeOrder',
             data: {
                 id:id,
                 status:status
@@ -63,7 +63,7 @@ export class Orders extends React.Component {
     deleteOrder(id){
         var isSure = confirm('確定要刪除該筆訂單?')
         if(!isSure){return}
-        axios.delete('http://localhost:3000/deleteOrder', { params: { id: id } })
+        axios.delete('http://tomlee0122.tw/deleteOrder', { params: { id: id } })
         .then((res)=>{
             this.getAllOrders()
         }).catch((err)=>{
@@ -87,7 +87,7 @@ export class Orders extends React.Component {
         }
         axios({
             method: 'post',
-            url: 'http://localhost:3000/filterOrders',
+            url: 'http://tomlee0122.tw/filterOrders',
             data: { from: this.state.dateFrom, to: this.state.dateTo }
         }).then((res) => {
             this.setState({
@@ -125,6 +125,7 @@ export class Orders extends React.Component {
                             <th>Total</th>
                             <th>Order Time</th>
                             <th className="bigCol">Address</th>
+                            <th>Other</th>
                             <th>Phone</th>
                             <th>Status</th>
                         </tr>
@@ -186,6 +187,7 @@ class Col extends React.Component {
                 <td>{order.total}</td>
                 <td>{time}</td>
                 <td>{order.address}</td>
+                <td>{order.other_need}</td>
                 <td>{order.phone}</td>
                 <td>
                     <div className={buttonClass}>
