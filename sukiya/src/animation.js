@@ -57,24 +57,27 @@ class Ani extends React.Component {
     }
     componentDidUpdate(prevProps,prevState){
         const {scrollTop} = this.props
+        const sp = 70
         // 預防快速上下產生明明沒在頂 卻是大 logo 的情況
-        if (prevState.hidden == false & prevState.changeing == true & this.state.changeing == false & scrollTop > 50){
+        if (prevState.hidden == false & prevState.changeing == true & this.state.changeing == false & scrollTop > sp){
             this.changeLogoTo('small')
         }
         // 預防快速上下產生明明在捲到頂卻沒變回大 logo的情況
-        if(scrollTop<50 & prevState.changeing == true & this.state.hidden == true & this.state.changeing == false){
+        if (scrollTop < sp & prevState.changeing == true & this.state.hidden == true & this.state.changeing == false){
             this.changeLogoTo('big')
         }
         // 用 settimeout 切換動畫是否正在執行，避免同時載入大小 logo
         if(prevProps.scrollTop !== scrollTop & this.state.changeing != true){
             //console.log('in',prevState)
            
-            if (scrollTop > 50 & this.state.hidden == false) {
+            if (scrollTop > sp & this.state.hidden == false) {
                 this.changeLogoTo('small')              
             }
-            else if (scrollTop < 50 & this.state.hidden == true){
+            else if (scrollTop < sp & this.state.hidden == true){
                 this.changeLogoTo('big')            }
         }
+        
+       
         
     }
     
