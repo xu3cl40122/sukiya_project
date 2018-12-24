@@ -32,6 +32,12 @@ import {
        this.setState({
            orderListMap:this.state.orderListMap.filter(item => item.id != id)
        })
+       let newOrder = {...this.state.orders}
+       delete newOrder[id]
+       console.log(newOrder)
+       this.setState({
+           orders:newOrder
+       })
     }
     addToCart(products){
         const { changeCart,cart}=this.props
@@ -41,6 +47,7 @@ import {
             return
         }
         let newCart = cart.slice()
+        console.log('cart',orders)
         for(let i in orders){
             newCart.push(orders[i])
         }
@@ -137,7 +144,6 @@ class OrderListCol extends React.Component {
     // 設定動態新增的 col 的預設值
     componentDidMount() {
         const { product,match } = this.props
-        console.log(this.props)
         if(match.params.type == 'other'){
             this.setState({
                 total: product.price_s,
