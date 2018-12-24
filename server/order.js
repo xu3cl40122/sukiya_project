@@ -15,7 +15,7 @@ module.exports = {
     },
     getAllOrders:function getAllOrders(req,res){
         let orderBy = 'order_id'
-        let sql = `SELECT * FROM sk_orders JOIN sk_users ON sk_orders.user_id = sk_users.user_id ORDER BY sk_orders.created_at DESC`
+        let sql = `SELECT * FROM sk_orders JOIN sk_users ON sk_orders.user_id = sk_users.user_id ORDER BY sk_orders.created_at ASC`
         conn.query(sql,(err,result)=>{
                 if(err){
                     console.log(err)
