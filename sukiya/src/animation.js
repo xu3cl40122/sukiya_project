@@ -57,20 +57,11 @@ class Ani extends React.Component {
     }
     componentDidUpdate(prevProps,prevState){
         const {scrollTop} = this.props
-        const sp = 30
-        /*
+        const sp = 50
         if (scrollTop > sp && this.state.hidden == false){
             this.changeLogoTo('small')
         }
-        if(scrollTop < sp){
-            setTimeout(() => {
-                if (scrollTop <= sp && this.state.hidden == true){
-                    this.changeLogoTo('big')
-                }
-            }, 1000);
-        }
-        */
-        
+        /*
         // 預防快速上下產生明明沒在頂 卻是大 logo 的情況
         if (prevState.hidden == false & prevState.changeing == true & this.state.changeing == false & scrollTop > sp){
             this.changeLogoTo('small')
@@ -89,7 +80,7 @@ class Ani extends React.Component {
             else if (scrollTop < sp & this.state.hidden == true){
                 this.changeLogoTo('big')            }
         }
-        
+        */
         
        
         
