@@ -29,7 +29,7 @@ module.exports = {
     getFilterOrders(req,res){
         // 搜尋日期外面要包 ' ' 才有效果
         let condition = `WHERE created_at > '${req.body.from}' AND created_at < '${req.body.to}' `
-        let sql = `SELECT * FROM sk_orders JOIN sk_users ON sk_orders.user_id = sk_users.user_id ${condition}`
+        let sql = `SELECT * FROM sk_orders JOIN sk_users ON sk_orders.user_id = sk_users.user_id ${condition} ORDER BY sk_orders.created_at DESC`
         conn.query(sql, (err, result) => {
             if (err) {
                 console.log(err)

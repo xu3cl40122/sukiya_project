@@ -30,12 +30,16 @@ export class Products extends React.Component{
         })
     }
     removeProduct(id){
-        axios.delete('http://tomlee0122.tw/deleteProduct', { params: { id: id } }
-        ).then((res)=>{
-            this.getProducts()
-        }).catch((err)=>{
-            alert(err)
-        })
+        let sure = confirm('確定要刪除商品?')
+        if (sure){
+            axios.delete('http://tomlee0122.tw/deleteProduct', { params: { id: id } }
+            ).then((res) => {
+                this.getProducts()
+            }).catch((err) => {
+                alert(err)
+            })
+        }
+        
     }
     getProducts(){
         axios({
@@ -142,7 +146,7 @@ class AddProductModal extends React.Component{
             isModalOpen: false,
             isOneSize:false,
             name:"",
-            type:'',
+            type:'bowl',
             describe:"",
             img:'',
             imgSrc:'',
