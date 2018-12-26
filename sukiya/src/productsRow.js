@@ -31,8 +31,8 @@ class ProductsRow extends React.Component {
                         return(
                             <Link to={`/single/${match.params.type}/${products.product_id}`} className='link' key={products.product_id}>
                             <div className="product_col" >
-                                <div className="product_col_img">
-                                    <img src={products.img_path} alt="" className="product_row_img" />
+                                <div className="">
+                                    <img src={products.img_path} alt="" className="product_col_img" />
                                 </div>
                                 <div className="product_col_inf">
                                     <h2 className="product_col_inf_name">{products.name}</h2>
